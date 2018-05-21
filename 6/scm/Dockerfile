@@ -1,7 +1,5 @@
 FROM centos:6-curl
 
-RUN yum -y install epel-release
-
 RUN yum -y install \
 		git \
 		openssh-clients \
