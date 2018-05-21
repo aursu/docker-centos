@@ -3,7 +3,7 @@ FROM centos:6-scm
 RUN yum -y install \
                 rpm-build \
                 yum-utils \
-                ldconfig_scriptlets \
+                epel-rpm-macros \
         && yum clean all && rm -rf /var/cache/yum
 
 RUN mkdir -p \
