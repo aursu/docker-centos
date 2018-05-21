@@ -1,0 +1,14 @@
+version: "3"
+services:
+  curl:
+    build:
+      context: centos/6/curl
+    image: centos:6-curl
+  scm:
+    build:
+      context: centos/6/scm
+    image: centos:6-scm
+  rpmbuild:
+    build:
+      context: centos/6/rpmbuild
+    image: centos:6-rpmbuild
