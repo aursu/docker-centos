@@ -1,4 +1,4 @@
-FROM centos:6-scm
+FROM centos:7-scm
 
 RUN yum -y install \
                 rpm-build \
