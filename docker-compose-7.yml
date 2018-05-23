@@ -1,0 +1,14 @@
+version: "3"
+services:
+  curl:
+    build:
+      context: centos/7/curl
+    image: centos:7-curl
+  scm:
+    build:
+      context: centos/7/scm
+    image: centos:7-scm
+  httpd:
+    build:
+      context: centos/7/httpd
+    image: centos:httpd
