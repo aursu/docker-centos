@@ -8,6 +8,10 @@ services:
     build:
       context: 6/scm
     image: centos:6-scm
+  centos7curl:
+    build:
+      context: 7/curl
+    image: centos:7-curl
   httpd:
     build:
       context: httpd
