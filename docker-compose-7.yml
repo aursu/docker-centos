@@ -8,7 +8,15 @@ services:
     build:
       context: centos/7/scm
     image: centos:7-scm
+  rpmbuild:
+    build:
+      context: centos/7/rpmbuild
+    image: centos:7-rpmbuild
   httpd:
     build:
       context: centos/7/httpd
     image: centos:httpd
+  webrepo:
+    build:
+      context: centos/7/webrepo
+    image: centos:webrepo
