@@ -2,21 +2,13 @@ version: "3"
 services:
   curl:
     build:
-      context: centos/6/curl
+      context: 6/curl
     image: centos:6-curl
   scm:
     build:
-      context: centos/6/scm
+      context: 6/scm
     image: centos:6-scm
-  rpmbuild:
-    build:
-      context: centos/6/rpmbuild
-    image: centos:6-rpmbuild
   httpd:
     build:
-      context: centos/7/httpd
+      context: httpd
     image: centos:httpd
-  webrepo:
-    build:
-      context: centos/7/webrepo
-    image: centos:webrepo
