@@ -1,8 +1,8 @@
 FROM centos:httpd
 
 # enabe alias_module to use it for /centos location alias
-COPY system/etc/httpd/conf.modules.d/00-alias.conf \
-	/etc/httpd/conf.modules.d/00-alias.conf
+COPY system/etc/httpd/conf.modules.d/00-extra.conf \
+	/etc/httpd/conf.modules.d/00-extra.conf
 
 # repo aliases
 COPY system/etc/httpd/conf.d/repo.conf /etc/httpd/conf.d/repo.conf
