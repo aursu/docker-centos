@@ -1,0 +1,47 @@
+FROM centos:7-jdk-8
+
+ARG MYSQL_CONN_NAME=mysql-connector-java-8.0.11
+ARG MYSQL_CONN_RPM=${MYSQL_CONN_NAME}-1.el7.noarch.rpm
+ARG MYSQL_CONN_URL=https://cdn.mysql.com//Downloads/Connector-J/${MYSQL_CONN_RPM}
+ARG MYSQL_CONN_PATH=/tmp/${MYSQL_CONN_RPM}
+ARG MYSQL_PUBKEY=5072E1F5
+
+ENV JAVA_ABRT=off
+ENV TOMCATS_BASE=/var/lib/tomcats/
+ENV JAVA_HOME=/usr/lib/jvm/jre
+ENV CATALINA_HOME=/usr/share/tomcat
+ENV CATALINA_TMPDIR=/var/cache/tomcat/temp
+ENV JAVA_LIBDIR=/usr/share/java
+ENV JNI_LIBDIR=/usr/lib/java
+ENV JVM_ROOT=/usr/lib/jvm
+ENV CATALINA_BASE $CATALINA_HOME
+ENV JAVACMD ${JAVA_HOME}/bin/java
+ENV LOGGING_PROPERTIES ${CATALINA_BASE}/conf/logging.properties
+ENV CLASSPATH=/usr/share/java/${MYSQL_CONN_NAME}.jar
+
+RUN yum -y install \
+        apache-commons-daemon \
+        javapackages-tools \
+        mysql \
+        tomcat \
+        tomcat-lib \
+    && yum clean all && rm -rf /var/cache/yum
+
+RUN set -ex; \
+    curl -L ${MYSQL_CONN_URL} -o ${MYSQL_CONN_PATH}; \
+    gpg --recv-keys --keyserver keys.gnupg.net ${MYSQL_PUBKEY}; \
+    gpg --export -a ${MYSQL_PUBKEY} > ${MYSQL_PUBKEY}.asc; \
+    rpm --import ${MYSQL_PUBKEY}.asc; \
+    rpm -ivh ${MYSQL_CONN_PATH}; \
+    rm -f ${MYSQL_CONN_PATH}; \
+    rm -rf /root/.gnupg
+
+# switch from eval() call to exec() inside run() function to support Docker
+COPY centos/system/usr/libexec/tomcat/functions /usr/libexec/tomcat/functions
+
+RUN mkdir -p $CATALINA_BASE/webapps
+RUN mkdir -p /etc/tomcat/conf.d
+
+USER tomcat
+WORKDIR $CATALINA_HOME
+CMD /usr/libexec/tomcat/server start
