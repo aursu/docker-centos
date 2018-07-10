@@ -3,20 +3,20 @@ services:
   centos6curl:
     build:
       context: 6/curl
-    image: centos:6-curl
+    image: aursu/centos:6-curl
   centos7curl:
     build:
       context: 7/curl
-    image: centos:7-curl
+    image: aursu/centos:7-curl
   centos6scm:
     build:
       context: 6/scm
-    image: centos:6-scm
+    image: aursu/centos:6-scm
   centos7scm:
     build:
       context: 7/scm
-    image: centos:7-scm
+    image: aursu/centos:7-scm
   httpd:
     build:
       context: httpd
-    image: centos:httpd
+    image: aursu/centos:httpd

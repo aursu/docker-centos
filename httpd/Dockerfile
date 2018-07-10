@@ -1,4 +1,4 @@
-FROM centos:7-curl
+FROM aursu/centos:7-curl
 
 ENV LANG=C
 

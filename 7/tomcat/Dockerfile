@@ -1,4 +1,4 @@
-FROM centos:7-jdk-8
+FROM aursu/centos:7-jdk-8
 
 ARG MYSQL_CONN_NAME=mysql-connector-java-5.1.46
 ARG MYSQL_CONN_ARCH=${MYSQL_CONN_NAME}.tar.gz
