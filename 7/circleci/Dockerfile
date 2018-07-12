@@ -19,5 +19,5 @@ RUN yum -y install \
 
 RUN curl \
 	-L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m) \
-	-o /usr/local/bin/docker-compose && \
-	chmod +x /usr/local/bin/docker-compose
+	-o /usr/local/bin/docker-compose \
+	&& chmod +x /usr/local/bin/docker-compose
