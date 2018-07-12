@@ -20,3 +20,7 @@ services:
     build:
       context: httpd
     image: aursu/centos:httpd
+  circleci:
+    build:
+      context: 7/circleci
+    image: aursu/centos:circleci
