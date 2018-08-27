@@ -24,3 +24,7 @@ services:
     build:
       context: 7/circleci
     image: aursu/centos:circleci
+  systemd:
+    build:
+      context: 7/systemd
+    image: aursu/centos:systemd
