@@ -37,7 +37,7 @@ RUN set -ex; \
     rm -rf /root/.gnupg
 
 # switch from eval() call to exec() inside run() function to support Docker
-COPY centos/system/usr/libexec/tomcat/functions /usr/libexec/tomcat/functions
+COPY system/usr/libexec/tomcat/functions /usr/libexec/tomcat/functions
 
 RUN mkdir -p $CATALINA_BASE/webapps
 RUN mkdir -p /etc/tomcat/conf.d
