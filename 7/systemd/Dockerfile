@@ -1,4 +1,4 @@
-FROM centos:7
+FROM aursu/centos:7-scm
 
 ENV container docker
 

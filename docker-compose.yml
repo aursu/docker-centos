@@ -27,4 +27,4 @@ services:
   systemd:
     build:
       context: 7/systemd
-    image: aursu/centos:systemd
+    image: aursu/centos:7-systemd
