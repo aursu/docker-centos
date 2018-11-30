@@ -1,6 +1,8 @@
 FROM aursu/centos:7-scm
 
 ENV container docker
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
 
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
 systemd-tmpfiles-setup.service ] || rm -f $i; done); \
