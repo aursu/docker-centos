@@ -8,4 +8,4 @@
 - [`aursu/centos:7-jdk-8` (*7/openjdk/8/Dockerfile*)](https://github.com/aursu/docker-centos/blob/master/7/openjdk/8/Dockerfile)
 - [`aursu/centos:tomcat` (*7/tomcat/Dockerfile*)](https://github.com/aursu/docker-centos/blob/master/7/tomcat/Dockerfile)
 - [`aursu/centos:systemd` (*7/systemd/Dockerfile*)](https://github.com/aursu/docker-centos/blob/master/7/systemd/Dockerfile)
-- [`aursu/centos:circleci` (*7/circleci/Dockerfile*)](https://github.com/aursu/docker-centos/blob/master/7/circleci/Dockerfile)
+- [`aursu/centos:circleci` (*7/circleci/Dockerfile*)](https://github.com/aursu/docker-centos/blob/master/7/circleci/Dockerfile) - Docker-in-Docker
