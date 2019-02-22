@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:7.6.1810
 
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7 && yum -y update
 
