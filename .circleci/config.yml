@@ -1,0 +1,38 @@
+version: 2
+jobs:
+  build:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - run:
+          name: Upgrade Docker CE
+          command: |
+            sudo apt-get update
+            sudo apt-get install docker-ce=18.03.1~ce-0~ubuntu
+      - run:
+          name: Upgrade Docker Compose
+          command: |
+            sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+            sudo chmod +x /usr/local/bin/docker-compose
+      - checkout
+      - run:
+          name: Build CentOS Docker images
+          command: |
+            docker-compose build --no-cache
+            docker-compose -f docker-compose.tomcat.yml build --no-cache centos7jdk tomcat
+      - run:
+          name: Deploy CentOS Docker images
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push aursu/centos:7-curl
+            docker push aursu/centos:7-scm
+            docker push aursu/centos:httpd
+            docker push aursu/centos:circleci
+            docker push aursu/centos:7-systemd
+            docker push aursu/centos:6-curl
+            docker push aursu/centos:6-scm
+      - run:
+          name: Build Centos Tomcat images
+          command: |
+            docker push aursu/centos:7-jdk-8
+            docker push aursu/centos:tomcat
