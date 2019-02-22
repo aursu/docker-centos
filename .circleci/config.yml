@@ -18,8 +18,8 @@ jobs:
       - run:
           name: Build CentOS Docker images
           command: |
-            docker-compose build --no-cache
-            docker-compose -f docker-compose.tomcat.yml build --no-cache centos7jdk tomcat
+            docker-compose build --pull --no-cache
+            docker-compose -f docker-compose.tomcat.yml build --pull --no-cache centos7jdk tomcat
       - run:
           name: Deploy CentOS Docker images
           command: |
