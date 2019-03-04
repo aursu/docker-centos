@@ -28,3 +28,7 @@ services:
     build:
       context: 7/systemd
     image: aursu/centos:7-systemd
+  centos7web:
+    build:
+      context: 7/web
+    image: aursu/centos:7-web

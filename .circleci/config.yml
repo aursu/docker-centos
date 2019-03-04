@@ -31,8 +31,9 @@ jobs:
             docker push aursu/centos:7-systemd
             docker push aursu/centos:6-curl
             docker push aursu/centos:6-scm
+            docker push aursu/centos:7-web
       - run:
-          name: Build Centos Tomcat images
+          name: Deploy Centos Tomcat images
           command: |
             docker push aursu/centos:7-jdk-8
             docker push aursu/centos:tomcat
