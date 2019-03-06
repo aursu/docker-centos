@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Build CentOS Docker images
           command: |
-            docker-compose build --pull --no-cache
+            docker-compose build --no-cache
             docker-compose -f docker-compose.web.yml build --no-cache
             docker-compose -f docker-compose.dev.yml build --no-cache
       - run:
