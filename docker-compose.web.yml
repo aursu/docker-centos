@@ -1,0 +1,18 @@
+version: "3"
+services:
+  httpd:
+    build:
+      context: httpd
+    image: aursu/centos:httpd
+  tomcat:
+    build:
+      context: 7/tomcat
+    image: aursu/centos:tomcat
+  centos7web:
+    build:
+      context: 7/web
+    image: aursu/centos:7-web
+  centos7node:
+    build:
+      context: 7/node
+    image: aursu/centos:7-node

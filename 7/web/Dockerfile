@@ -1,4 +1,5 @@
-FROM aursu/centos:7-curl
+ARG image=7-curl
+FROM aursu/centos:${image}
 
 # uid 33 assigned to group tape
 # (https://bugzilla.redhat.com/show_bug.cgi?id=1179585)

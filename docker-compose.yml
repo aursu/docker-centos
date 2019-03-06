@@ -16,23 +16,7 @@ services:
     build:
       context: 7/scm
     image: aursu/centos:7-scm
-  httpd:
+  centos7jdk:
     build:
-      context: httpd
-    image: aursu/centos:httpd
-  circleci:
-    build:
-      context: 7/circleci
-    image: aursu/centos:circleci
-  systemd:
-    build:
-      context: 7/systemd
-    image: aursu/centos:7-systemd
-  centos7web:
-    build:
-      context: 7/web
-    image: aursu/centos:7-web
-  centos7node:
-    build:
-      context: 7/node
-    image: aursu/centos:7-node
+      context: 7/openjdk/8
+    image: aursu/centos:7-jdk-8

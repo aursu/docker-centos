@@ -19,21 +19,28 @@ jobs:
           name: Build CentOS Docker images
           command: |
             docker-compose build --pull --no-cache
-            docker-compose -f docker-compose.tomcat.yml build --pull --no-cache centos7jdk tomcat
+            docker-compose -f docker-compose.web.yml build --no-cache
+            docker-compose -f docker-compose.dev.yml build --no-cache
       - run:
           name: Deploy CentOS Docker images
           command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push aursu/centos:7-curl
             docker push aursu/centos:7-scm
-            docker push aursu/centos:httpd
-            docker push aursu/centos:circleci
-            docker push aursu/centos:7-systemd
             docker push aursu/centos:6-curl
             docker push aursu/centos:6-scm
-            docker push aursu/centos:7-web
-      - run:
-          name: Deploy Centos Tomcat images
-          command: |
             docker push aursu/centos:7-jdk-8
+      - run:
+          name: Deploy CentOS Web images
+          command: |
+            docker push aursu/centos:httpd
             docker push aursu/centos:tomcat
+            docker push aursu/centos:7-web
+            docker push aursu/centos:7-node
+      - run:
+          name: Deploy Centos Development images
+          command: |
+            docker push aursu/centos:7-systemd
+            docker push aursu/centos:circleci
+            docker push aursu/centos:7-webdev
+            docker push aursu/centos:7-nodedev

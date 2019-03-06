@@ -1,0 +1,20 @@
+version: "3"
+services:
+  systemd:
+    build:
+      context: 7/systemd
+    image: aursu/centos:7-systemd
+  circleci:
+    build:
+      context: 7/circleci
+    image: aursu/centos:circleci
+  centos7webdev:
+    build:
+      context: 7/web
+      args:
+        image: 7-scm
+    image: aursu/centos:7-webdev
+  centos7nodedev:
+    build:
+      context: 7/node/dev
+    image: aursu/centos:7-nodedev
