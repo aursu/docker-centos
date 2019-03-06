@@ -32,3 +32,7 @@ services:
     build:
       context: 7/web
     image: aursu/centos:7-web
+  centos7node:
+    build:
+      context: 7/node
+    image: aursu/centos:7-node
