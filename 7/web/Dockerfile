@@ -1,4 +1,4 @@
-ARG image=7-curl
+ARG image=7-base
 FROM aursu/centos:${image}
 
 # uid 33 assigned to group tape

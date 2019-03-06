@@ -4,9 +4,4 @@ RUN set -ex \
 	&& rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7 \
 	&& yum -y install epel-release \
 	&& rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7 \
-	&& yum clean all && rm -rf /var/cache/yum
-
-RUN yum -y install \
-		ca-certificates \
-		curl \
-	&& yum clean all && rm -rf /var/cache/yum
+	&& yum clean all && rm -rf /var/cache/yum /var/lib/rpm/__db*

@@ -5,4 +5,4 @@ RUN yum -y install \
 		unzip \
 		xz \
 		java-1.8.0-openjdk \
-    && yum clean all && rm -rf /var/cache/yum
+    && yum clean all && rm -rf /var/cache/yum /var/lib/rpm/__db*

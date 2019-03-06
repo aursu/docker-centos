@@ -1,10 +1,10 @@
-FROM aursu/centos:7-curl
+FROM aursu/centos:7-base
 
 ENV LANG=C
 
 RUN yum -y install \
 		httpd \
-	&& yum clean all && rm -rf /var/cache/yum
+	&& yum clean all && rm -rf /var/cache/yum /var/lib/rpm/__db*
 
 RUN rm -f /etc/httpd/conf.modules.d/*.conf /etc/httpd/conf.d/*.conf
 

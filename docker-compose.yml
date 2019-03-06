@@ -4,10 +4,10 @@ services:
     build:
       context: 6/curl
     image: aursu/centos:6-curl
-  centos7curl:
+  centos7base:
     build:
-      context: 7/curl
-    image: aursu/centos:7-curl
+      context: 7/base
+    image: aursu/centos:7-base
   centos6scm:
     build:
       context: 6/scm

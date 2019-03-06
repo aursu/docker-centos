@@ -23,7 +23,7 @@ RUN yum -y install \
         mysql \
         tomcat \
         tomcat-lib \
-    && yum clean all && rm -rf /var/cache/yum
+    && yum clean all && rm -rf /var/cache/yum /var/lib/rpm/__db*
 
 RUN set -ex; \
     curl -L ${MYSQL_CONN_URL} -o ${MYSQL_CONN_PATH}; \
@@ -35,8 +35,8 @@ RUN set -ex; \
 # switch from eval() call to exec() inside run() function to support Docker
 COPY system/usr/libexec/tomcat/functions /usr/libexec/tomcat/functions
 
-RUN mkdir -p $CATALINA_BASE/webapps
-RUN mkdir -p /etc/tomcat/conf.d
+RUN mkdir -p $CATALINA_BASE/webapps \
+    && mkdir -p /etc/tomcat/conf.d
 
 USER tomcat
 WORKDIR $CATALINA_HOME

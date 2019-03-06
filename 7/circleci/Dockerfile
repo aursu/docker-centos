@@ -7,7 +7,7 @@ RUN yum -y install \
 		device-mapper-persistent-data \
 		lvm2 \
 		yum-utils \
-	&& yum clean all && rm -rf /var/cache/yum
+	&& yum clean all && rm -rf /var/cache/yum /var/lib/rpm/__db*
 
 RUN yum-config-manager \
     --add-repo \
@@ -15,7 +15,7 @@ RUN yum-config-manager \
 
 RUN yum -y install \
 		docker-ce-${DOCKER_VERSION} \
-	&& yum clean all && rm -rf /var/cache/yum
+	&& yum clean all && rm -rf /var/cache/yum /var/lib/rpm/__db*
 
 RUN curl \
 	-L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m) \
