@@ -37,6 +37,7 @@ jobs:
             docker push aursu/centos:tomcat
             docker push aursu/centos:7-web
             docker push aursu/centos:7-node
+            docker push aursu/centos:7-uwsgi
       - run:
           name: Deploy Centos Development images
           command: |

@@ -16,3 +16,7 @@ services:
     build:
       context: 7/node
     image: aursu/centos:7-node
+  centos7uwsgi:
+    build:
+      context: 7/python2-uwsgi
+    image: aursu/centos:7-uwsgi
