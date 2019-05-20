@@ -8,4 +8,4 @@ RUN yum -y install \
         uwsgi \
         uwsgi-plugin-python2 \
     && yum clean all && rm -rf /var/cache/yum /var/lib/rpm/__db* \
-    && pip install "pip==${PIP_VERSION}""
+    && pip install "pip==${PIP_VERSION}"
