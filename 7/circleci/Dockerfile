@@ -1,7 +1,7 @@
 FROM aursu/centos:7-scm
 
-ARG DOCKER_VERSION=18.09.3
-ARG COMPOSE_VERSION=1.23.2
+ARG DOCKER_VERSION=19.03.2
+ARG COMPOSE_VERSION=1.24.1
 
 RUN yum -y install \
 		device-mapper-persistent-data \
