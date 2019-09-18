@@ -1,7 +1,7 @@
 FROM aursu/centos:7-webdev
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
-ARG NODEREPO="pub_11.x"
+ARG NODEREPO="pub_12.x"
 ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/el/7/x86_64/nodesource-release-el7-1.noarch.rpm"
 
 # install nodejs RPM repo
