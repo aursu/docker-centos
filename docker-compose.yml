@@ -8,6 +8,11 @@ services:
     build:
       context: 7/base
     image: aursu/centos:7-base
+  centos77base:
+    build:
+      context: 7/base
+      dockerfile: Dockerfile-7.7.1908
+    image: aursu/centos:7.7-base
   centos6scm:
     build:
       context: 6/scm

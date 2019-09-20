@@ -26,6 +26,7 @@ jobs:
           command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push aursu/centos:7-base
+            docker push aursu/centos:7.7-base
             docker push aursu/centos:7-scm
             docker push aursu/centos:6-curl
             docker push aursu/centos:6-scm
