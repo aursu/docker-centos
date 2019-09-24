@@ -16,3 +16,8 @@ RUN groupdel tape \
 
 RUN mkdir -p /var/www/html \
 	&& chown www-data:www-data /var/www/html
+
+# Add crond into web base image
+RUN yum -y install \
+        cronie \
+    && yum clean all && rm -rf /var/cache/yum /var/lib/rpm/__db*
