@@ -1,4 +1,4 @@
-FROM aursu/centos:7-base
+FROM aursu/centos:8-base
 
 RUN yum -y install \
 		git \
