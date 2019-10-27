@@ -1,4 +1,4 @@
-ARG image=8-base
+ARG image=7-base
 FROM aursu/centos:${image}
 
 # uid 33 assigned to group tape
@@ -20,4 +20,4 @@ RUN mkdir -p /var/www/html \
 # Add crond into web base image
 RUN yum -y install \
         cronie \
-    && yum clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
+    && yum clean all && rm -rf /var/cache/yum /var/lib/rpm/__db*
