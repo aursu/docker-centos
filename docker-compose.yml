@@ -4,14 +4,14 @@ services:
     build:
       context: 6/curl
     image: aursu/centos:6-curl
-  centos7base:
-    build:
-      context: 7/base
-    image: aursu/centos:7-base
   centos6scm:
     build:
       context: 6/scm
     image: aursu/centos:6-scm
+  centos7base:
+    build:
+      context: 7/base
+    image: aursu/centos:7-base
   centos7scm:
     build:
       context: 7/scm
@@ -20,3 +20,15 @@ services:
     build:
       context: 7/openjdk/8
     image: aursu/centos:7-jdk-8
+  centos8base:
+    build:
+      context: 8/base
+    image: aursu/centos:8-base
+  centos8scm:
+    build:
+      context: 8/scm
+    image: aursu/centos:8-scm
+  centos8jdk:
+    build:
+      context: 8/openjdk/8
+    image: aursu/centos:8-jdk-8

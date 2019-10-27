@@ -3,7 +3,6 @@ jobs:
   build:
     machine:
       image: ubuntu-1604:201903-01
-      docker_layer_caching: true
     steps:
       - checkout
       - run:
@@ -16,8 +15,9 @@ jobs:
           name: Deploy CentOS Docker images
           command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push aursu/centos:8-base
+            docker push aursu/centos:8-scm
             docker push aursu/centos:7-base
-            docker push aursu/centos:7.7-base
             docker push aursu/centos:7-scm
             docker push aursu/centos:6-curl
             docker push aursu/centos:6-scm
@@ -34,6 +34,6 @@ jobs:
           name: Deploy Centos Development images
           command: |
             docker push aursu/centos:7-systemd
-            docker push aursu/centos:circleci
             docker push aursu/centos:7-webdev
             docker push aursu/centos:7-nodedev
+            docker push aursu/centos:8-systemd
