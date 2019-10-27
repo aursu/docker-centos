@@ -8,10 +8,6 @@ services:
     build:
       context: 7/web
     image: aursu/centos:7-web
-  centos7httpd:
-    build:
-      context: 7/httpd
-    image: aursu/centos:httpd
   centos7node:
     build:
       context: 7/node
@@ -24,3 +20,7 @@ services:
     build:
       context: 8/web
     image: aursu/centos:8-web
+  centos8httpd:
+    build:
+      context: 8/httpd
+    image: aursu/centos:httpd
