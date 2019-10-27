@@ -18,3 +18,9 @@ services:
     build:
       context: 8/systemd
     image: aursu/centos:8-systemd
+  centos7webdev:
+    build:
+      context: 8/web
+      args:
+        image: 8-scm
+    image: aursu/centos:8-webdev
