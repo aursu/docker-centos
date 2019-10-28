@@ -1,5 +1,8 @@
 FROM centos:8
 
+# no weak dependencies
+COPY system/etc/dnf/dnf.conf /etc/dnf/dnf.conf
+
 RUN set -ex \
 	&& rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial \
 	&& yum -y install epel-release \
