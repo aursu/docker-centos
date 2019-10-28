@@ -32,6 +32,7 @@ jobs:
             docker push aursu/centos:7-node
             docker push aursu/centos:7-uwsgi
             docker push aursu/centos:8-web
+            docker push aursu/centos:8-node
       - run:
           name: Deploy Centos Development images
           command: |
@@ -40,3 +41,4 @@ jobs:
             docker push aursu/centos:7-nodedev
             docker push aursu/centos:8-systemd
             docker push aursu/centos:8-webdev
+            docker push aursu/centos:8-nodedev

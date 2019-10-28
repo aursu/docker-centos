@@ -24,3 +24,7 @@ services:
       args:
         image: 8-scm
     image: aursu/centos:8-webdev
+  centos8nodedev:
+    build:
+      context: 8/node/dev
+    image: aursu/centos:8-nodedev
