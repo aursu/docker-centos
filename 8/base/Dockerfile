@@ -1,4 +1,4 @@
-FROM centos:8
+FROM centos:8.1.1911
 
 # no weak dependencies
 COPY system/etc/dnf/dnf.conf /etc/dnf/dnf.conf
