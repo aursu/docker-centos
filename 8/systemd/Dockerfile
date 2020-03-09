@@ -1,4 +1,5 @@
-FROM aursu/centos:8.1.1911-scm
+ARG centos=8.1.1911
+FROM aursu/centos:${centos}-scm
 
 ENV container docker
 ENV LC_ALL=en_US.UTF-8

@@ -3,32 +3,48 @@ services:
   centos6curl:
     build:
       context: 6/curl
-    image: aursu/centos:6.10-curl
+      args:
+        centos: $OS6
+    image: "aursu/centos:${OS6}-curl"
   centos6scm:
     build:
       context: 6/scm
-    image: aursu/centos:6.10-scm
+      args:
+        centos: $OS6
+    image: "aursu/centos:${OS6}-scm"
   centos7base:
     build:
       context: 7/base
-    image: aursu/centos:7.7.1908-base
+      args:
+        centos: $OS7
+    image: "aursu/centos:${OS7}-base"
   centos7scm:
     build:
       context: 7/scm
-    image: aursu/centos:7.7.1908-scm
+      args:
+        centos: $OS7
+    image: "aursu/centos:${OS7}-scm"
   centos7jdk:
     build:
       context: 7/openjdk/8
-    image: aursu/centos:7.7.1908-jdk-8
+      args:
+        centos: $OS7
+    image: "aursu/centos:${OS7}-jdk-8"
   centos8base:
     build:
       context: 8/base
-    image: aursu/centos:8.1.1911-base
+      args:
+        centos: $OS8
+    image: "aursu/centos:${OS8}-base"
   centos8scm:
     build:
       context: 8/scm
-    image: aursu/centos:8.1.1911-scm
+      args:
+        centos: $OS8
+    image: "aursu/centos:${OS8}-scm"
   centos8jdk:
     build:
       context: 8/openjdk/8
-    image: aursu/centos:8.1.1911-jdk-8
+      args:
+        centos: $OS8
+    image: "aursu/centos:${OS8}-jdk-8"

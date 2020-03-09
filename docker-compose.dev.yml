@@ -3,28 +3,38 @@ services:
   centos7systemd:
     build:
       context: 7/systemd
-    image: aursu/centos:7.7.1908-systemd
+      args:
+        centos: $OS7
+    image: "aursu/centos:${OS7}-systemd"
   centos7webdev:
     build:
       context: 7/web
       args:
-        image: 7.7.1908-scm
-    image: aursu/centos:7.7.1908-webdev
+        centos: $OS7
+        image: scm
+    image: "aursu/centos:${OS7}-webdev"
   centos7nodedev:
     build:
       context: 7/node/dev
-    image: aursu/centos:7.7.1908-nodedev
+      args:
+        centos: $OS7
+    image: "aursu/centos:${OS7}-nodedev"
   centos8systemd:
     build:
       context: 8/systemd
-    image: aursu/centos:8.1.1911-systemd
+      args:
+        centos: $OS8
+    image: "aursu/centos:${OS8}-systemd"
   centos8webdev:
     build:
       context: 8/web
       args:
-        image: 8.1.1911-scm
-    image: aursu/centos:8.1.1911-webdev
+        centos: $OS8
+        image: scm
+    image: "aursu/centos:${OS8}-webdev"
   centos8nodedev:
     build:
+      args:
+        centos: $OS8
       context: 8/node/dev
-    image: aursu/centos:8.1.1911-nodedev
+    image: "aursu/centos:${OS8}-nodedev"

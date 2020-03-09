@@ -1,4 +1,5 @@
-FROM aursu/centos:6.10-curl
+ARG centos=6.10
+FROM aursu/centos:${centos}-curl
 
 RUN yum -y install \
 		git \

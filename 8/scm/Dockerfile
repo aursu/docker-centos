@@ -1,4 +1,5 @@
-FROM aursu/centos:8.1.1911-base
+ARG centos=8.1.1911
+FROM aursu/centos:${centos}-base
 
 RUN yum -y install \
 		git \

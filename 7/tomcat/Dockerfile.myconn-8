@@ -1,4 +1,5 @@
-FROM aursu/centos:7.7.1908-jdk-8
+ARG centos=7.7.1908
+FROM aursu/centos:${centos}-jdk-8
 
 ARG MYSQL_CONN_NAME=mysql-connector-java-8.0.17
 ARG MYSQL_CONN_RPM=${MYSQL_CONN_NAME}-1.el7.noarch.rpm

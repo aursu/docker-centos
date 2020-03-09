@@ -1,4 +1,5 @@
-FROM centos:7.7.1908
+ARG centos=7.7.1908
+FROM centos:${centos}
 
 RUN set -ex \
 	&& rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7 \

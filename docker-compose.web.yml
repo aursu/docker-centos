@@ -3,28 +3,42 @@ services:
   tomcat:
     build:
       context: 7/tomcat
-    image: aursu/centos:7.7.1908-tomcat
+      args:
+        centos: $OS7
+    image: "aursu/centos:${OS7}-tomcat"
   centos7web:
     build:
       context: 7/web
-    image: aursu/centos:7.7.1908-web
+      args:
+        centos: $OS7
+    image: "aursu/centos:${OS7}-web"
   centos7node:
     build:
       context: 7/node
-    image: aursu/centos:7.7.1908-node
+      args:
+        centos: $OS7
+    image: "aursu/centos:${OS7}-node"
   centos7uwsgi:
     build:
       context: 7/python2-uwsgi
-    image: aursu/centos:7.7.1908-uwsgi
+      args:
+        centos: $OS7
+    image: "aursu/centos:${OS7}-uwsgi"
   centos8web:
     build:
       context: 8/web
-    image: aursu/centos:8.1.1911-web
+      args:
+        centos: $OS8
+    image: "aursu/centos:${OS8}-web"
   centos8httpd:
     build:
       context: 8/httpd
-    image: aursu/centos:8.1.1911-httpd
+      args:
+        centos: $OS8
+    image: "aursu/centos:${OS8}-httpd"
   centos8node:
     build:
       context: 8/node
-    image: aursu/centos:8.1.1911-node
+      args:
+        centos: $OS8
+    image: "aursu/centos:${OS8}-node"

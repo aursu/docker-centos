@@ -1,5 +1,6 @@
-ARG image=8.1.1911-base
-FROM aursu/centos:${image}
+ARG centos=8.1.1911
+ARG image=base
+FROM aursu/centos:${centos}-${image}
 
 # uid 33 assigned to group tape
 # (https://bugzilla.redhat.com/show_bug.cgi?id=1179585)

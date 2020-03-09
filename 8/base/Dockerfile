@@ -1,4 +1,5 @@
-FROM centos:8.1.1911
+ARG centos=8.1.1911
+FROM centos:${centos}
 
 # no weak dependencies
 COPY system/etc/dnf/dnf.conf /etc/dnf/dnf.conf
