@@ -10,5 +10,5 @@ RUN set -ex \
     && rpm --import /etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL
 
 RUN yum -y install \
-        nodejs \
+        nodejs-12.16.1 \
     && yum clean all && rm -rf /var/cache/yum /var/lib/rpm/__db*

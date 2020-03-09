@@ -1,4 +1,4 @@
-FROM aursu/centos:7-webdev
+FROM aursu/centos:7.7.1908-webdev
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
 ARG NODEREPO="pub_12.x"
@@ -14,6 +14,6 @@ RUN set -ex \
     && rm -rf /tmp/pubkey.gpg /var/cache/yum /var/lib/rpm/__db*
 
 RUN yum -y install \
-        nodejs \
-        yarn \
+        nodejs-12.16.1 \
+        yarn-1.22.1 \
     && yum clean all && rm -rf /var/cache/yum /var/lib/rpm/__db*
