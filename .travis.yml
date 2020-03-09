@@ -33,15 +33,9 @@ deploy:
 jobs:
   include:
     - stage: base
-      script:
-        - docker-compose build --no-cache --pull centos6curl
-      before_deploy:
-        - docker login -u $DOCKER_USER -p $DOCKER_PASS
-      deploy:
-        provider: script
-        script: docker-compose push centos6curl
-        on:
-          all_branches: true
+      env:
+        - BUILD_COMPOSE_FILE=docker-compose.yml
+        - BUILD=centos6curl
     - stage: base
       script:
         - docker-compose build --no-cache --pull centos7base
@@ -62,7 +56,16 @@ jobs:
         script: docker-compose push centos8base
         on:
           all_branches: true
+    - stage: scm
+      env:
+        - BUILD_COMPOSE_FILE=docker-compose.yml
+        - BUILD=centos7jdk
+    - stage: scm
+      env:
+        - BUILD_COMPOSE_FILE=docker-compose.yml
+        - BUILD=centos8jdk
 
 stages:
   - base
   - test
+  - scm

@@ -1,4 +1,4 @@
-FROM aursu/centos:6-scm
+FROM aursu/centos:6.10-scm
 
 RUN yum -y install \
 		bzip2 \
