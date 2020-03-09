@@ -10,10 +10,12 @@ addons:
 
 env:
   global:
-    - DOCKER_REPO=aursu/centos
     - OS6=6.10
     - OS7=7.7.1908
     - OS8=8.1.1911
+    - OS6TAG=6.10
+    - OS7TAG=7.7.1908
+    - OS8TAG=8.1.1911
   jobs:
     - BUILD_COMPOSE_FILE=docker-compose.yml       BUILD=centos6scm
     - BUILD_COMPOSE_FILE=docker-compose.yml       BUILD=centos7scm
@@ -27,7 +29,7 @@ script:
   - docker-compose -f ${BUILD_COMPOSE_FILE} build --no-cache --pull ${BUILD}
 
 after_success:
-  - OS6=6 OS7=7 OS8=8 docker-compose -f ${BUILD_COMPOSE_FILE} build ${BUILD}
+  - OS6TAG=6 OS7TAG=7 OS8TAG=8 docker-compose -f ${BUILD_COMPOSE_FILE} build ${BUILD}
 
 before_deploy:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -36,7 +38,7 @@ deploy:
   provider: script
   script:
     - docker-compose -f ${BUILD_COMPOSE_FILE} push ${BUILD}
-    - OS6=6 OS7=7 OS8=8 docker-compose -f ${BUILD_COMPOSE_FILE} push ${BUILD}
+    - OS6TAG=6 OS7TAG=7 OS8TAG=8 docker-compose -f ${BUILD_COMPOSE_FILE} push ${BUILD}
   on:
     all_branches: true
 

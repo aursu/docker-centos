@@ -5,40 +5,40 @@ services:
       context: 7/tomcat
       args:
         centos: $OS7
-    image: "aursu/centos:${OS7}-tomcat"
+    image: "aursu/centos:${OS7TAG}-tomcat"
   centos7web:
     build:
       context: 7/web
       args:
         centos: $OS7
-    image: "aursu/centos:${OS7}-web"
+    image: "aursu/centos:${OS7TAG}-web"
   centos7node:
     build:
       context: 7/node
       args:
         centos: $OS7
-    image: "aursu/centos:${OS7}-node"
+    image: "aursu/centos:${OS7TAG}-node"
   centos7uwsgi:
     build:
       context: 7/python2-uwsgi
       args:
         centos: $OS7
-    image: "aursu/centos:${OS7}-uwsgi"
+    image: "aursu/centos:${OS7TAG}-uwsgi"
   centos8web:
     build:
       context: 8/web
       args:
         centos: $OS8
-    image: "aursu/centos:${OS8}-web"
+    image: "aursu/centos:${OS8TAG}-web"
   centos8httpd:
     build:
       context: 8/httpd
       args:
         centos: $OS8
-    image: "aursu/centos:${OS8}-httpd"
+    image: "aursu/centos:${OS8TAG}-httpd"
   centos8node:
     build:
       context: 8/node
       args:
         centos: $OS8
-    image: "aursu/centos:${OS8}-node"
+    image: "aursu/centos:${OS8TAG}-node"

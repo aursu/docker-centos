@@ -5,36 +5,36 @@ services:
       context: 7/systemd
       args:
         centos: $OS7
-    image: "aursu/centos:${OS7}-systemd"
+    image: "aursu/centos:${OS7TAG}-systemd"
   centos7webdev:
     build:
       context: 7/web
       args:
         centos: $OS7
         image: scm
-    image: "aursu/centos:${OS7}-webdev"
+    image: "aursu/centos:${OS7TAG}-webdev"
   centos7nodedev:
     build:
       context: 7/node/dev
       args:
         centos: $OS7
-    image: "aursu/centos:${OS7}-nodedev"
+    image: "aursu/centos:${OS7TAG}-nodedev"
   centos8systemd:
     build:
       context: 8/systemd
       args:
         centos: $OS8
-    image: "aursu/centos:${OS8}-systemd"
+    image: "aursu/centos:${OS8TAG}-systemd"
   centos8webdev:
     build:
       context: 8/web
       args:
         centos: $OS8
         image: scm
-    image: "aursu/centos:${OS8}-webdev"
+    image: "aursu/centos:${OS8TAG}-webdev"
   centos8nodedev:
     build:
       args:
         centos: $OS8
       context: 8/node/dev
-    image: "aursu/centos:${OS8}-nodedev"
+    image: "aursu/centos:${OS8TAG}-nodedev"

@@ -17,34 +17,34 @@ services:
       context: 7/base
       args:
         centos: $OS7
-    image: "aursu/centos:${OS7}-base"
+    image: "aursu/centos:${OS7TAG}-base"
   centos7scm:
     build:
       context: 7/scm
       args:
         centos: $OS7
-    image: "aursu/centos:${OS7}-scm"
+    image: "aursu/centos:${OS7TAG}-scm"
   centos7jdk:
     build:
       context: 7/openjdk/8
       args:
         centos: $OS7
-    image: "aursu/centos:${OS7}-jdk-8"
+    image: "aursu/centos:${OS7TAG}-jdk-8"
   centos8base:
     build:
       context: 8/base
       args:
         centos: $OS8
-    image: "aursu/centos:${OS8}-base"
+    image: "aursu/centos:${OS8TAG}-base"
   centos8scm:
     build:
       context: 8/scm
       args:
         centos: $OS8
-    image: "aursu/centos:${OS8}-scm"
+    image: "aursu/centos:${OS8TAG}-scm"
   centos8jdk:
     build:
       context: 8/openjdk/8
       args:
         centos: $OS8
-    image: "aursu/centos:${OS8}-jdk-8"
+    image: "aursu/centos:${OS8TAG}-jdk-8"
