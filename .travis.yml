@@ -37,25 +37,13 @@ jobs:
         - BUILD_COMPOSE_FILE=docker-compose.yml
         - BUILD=centos6curl
     - stage: base
-      script:
-        - docker-compose build --no-cache --pull centos7base
-      before_deploy:
-        - docker login -u $DOCKER_USER -p $DOCKER_PASS
-      deploy:
-        provider: script
-        script: docker-compose push centos7base
-        on:
-          all_branches: true
+      env:
+        - BUILD_COMPOSE_FILE=docker-compose.yml
+        - BUILD=centos7base
     - stage: base
-      script:
-        - docker-compose build --no-cache --pull centos8base
-      before_deploy:
-        - docker login -u $DOCKER_USER -p $DOCKER_PASS
-      deploy:
-        provider: script
-        script: docker-compose push centos8base
-        on:
-          all_branches: true
+      env:
+        - BUILD_COMPOSE_FILE=docker-compose.yml
+        - BUILD=centos8base
     - stage: scm
       env:
         - BUILD_COMPOSE_FILE=docker-compose.yml
@@ -64,8 +52,34 @@ jobs:
       env:
         - BUILD_COMPOSE_FILE=docker-compose.yml
         - BUILD=centos8jdk
+    - stage: scm
+      env:
+        - BUILD_COMPOSE_FILE=docker-compose.web.yml
+        - BUILD=centos7node
+    - stage: scm
+      env:
+        - BUILD_COMPOSE_FILE=docker-compose.dev.yml
+        - BUILD=centos7systemd
+    - stage: scm
+      env:
+        - BUILD_COMPOSE_FILE=docker-compose.dev.yml
+        - BUILD=centos7webdev
+    - stage: scm
+      env:
+        - BUILD_COMPOSE_FILE=docker-compose.web.yml
+        - BUILD=centos8node
+    - stage: scm
+      env:
+        - BUILD_COMPOSE_FILE=docker-compose.dev.yml
+        - BUILD=centos8systemd
+    - stage: scm
+      env:
+        - BUILD_COMPOSE_FILE=docker-compose.dev.yml
+        - BUILD=centos8webdev
+
 
 stages:
   - base
   - test
   - scm
+  - dev

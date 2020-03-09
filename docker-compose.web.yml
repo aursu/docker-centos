@@ -3,7 +3,7 @@ services:
   tomcat:
     build:
       context: 7/tomcat
-    image: aursu/centos:tomcat
+    image: aursu/centos:7-tomcat
   centos7web:
     build:
       context: 7/web
@@ -11,7 +11,7 @@ services:
   centos7node:
     build:
       context: 7/node
-    image: aursu/centos:7-node
+    image: aursu/centos:7.7.1908-node
   centos7uwsgi:
     build:
       context: 7/python2-uwsgi
@@ -27,4 +27,4 @@ services:
   centos8node:
     build:
       context: 8/node
-    image: aursu/centos:8-node
+    image: aursu/centos:8.1.1911-node

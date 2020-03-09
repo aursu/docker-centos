@@ -1,4 +1,4 @@
-FROM aursu/centos:7-web
+FROM aursu/centos:7.7.1908-web
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
 ARG NODEREPO="pub_12.x"
