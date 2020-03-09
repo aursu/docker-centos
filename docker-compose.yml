@@ -11,11 +11,11 @@ services:
   centos7base:
     build:
       context: 7/base
-    image: aursu/centos:7-base
+    image: aursu/centos:7.7.1908-base
   centos7scm:
     build:
       context: 7/scm
-    image: aursu/centos:7-scm
+    image: aursu/centos:7.7.1908-scm
   centos7jdk:
     build:
       context: 7/openjdk/8
@@ -23,7 +23,7 @@ services:
   centos8base:
     build:
       context: 8/base
-    image: aursu/centos:8-base
+    image: aursu/centos:8.1.1911-base
   centos8scm:
     build:
       context: 8/scm

@@ -7,7 +7,7 @@ services:
   centos7web:
     build:
       context: 7/web
-    image: aursu/centos:7-web
+    image: aursu/centos:7.7.1908-web
   centos7node:
     build:
       context: 7/node
@@ -15,7 +15,7 @@ services:
   centos7uwsgi:
     build:
       context: 7/python2-uwsgi
-    image: aursu/centos:7-uwsgi
+    image: aursu/centos:7.7.1908-uwsgi
   centos8web:
     build:
       context: 8/web

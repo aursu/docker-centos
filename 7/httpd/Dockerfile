@@ -1,4 +1,4 @@
-FROM aursu/centos:7-base
+FROM aursu/centos:7.7.1908-base
 
 ENV LANG=C
 
