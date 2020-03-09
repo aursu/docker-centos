@@ -76,7 +76,18 @@ jobs:
       env:
         - BUILD_COMPOSE_FILE=docker-compose.dev.yml
         - BUILD=centos8webdev
-
+    - stage: dev
+      env:
+        - BUILD_COMPOSE_FILE=docker-compose.web.yml
+        - BUILD=tomcat
+    - stage: dev
+      env:
+        - BUILD_COMPOSE_FILE=docker-compose.dev.yml
+        - BUILD=centos7nodedev
+    - stage: dev
+      env:
+        - BUILD_COMPOSE_FILE=docker-compose.dev.yml
+        - BUILD=centos8nodedev
 
 stages:
   - base

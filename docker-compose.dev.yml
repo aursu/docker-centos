@@ -13,7 +13,7 @@ services:
   centos7nodedev:
     build:
       context: 7/node/dev
-    image: aursu/centos:7-nodedev
+    image: aursu/centos:7.7.1908-nodedev
   centos8systemd:
     build:
       context: 8/systemd
@@ -27,4 +27,4 @@ services:
   centos8nodedev:
     build:
       context: 8/node/dev
-    image: aursu/centos:8-nodedev
+    image: aursu/centos:8.1.1911-nodedev

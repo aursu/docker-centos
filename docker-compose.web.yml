@@ -3,7 +3,7 @@ services:
   tomcat:
     build:
       context: 7/tomcat
-    image: aursu/centos:7-tomcat
+    image: aursu/centos:7.7.1908-tomcat
   centos7web:
     build:
       context: 7/web
