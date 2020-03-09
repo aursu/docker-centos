@@ -19,11 +19,11 @@ services:
   centos8web:
     build:
       context: 8/web
-    image: aursu/centos:8-web
+    image: aursu/centos:8.1.1911-web
   centos8httpd:
     build:
       context: 8/httpd
-    image: aursu/centos:httpd
+    image: aursu/centos:8.1.1911-httpd
   centos8node:
     build:
       context: 8/node

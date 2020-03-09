@@ -1,0 +1,68 @@
+language: minimal
+
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+      - docker-ce
+
+env:
+  jobs:
+    - BUILD_COMPOSE_FILE=docker-compose.yml       BUILD=centos6scm
+    - BUILD_COMPOSE_FILE=docker-compose.yml       BUILD=centos7scm
+    - BUILD_COMPOSE_FILE=docker-compose.yml       BUILD=centos8scm
+    - BUILD_COMPOSE_FILE=docker-compose.web.yml   BUILD=centos7web
+    - BUILD_COMPOSE_FILE=docker-compose.web.yml   BUILD=centos7uwsgi
+    - BUILD_COMPOSE_FILE=docker-compose.web.yml   BUILD=centos8web
+    - BUILD_COMPOSE_FILE=docker-compose.web.yml   BUILD=centos8httpd
+
+script:
+  - docker-compose -f ${BUILD_COMPOSE_FILE} build --no-cache --pull ${BUILD}
+
+before_deploy:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+deploy:
+  provider: script
+  script: docker-compose -f ${BUILD_COMPOSE_FILE} push ${BUILD}
+  on:
+    all_branches: true
+
+jobs:
+  include:
+    - stage: base
+      script:
+        - docker-compose build --no-cache --pull centos6curl
+      before_deploy:
+        - docker login -u $DOCKER_USER -p $DOCKER_PASS
+      deploy:
+        provider: script
+        script: docker-compose push centos6curl
+        on:
+          all_branches: true
+    - stage: base
+      script:
+        - docker-compose build --no-cache --pull centos7base
+      before_deploy:
+        - docker login -u $DOCKER_USER -p $DOCKER_PASS
+      deploy:
+        provider: script
+        script: docker-compose push centos7base
+        on:
+          all_branches: true
+    - stage: base
+      script:
+        - docker-compose build --no-cache --pull centos8base
+      before_deploy:
+        - docker login -u $DOCKER_USER -p $DOCKER_PASS
+      deploy:
+        provider: script
+        script: docker-compose push centos8base
+        on:
+          all_branches: true
+
+stages:
+  - base
+  - test
