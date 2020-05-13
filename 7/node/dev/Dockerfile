@@ -2,7 +2,7 @@ ARG centos=7.8.2003
 FROM aursu/centos:${centos}-webdev
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
-ARG NODEREPO="pub_12.x"
+ARG NODEREPO="pub_14.x"
 ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/el/7/x86_64/nodesource-release-el7-1.noarch.rpm"
 
 # install nodejs RPM repo
@@ -15,6 +15,6 @@ RUN set -ex \
     && rm -rf /tmp/pubkey.gpg /var/cache/yum /var/lib/rpm/__db*
 
 RUN yum -y install \
-        nodejs-12.16.1 \
-        yarn-1.22.1 \
+        nodejs-14.2.0 \
+        yarn-1.22.4 \
     && yum clean all && rm -rf /var/cache/yum /var/lib/rpm/__db*
