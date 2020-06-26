@@ -1,4 +1,4 @@
-ARG centos=8.1.1911
+ARG centos=8.2.2004
 FROM centos:${centos}
 
 # no weak dependencies
