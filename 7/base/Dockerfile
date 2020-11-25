@@ -1,4 +1,4 @@
-ARG centos=7.8.2003
+ARG centos=7.9.2009
 FROM centos:${centos}
 
 RUN set -ex \

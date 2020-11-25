@@ -1,4 +1,4 @@
-ARG centos=7.8.2003
+ARG centos=7.9.2009
 FROM aursu/centos:${centos}-web
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
