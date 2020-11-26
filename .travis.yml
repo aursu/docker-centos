@@ -1,6 +1,6 @@
 language: minimal
 os: linux
-dist: focal
+dist: xenial
 
 services:
   - docker
