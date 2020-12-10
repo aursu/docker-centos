@@ -1,0 +1,128 @@
+version: 2.1
+
+orbs:
+  docker-rpmbuild: aursu/rpmbuild@1.1.2
+
+workflows:
+  docker-centos:
+    jobs:
+      - docker-rpmbuild/image:
+          name: centos6curl
+          compose_file: docker-compose.yml
+          build_service: centos6curl
+      - docker-rpmbuild/image:
+          name: centos7base
+          compose_file: docker-compose.yml
+          build_service: centos7base
+      - docker-rpmbuild/image:
+          name: centos8base
+          compose_file: docker-compose.yml
+          build_service: centos8base
+      - docker-rpmbuild/image:
+          name: centos6scm
+          compose_file: docker-compose.yml
+          build_service: centos6scm
+          requires:
+            - centos6curl
+      - docker-rpmbuild/image:
+          name: centos7scm
+          compose_file: docker-compose.yml
+          build_service: centos7scm
+          requires:
+            - centos7base
+      - docker-rpmbuild/image:
+          name: centos8scm
+          compose_file: docker-compose.yml
+          build_service: centos8scm
+          requires:
+            - centos8base
+      - docker-rpmbuild/image:
+          name: centos7web
+          compose_file: docker-compose.web.yml
+          build_service: centos7web
+          requires:
+            - centos7base
+      - docker-rpmbuild/image:
+          name: centos7uwsgi
+          compose_file: docker-compose.web.yml
+          build_service: centos7uwsgi
+          requires:
+            - centos7base
+      - docker-rpmbuild/image:
+          name: centos8web
+          compose_file: docker-compose.web.yml
+          build_service: centos8web
+          requires:
+            - centos8base
+      - docker-rpmbuild/image:
+          name: centos8httpd
+          compose_file: docker-compose.web.yml
+          build_service: centos8httpd
+          requires:
+            - centos8base
+      - docker-rpmbuild/image:
+          name: centos7jdk
+          compose_file: docker-compose.yml
+          build_service: centos7jdk
+          requires:
+            - centos7scm
+      - docker-rpmbuild/image:
+          name: centos8jdk
+          compose_file: docker-compose.yml
+          build_service: centos8jdk
+          requires:
+            - centos8scm
+      - docker-rpmbuild/image:
+          name: centos7node
+          compose_file: docker-compose.web.yml
+          build_service: centos7node
+          requires:
+            - centos7web
+      - docker-rpmbuild/image:
+          name: centos7systemd
+          compose_file: docker-compose.dev.yml
+          build_service: centos7systemd
+          requires:
+            - centos7scm
+      - docker-rpmbuild/image:
+          name: centos7webdev
+          compose_file: docker-compose.dev.yml
+          build_service: centos7webdev
+          requires:
+            - centos7scm
+      - docker-rpmbuild/image:
+          name: centos8node
+          compose_file: docker-compose.web.yml
+          build_service: centos8node
+          requires:
+            - centos8web
+      - docker-rpmbuild/image:
+          name: centos8systemd
+          compose_file: docker-compose.dev.yml
+          build_service: centos8systemd
+          requires:
+            - centos8scm
+      - docker-rpmbuild/image:
+          name: centos8webdev
+          compose_file: docker-compose.dev.yml
+          build_service: centos8webdev
+          requires:
+            - centos8scm
+      - docker-rpmbuild/image:
+          name: tomcat
+          compose_file: docker-compose.web.yml
+          build_service: tomcat
+          requires:
+            - centos8jdk
+      - docker-rpmbuild/image:
+          name: centos7nodedev
+          compose_file: docker-compose.dev.yml
+          build_service: centos7nodedev
+          requires:
+            - centos7webdev
+      - docker-rpmbuild/image:
+          name: centos8nodedev
+          compose_file: docker-compose.dev.yml
+          build_service: centos8nodedev
+          requires:
+            - centos8webdev
