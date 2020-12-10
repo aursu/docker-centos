@@ -1,6 +1,9 @@
 ARG centos=6.10
 FROM centos:${centos}
 
+COPY system/etc/yum.repos.d/CentOS-Base.repo \
+	/etc/yum.repos.d/CentOS-Base.repo
+
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6 && yum -y update
 
 RUN yum -y install epel-release \
