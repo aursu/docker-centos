@@ -4,7 +4,7 @@ orbs:
   docker-rpmbuild: aursu/rpmbuild@1.1.2
 
 workflows:
-  docker-centos:
+  dockercentos:
     jobs:
       - docker-rpmbuild/image:
           name: centos6curl
