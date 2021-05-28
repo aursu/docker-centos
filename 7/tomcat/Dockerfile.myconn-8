@@ -40,7 +40,7 @@ RUN set -ex; \
 # switch from eval() call to exec() inside run() function to support Docker
 COPY system/usr/libexec/tomcat/functions /usr/libexec/tomcat/functions
 
-RUN mkdir -p $CATALINA_BASE/webapps
+RUN mkdir -p $CATALINA_BASE/webapps \
     && mkdir -p /etc/tomcat/conf.d
 
 USER tomcat
