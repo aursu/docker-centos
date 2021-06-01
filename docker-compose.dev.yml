@@ -19,6 +19,12 @@ services:
       args:
         centos: $OS7
     image: "aursu/centos:${OS7TAG}-nodedev"
+  centos7node16dev:
+    build:
+      context: 7/node-current/dev
+      args:
+        centos: $OS7
+    image: "aursu/centos:${OS7TAG}-node16dev"
   centos8systemd:
     build:
       context: 8/systemd
@@ -38,3 +44,9 @@ services:
         centos: $OS8
       context: 8/node/dev
     image: "aursu/centos:${OS8TAG}-nodedev"
+  centos8node16dev:
+    build:
+      args:
+        centos: $OS8
+      context: 8/node-current/dev
+    image: "aursu/centos:${OS8TAG}-node16dev"

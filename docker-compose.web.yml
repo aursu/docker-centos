@@ -18,6 +18,12 @@ services:
       args:
         centos: $OS7
     image: "aursu/centos:${OS7TAG}-node"
+  centos7node16:
+    build:
+      context: 7/node-current
+      args:
+        centos: $OS7
+    image: "aursu/centos:${OS7TAG}-node16"
   centos7uwsgi:
     build:
       context: 7/python2-uwsgi
@@ -42,3 +48,9 @@ services:
       args:
         centos: $OS8
     image: "aursu/centos:${OS8TAG}-node"
+  centos8node16:
+    build:
+      context: 8/node-current
+      args:
+        centos: $OS8
+    image: "aursu/centos:${OS8TAG}-node16"
