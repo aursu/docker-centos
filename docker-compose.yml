@@ -1,17 +1,5 @@
 version: "3"
 services:
-  centos6curl:
-    build:
-      context: 6/curl
-      args:
-        centos: $OS6
-    image: "aursu/centos:${OS6TAG}-curl"
-  centos6scm:
-    build:
-      context: 6/scm
-      args:
-        centos: $OS6
-    image: "aursu/centos:${OS6TAG}-scm"
   centos7base:
     build:
       context: 7/base
