@@ -12,14 +12,11 @@ addons:
 
 env:
   global:
-    - OS6=6.10
     - OS7=7.9.2009
     - OS8=8.3.2011
-    - OS6TAG=6.10
     - OS7TAG=7.9.2009
     - OS8TAG=8.3.2011
   jobs:
-    - BUILD_COMPOSE_FILE=docker-compose.yml       BUILD=centos6scm
     - BUILD_COMPOSE_FILE=docker-compose.yml       BUILD=centos7scm
     - BUILD_COMPOSE_FILE=docker-compose.yml       BUILD=centos8scm
     - BUILD_COMPOSE_FILE=docker-compose.web.yml   BUILD=centos7web
@@ -31,7 +28,7 @@ script:
   - docker-compose -f ${BUILD_COMPOSE_FILE} build --no-cache --pull ${BUILD}
 
 after_success:
-  - OS6TAG=6 OS7TAG=7 OS8TAG=8 docker-compose -f ${BUILD_COMPOSE_FILE} build ${BUILD}
+  - OS7TAG=7 OS8TAG=8 docker-compose -f ${BUILD_COMPOSE_FILE} build ${BUILD}
 
 before_deploy:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -40,14 +37,10 @@ deploy:
   - provider: script
     script: docker-compose -f ${BUILD_COMPOSE_FILE} push ${BUILD}
   - provider: script
-    script: OS6TAG=6 OS7TAG=7 OS8TAG=8 docker-compose -f ${BUILD_COMPOSE_FILE} push ${BUILD}
+    script: OS7TAG=7 OS8TAG=8 docker-compose -f ${BUILD_COMPOSE_FILE} push ${BUILD}
 
 jobs:
   include:
-    - stage: base
-      env:
-        - BUILD_COMPOSE_FILE=docker-compose.yml
-        - BUILD=centos6curl
     - stage: base
       env:
         - BUILD_COMPOSE_FILE=docker-compose.yml
