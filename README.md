@@ -22,8 +22,6 @@
 
 - [`aursu/centos:7-systemd` (*7/systemd/Dockerfile*)](https://github.com/aursu/docker-centos/blob/master/7/systemd/Dockerfile) - Systemd-in-Docker
 
-- [`aursu/centos:7-systemd` (*7/systemd/Dockerfile*)](https://github.com/aursu/docker-centos/blob/master/7/systemd/Dockerfile) - Systemd-in-Docker
-
 - [`aursu/centos:7-webdev` (*7/web/Dockerfile*)](https://github.com/aursu/docker-centos/blob/master/7/web/Dockerfile) - `FROM aursu/centos:7-scm`
 
 - [`aursu/centos:7-nodedev` (*7/node/dev/Dockerfile*)](https://github.com/aursu/docker-centos/blob/master/7/node/dev/Dockerfile)
