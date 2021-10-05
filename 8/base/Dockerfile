@@ -1,5 +1,5 @@
 ARG centos=8.4.2105
-FROM aursu/centos:${centos}
+FROM centos:${centos}
 
 # no weak dependencies
 COPY system/etc/dnf/dnf.conf /etc/dnf/dnf.conf
