@@ -33,12 +33,6 @@ workflows:
           requires:
             - centos7base
       - docker-rpmbuild/image:
-          name: centos7uwsgi
-          compose_file: docker-compose.web.yml
-          build_service: centos7uwsgi
-          requires:
-            - centos7base
-      - docker-rpmbuild/image:
           name: centos8web
           compose_file: docker-compose.web.yml
           build_service: centos8web

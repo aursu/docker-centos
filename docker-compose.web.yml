@@ -24,12 +24,6 @@ services:
       args:
         centos: $OS7
     image: "aursu/centos:${OS7TAG}-node16"
-  centos7uwsgi:
-    build:
-      context: 7/python2-uwsgi
-      args:
-        centos: $OS7
-    image: "aursu/centos:${OS7TAG}-uwsgi"
   centos8web:
     build:
       context: 8/web
