@@ -127,6 +127,12 @@ workflows:
           requires:
             - centos8jdk
       - docker-rpmbuild/image:
+          name: stream8systemd
+          compose_file: docker-compose.dev.yml
+          build_service: stream8systemd
+          requires:
+            - stream8scm
+      - docker-rpmbuild/image:
           name: centos7nodedev
           compose_file: docker-compose.dev.yml
           build_service: centos7nodedev

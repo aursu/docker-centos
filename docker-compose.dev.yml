@@ -50,3 +50,7 @@ services:
         centos: $OS8
       context: 8/node-current/dev
     image: "aursu/centos:${OS8TAG}-node16dev"
+  stream8systemd:
+    build:
+      context: 8-stream/systemd
+    image: aursu/centos:stream8-systemd
