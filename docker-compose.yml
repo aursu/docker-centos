@@ -36,3 +36,11 @@ services:
       args:
         centos: $OS8
     image: "aursu/centos:${OS8TAG}-jdk-8"
+  stream8base:
+    build:
+      context: 8-stream/base
+    image: aursu/centos:stream8-base
+  stream8scm:
+    build:
+      context: 8-stream/scm
+    image: aursu/centos:stream8-scm

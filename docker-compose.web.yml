@@ -48,3 +48,7 @@ services:
       args:
         centos: $OS8
     image: "aursu/centos:${OS8TAG}-node16"
+  stream8web:
+    build:
+      context: 8-stream/web
+    image: aursu/centos:stream8-web

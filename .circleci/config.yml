@@ -15,6 +15,10 @@ workflows:
           compose_file: docker-compose.yml
           build_service: centos8base
       - docker-rpmbuild/image:
+          name: stream8base
+          compose_file: docker-compose.yml
+          build_service: stream8base
+      - docker-rpmbuild/image:
           name: centos7scm
           compose_file: docker-compose.yml
           build_service: centos7scm
@@ -27,6 +31,12 @@ workflows:
           requires:
             - centos8base
       - docker-rpmbuild/image:
+          name: stream8scm
+          compose_file: docker-compose.yml
+          build_service: stream8scm
+          requires:
+            - stream8base
+      - docker-rpmbuild/image:
           name: centos7web
           compose_file: docker-compose.web.yml
           build_service: centos7web
@@ -38,6 +48,12 @@ workflows:
           build_service: centos8web
           requires:
             - centos8base
+      - docker-rpmbuild/image:
+          name: stream8web
+          compose_file: docker-compose.web.yml
+          build_service: stream8web
+          requires:
+            - stream8base
       - docker-rpmbuild/image:
           name: centos8httpd
           compose_file: docker-compose.web.yml
