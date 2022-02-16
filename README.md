@@ -27,3 +27,15 @@
 - [`aursu/centos:7-nodedev` (*7/node/dev/Dockerfile*)](https://github.com/aursu/docker-centos/blob/master/7/node/dev/Dockerfile)
 
 - [`aursu/centos:7-node16dev` (*7/node-current/dev/Dockerfile*)](https://github.com/aursu/docker-centos/blob/master/7/node-current/dev/Dockerfile)
+
+# systemd for CentOS 8
+
+```
+{
+  "bip":"172.30.0.1/16",
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "features": { "buildkit": true },
+  "experimental": true,
+  "cgroup-parent": "docker.slice"
+}
+```
