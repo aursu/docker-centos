@@ -103,7 +103,7 @@ workflows:
           compose_file: docker-compose.web.yml
           build_service: tomcat
           requires:
-            - stream7jdk
+            - centos7jdk
       - docker-rpmbuild/image:
           name: stream8systemd
           compose_file: docker-compose.dev.yml
