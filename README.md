@@ -30,12 +30,25 @@
 
 # systemd for CentOS 8
 
+Kernel parameters:
+
+```
+systemd.unified_cgroup_hierarchy=1 cgroup_enable=memory swapaccount=1
+```
+
+Docker daemon options:
+
 ```
 {
-  "bip":"172.30.0.1/16",
   "exec-opts": ["native.cgroupdriver=systemd"],
   "features": { "buildkit": true },
   "experimental": true,
   "cgroup-parent": "docker.slice"
 }
+```
+
+Docker run command:
+
+```
+docker run -ti --rm --privileged --cgroup-parent=docker.slice --cgroupns private --tmpfs /tmp --tmpfs /run aursu/centos:stream8-systemd
 ```
