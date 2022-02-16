@@ -13,16 +13,14 @@ addons:
 env:
   global:
     - OS7=7.9.2009
-    - OS8=8.4.2105
     - OS7TAG=7.9.2009
-    - OS8TAG=8.4.2105
   jobs:
     - BUILD_COMPOSE_FILE=docker-compose.yml       BUILD=centos7scm
-    - BUILD_COMPOSE_FILE=docker-compose.yml       BUILD=centos8scm
+    - BUILD_COMPOSE_FILE=docker-compose.yml       BUILD=stream8scm
     - BUILD_COMPOSE_FILE=docker-compose.web.yml   BUILD=centos7web
     - BUILD_COMPOSE_FILE=docker-compose.web.yml   BUILD=centos7uwsgi
-    - BUILD_COMPOSE_FILE=docker-compose.web.yml   BUILD=centos8web
-    - BUILD_COMPOSE_FILE=docker-compose.web.yml   BUILD=centos8httpd
+    - BUILD_COMPOSE_FILE=docker-compose.web.yml   BUILD=stream8web
+    - BUILD_COMPOSE_FILE=docker-compose.web.yml   BUILD=stream8httpd
 
 script:
   - docker-compose -f ${BUILD_COMPOSE_FILE} build --no-cache --pull ${BUILD}
@@ -48,7 +46,7 @@ jobs:
     - stage: base
       env:
         - BUILD_COMPOSE_FILE=docker-compose.yml
-        - BUILD=centos8base
+        - BUILD=stream8base
     - stage: scm
       env:
         - BUILD_COMPOSE_FILE=docker-compose.yml
@@ -56,7 +54,7 @@ jobs:
     - stage: scm
       env:
         - BUILD_COMPOSE_FILE=docker-compose.yml
-        - BUILD=centos8jdk
+        - BUILD=stream8jdk
     - stage: scm
       env:
         - BUILD_COMPOSE_FILE=docker-compose.web.yml
@@ -72,15 +70,15 @@ jobs:
     - stage: scm
       env:
         - BUILD_COMPOSE_FILE=docker-compose.web.yml
-        - BUILD=centos8node
+        - BUILD=stream8node
     - stage: scm
       env:
         - BUILD_COMPOSE_FILE=docker-compose.dev.yml
-        - BUILD=centos8systemd
+        - BUILD=stream8systemd
     - stage: scm
       env:
         - BUILD_COMPOSE_FILE=docker-compose.dev.yml
-        - BUILD=centos8webdev
+        - BUILD=stream8webdev
     - stage: dev
       env:
         - BUILD_COMPOSE_FILE=docker-compose.web.yml
@@ -92,7 +90,7 @@ jobs:
     - stage: dev
       env:
         - BUILD_COMPOSE_FILE=docker-compose.dev.yml
-        - BUILD=centos8nodedev
+        - BUILD=stream8nodedev
 
 stages:
   - base

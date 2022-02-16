@@ -25,32 +25,28 @@ services:
       args:
         centos: $OS7
     image: "aursu/centos:${OS7TAG}-node16dev"
-  centos8systemd:
-    build:
-      context: 8/systemd
-      args:
-        centos: $OS8
-    image: "aursu/centos:${OS8TAG}-systemd"
-  centos8webdev:
-    build:
-      context: 8/web
-      args:
-        centos: $OS8
-        image: scm
-    image: "aursu/centos:${OS8TAG}-webdev"
-  centos8nodedev:
-    build:
-      args:
-        centos: $OS8
-      context: 8/node/dev
-    image: "aursu/centos:${OS8TAG}-nodedev"
-  centos8node16dev:
-    build:
-      args:
-        centos: $OS8
-      context: 8/node-current/dev
-    image: "aursu/centos:${OS8TAG}-node16dev"
   stream8systemd:
     build:
       context: 8-stream/systemd
+      args:
+        centos: stream8
     image: aursu/centos:stream8-systemd
+  stream8webdev:
+    build:
+      context: 8-stream/web
+      args:
+        centos: stream8
+        image: scm
+    image: aursu/centos:stream8-webdev
+  stream8nodedev:
+    build:
+      args:
+        centos: stream8
+      context: 8-stream/node/dev
+    image: aursu/centos:stream8-nodedev
+  stream8node16dev:
+    build:
+      args:
+        centos: stream8
+      context: 8-stream/node-current/dev
+    image: aursu/centos:stream8-node16dev

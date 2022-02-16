@@ -11,10 +11,6 @@ workflows:
           compose_file: docker-compose.yml
           build_service: centos7base
       - docker-rpmbuild/image:
-          name: centos8base
-          compose_file: docker-compose.yml
-          build_service: centos8base
-      - docker-rpmbuild/image:
           name: stream8base
           compose_file: docker-compose.yml
           build_service: stream8base
@@ -24,12 +20,6 @@ workflows:
           build_service: centos7scm
           requires:
             - centos7base
-      - docker-rpmbuild/image:
-          name: centos8scm
-          compose_file: docker-compose.yml
-          build_service: centos8scm
-          requires:
-            - centos8base
       - docker-rpmbuild/image:
           name: stream8scm
           compose_file: docker-compose.yml
@@ -43,23 +33,17 @@ workflows:
           requires:
             - centos7base
       - docker-rpmbuild/image:
-          name: centos8web
-          compose_file: docker-compose.web.yml
-          build_service: centos8web
-          requires:
-            - centos8base
-      - docker-rpmbuild/image:
           name: stream8web
           compose_file: docker-compose.web.yml
           build_service: stream8web
           requires:
             - stream8base
       - docker-rpmbuild/image:
-          name: centos8httpd
+          name: stream8httpd
           compose_file: docker-compose.web.yml
-          build_service: centos8httpd
+          build_service: stream8httpd
           requires:
-            - centos8base
+            - stream8base
       - docker-rpmbuild/image:
           name: centos7jdk
           compose_file: docker-compose.yml
@@ -67,11 +51,11 @@ workflows:
           requires:
             - centos7scm
       - docker-rpmbuild/image:
-          name: centos8jdk
+          name: stream8jdk
           compose_file: docker-compose.yml
-          build_service: centos8jdk
+          build_service: stream8jdk
           requires:
-            - centos8scm
+            - stream8scm
       - docker-rpmbuild/image:
           name: centos7node
           compose_file: docker-compose.web.yml
@@ -97,35 +81,29 @@ workflows:
           requires:
             - centos7scm
       - docker-rpmbuild/image:
-          name: centos8node
+          name: stream8node
           compose_file: docker-compose.web.yml
-          build_service: centos8node
+          build_service: stream8node
           requires:
-            - centos8web
+            - stream8web
       - docker-rpmbuild/image:
-          name: centos8node16
+          name: stream8node16
           compose_file: docker-compose.web.yml
-          build_service: centos8node16
+          build_service: stream8node16
           requires:
-            - centos8web
+            - stream8web
       - docker-rpmbuild/image:
-          name: centos8systemd
+          name: stream8webdev
           compose_file: docker-compose.dev.yml
-          build_service: centos8systemd
+          build_service: stream8webdev
           requires:
-            - centos8scm
-      - docker-rpmbuild/image:
-          name: centos8webdev
-          compose_file: docker-compose.dev.yml
-          build_service: centos8webdev
-          requires:
-            - centos8scm
+            - stream8scm
       - docker-rpmbuild/image:
           name: tomcat
           compose_file: docker-compose.web.yml
           build_service: tomcat
           requires:
-            - centos8jdk
+            - stream7jdk
       - docker-rpmbuild/image:
           name: stream8systemd
           compose_file: docker-compose.dev.yml
@@ -145,14 +123,14 @@ workflows:
           requires:
             - centos7webdev
       - docker-rpmbuild/image:
-          name: centos8nodedev
+          name: stream8nodedev
           compose_file: docker-compose.dev.yml
-          build_service: centos8nodedev
+          build_service: stream8nodedev
           requires:
-            - centos8webdev
+            - stream8webdev
       - docker-rpmbuild/image:
-          name: centos8node16dev
+          name: stream8node16dev
           compose_file: docker-compose.dev.yml
-          build_service: centos8node16dev
+          build_service: stream8node16dev
           requires:
-            - centos8webdev
+            - stream8webdev

@@ -1,11 +1,10 @@
-ARG centos=8.4.2105
-FROM aursu/centos:${centos}-base
+FROM aursu/centos:stream8-base
 
 ENV LANG=C
 
-RUN yum -y install \
+RUN dnf -y install \
 		httpd \
-	&& yum clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
+	&& dnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
 RUN rm -f /etc/httpd/conf.modules.d/*.conf /etc/httpd/conf.d/*.conf
 
