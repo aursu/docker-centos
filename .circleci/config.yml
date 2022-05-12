@@ -87,9 +87,9 @@ workflows:
           requires:
             - stream8web
       - docker-rpmbuild/image:
-          name: stream8node16
+          name: stream8node18
           compose_file: docker-compose.web.yml
-          build_service: stream8node16
+          build_service: stream8node18
           requires:
             - stream8web
       - docker-rpmbuild/image:
@@ -129,8 +129,8 @@ workflows:
           requires:
             - stream8webdev
       - docker-rpmbuild/image:
-          name: stream8node16dev
+          name: stream8node18dev
           compose_file: docker-compose.dev.yml
-          build_service: stream8node16dev
+          build_service: stream8node18dev
           requires:
             - stream8webdev

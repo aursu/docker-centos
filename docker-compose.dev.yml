@@ -43,10 +43,10 @@ services:
       args:
         centos: stream8
       context: 8-stream/node/dev
-    image: aursu/centos:stream8-nodedev
-  stream8node16dev:
+    image: aursu/centos:stream8-node16dev
+  stream8node18dev:
     build:
       args:
         centos: stream8
       context: 8-stream/node-current/dev
-    image: aursu/centos:stream8-node16dev
+    image: aursu/centos:stream8-node18dev

@@ -2,10 +2,10 @@ ARG centos=stream8
 FROM aursu/centos:${centos}-webdev
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
-ARG NODEREPO="pub_14.x"
-ARG NODE_VERSION="14.19.0"
+ARG NODEREPO="pub_16.x"
+ARG NODE_VERSION="16.15.0"
 ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/el/8/x86_64/nodesource-release-el8-1.noarch.rpm"
-ARG YARN_VERSION="1.22.17"
+ARG YARN_VERSION="1.22.18"
 
 # install nodejs RPM repo
 RUN set -ex \

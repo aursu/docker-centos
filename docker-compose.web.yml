@@ -39,10 +39,10 @@ services:
       context: 8-stream/node
       args:
         centos: stream8
-    image: aursu/centos:stream8-node
-  stream8node16:
+    image: aursu/centos:stream8-node16
+  stream8node18:
     build:
       context: 8-stream/node-current
       args:
         centos: stream8
-    image: aursu/centos:stream8-node16
+    image: aursu/centos:stream8-node18
