@@ -56,7 +56,7 @@ services:
       args:
         centos: $OS9
     image: "aursu/centos:${OS9TAG}-systemd"
-  centos9webdev:
+  stream9webdev:
     build:
       context: 9-stream/web
       args:

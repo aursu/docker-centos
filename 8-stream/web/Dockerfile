@@ -16,8 +16,3 @@ RUN groupdel tape \
 
 RUN mkdir -p /var/www/html \
 	&& chown www-data:www-data /var/www/html
-
-# Add crond into web base image
-RUN dnf -y install \
-        cronie \
-    && dnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
