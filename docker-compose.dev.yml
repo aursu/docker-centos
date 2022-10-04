@@ -50,3 +50,28 @@ services:
         centos: stream8
       context: 8-stream/node-current/dev
     image: aursu/centos:stream8-node18dev
+  stream9systemd:
+    build:
+      context: 9-stream/systemd
+      args:
+        centos: $OS9
+    image: "aursu/centos:${OS9TAG}-systemd"
+  centos9webdev:
+    build:
+      context: 9-stream/web
+      args:
+        centos: $OS9
+        image: scm
+    image: "aursu/centos:${OS9TAG}-webdev"
+  stream9nodedev:
+    build:
+      args:
+        centos: $OS9
+      context: 9-stream/node/dev
+    image: "aursu/centos:${OS9TAG}-node16dev"
+  stream9node18dev:
+    build:
+      args:
+        centos: $OS9
+      context: 9-stream/node-current/dev
+    image: "aursu/centos:${OS9TAG}-node18dev"

@@ -46,3 +46,27 @@ services:
       args:
         centos: stream8
     image: aursu/centos:stream8-node18
+  stream9web:
+    build:
+      context: 9-stream/web
+      args:
+        centos: $OS9
+    image: "aursu/centos:${OS9TAG}-web"
+  stream9httpd:
+    build:
+      context: 9-stream/httpd
+      args:
+        centos: $OS9
+    image: "aursu/centos:${OS9TAG}-httpd"
+  stream9node:
+    build:
+      context: 9-stream/node
+      args:
+        centos: $OS9
+    image: "aursu/centos:${OS9TAG}-node16"
+  stream9node18:
+    build:
+      context: 9-stream/node-current
+      args:
+        centos: $OS9
+    image: "aursu/centos:${OS9TAG}-node18"

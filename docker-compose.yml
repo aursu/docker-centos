@@ -32,3 +32,21 @@ services:
     build:
       context: 8-stream/scm
     image: aursu/centos:stream8-scm
+  stream9jdk:
+    build:
+      context: 9-stream/openjdk/11
+      args:
+        centos: $OS9
+    image: "aursu/centos:${OS9TAG}-jdk-11"
+  stream9base:
+    build:
+      context: 9-stream/base
+      args:
+        centos: $OS9
+    image: "aursu/centos:${OS9TAG}-base"
+  stream9scm:
+    build:
+      context: 9-stream/scm
+      args:
+        centos: $OS9
+    image: "aursu/centos:${OS9TAG}-scm"
