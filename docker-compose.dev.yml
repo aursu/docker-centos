@@ -49,7 +49,7 @@ services:
       args:
         centos: stream8
       context: 8-stream/node-current/dev
-    image: aursu/centos:stream8-node18dev
+    image: aursu/centos:stream8-nodedev
   stream9systemd:
     build:
       context: 9-stream/systemd
