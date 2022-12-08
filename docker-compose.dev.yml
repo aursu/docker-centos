@@ -13,15 +13,15 @@ services:
         centos: $OS7
         image: scm
     image: "aursu/centos:${OS7TAG}-webdev"
-  centos7nodedev:
+  centos7node14dev:
     build:
-      context: 7/node/dev
+      context: 7/node14/dev
       args:
         centos: $OS7
-    image: "aursu/centos:${OS7TAG}-nodedev"
+    image: "aursu/centos:${OS7TAG}-node14dev"
   centos7node16dev:
     build:
-      context: 7/node-current/dev
+      context: 7/node16/dev
       args:
         centos: $OS7
     image: "aursu/centos:${OS7TAG}-node16dev"
@@ -38,18 +38,18 @@ services:
         centos: stream8
         image: scm
     image: aursu/centos:stream8-webdev
-  stream8nodedev:
+  stream8node16dev:
     build:
       args:
         centos: stream8
-      context: 8-stream/node/dev
+      context: 8-stream/node16/dev
     image: aursu/centos:stream8-node16dev
   stream8node18dev:
     build:
       args:
         centos: stream8
-      context: 8-stream/node-current/dev
-    image: aursu/centos:stream8-nodedev
+      context: 8-stream/node18/dev
+    image: aursu/centos:stream8-node18dev
   stream9systemd:
     build:
       context: 9-stream/systemd
@@ -63,15 +63,15 @@ services:
         centos: $OS9
         image: scm
     image: "aursu/centos:${OS9TAG}-webdev"
-  stream9nodedev:
+  stream9node16dev:
     build:
       args:
         centos: $OS9
-      context: 9-stream/node/dev
+      context: 9-stream/node16/dev
     image: "aursu/centos:${OS9TAG}-node16dev"
   stream9node18dev:
     build:
       args:
         centos: $OS9
-      context: 9-stream/node-current/dev
+      context: 9-stream/node18/dev
     image: "aursu/centos:${OS9TAG}-node18dev"

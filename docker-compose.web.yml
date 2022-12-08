@@ -12,15 +12,15 @@ services:
       args:
         centos: $OS7
     image: "aursu/centos:${OS7TAG}-web"
-  centos7node:
+  centos7node14:
     build:
-      context: 7/node
+      context: 7/node14
       args:
         centos: $OS7
-    image: "aursu/centos:${OS7TAG}-node"
+    image: "aursu/centos:${OS7TAG}-node14"
   centos7node16:
     build:
-      context: 7/node-current
+      context: 7/node16
       args:
         centos: $OS7
     image: "aursu/centos:${OS7TAG}-node16"
@@ -34,15 +34,15 @@ services:
       args:
         centos: stream8
     image: aursu/centos:stream8-httpd
-  stream8node:
+  stream8node16:
     build:
-      context: 8-stream/node
+      context: 8-stream/node16
       args:
         centos: stream8
     image: aursu/centos:stream8-node16
   stream8node18:
     build:
-      context: 8-stream/node-current
+      context: 8-stream/node18
       args:
         centos: stream8
     image: aursu/centos:stream8-node18
@@ -58,15 +58,15 @@ services:
       args:
         centos: $OS9
     image: "aursu/centos:${OS9TAG}-httpd"
-  stream9node:
+  stream9node16:
     build:
-      context: 9-stream/node
+      context: 9-stream/node16
       args:
         centos: $OS9
     image: "aursu/centos:${OS9TAG}-node16"
   stream9node18:
     build:
-      context: 9-stream/node-current
+      context: 9-stream/node18
       args:
         centos: $OS9
     image: "aursu/centos:${OS9TAG}-node18"

@@ -1,16 +1,16 @@
-ARG centos=stream8
+ARG centos=stream9-20220919.0
 FROM aursu/centos:${centos}-web
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
 ARG NODEREPO="pub_16.x"
-ARG NODE_VERSION="16.17.1"
-ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/el/8/x86_64/nodesource-release-el8-1.noarch.rpm"
+ARG NODE_VERSION="16.18.1"
+ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/el/9/x86_64/nodesource-release-el9-1.noarch.rpm"
 
 # install nodejs RPM repo
 RUN set -ex \
     && rpm -Uvh ${RELEASE_URL} \
     && rpm --import /etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL \
-    && dnf -y module disable nodejs \
-    && dnf -y install \
+    && microdnf -y module disable nodejs \
+    && microdnf -y install \
         nodejs-${NODE_VERSION} \
-    && dnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
+    && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*

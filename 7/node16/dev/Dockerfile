@@ -2,10 +2,10 @@ ARG centos=7.9.2009
 FROM aursu/centos:${centos}-webdev
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
-ARG NODEREPO="pub_14.x"
-ARG NODE_VERSION="14.19.2"
+ARG NODEREPO="pub_16.x"
+ARG NODE_VERSION="16.18.1"
 ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/el/7/x86_64/nodesource-release-el7-1.noarch.rpm"
-ARG YARN_VERSION="1.22.18"
+ARG YARN_VERSION="1.22.19"
 
 # install nodejs RPM repo
 RUN set -ex \

@@ -89,9 +89,9 @@ workflows:
           requires:
             - stream9scm
       - docker-rpmbuild/image:
-          name: centos7node
+          name: centos7node14
           compose_file: docker-compose.web.yml
-          build_service: centos7node
+          build_service: centos7node14
           requires:
             - centos7web
       - docker-rpmbuild/image:
@@ -113,9 +113,9 @@ workflows:
           requires:
             - centos7scm
       - docker-rpmbuild/image:
-          name: stream8node
+          name: stream8node16
           compose_file: docker-compose.web.yml
-          build_service: stream8node
+          build_service: stream8node16
           requires:
             - stream8web
       - docker-rpmbuild/image:
@@ -137,9 +137,9 @@ workflows:
           requires:
             - stream8scm
       - docker-rpmbuild/image:
-          name: stream9node
+          name: stream9node16
           compose_file: docker-compose.web.yml
-          build_service: stream9node
+          build_service: stream9node16
           shorttag: true
           requires:
             - stream9web
@@ -171,9 +171,9 @@ workflows:
           requires:
             - centos7jdk
       - docker-rpmbuild/image:
-          name: centos7nodedev
+          name: centos7node14dev
           compose_file: docker-compose.dev.yml
-          build_service: centos7nodedev
+          build_service: centos7node14dev
           requires:
             - centos7webdev
       - docker-rpmbuild/image:
@@ -183,9 +183,9 @@ workflows:
           requires:
             - centos7webdev
       - docker-rpmbuild/image:
-          name: stream8nodedev
+          name: stream8node16dev
           compose_file: docker-compose.dev.yml
-          build_service: stream8nodedev
+          build_service: stream8node16dev
           requires:
             - stream8webdev
       - docker-rpmbuild/image:
@@ -195,9 +195,9 @@ workflows:
           requires:
             - stream8webdev
       - docker-rpmbuild/image:
-          name: stream9nodedev
+          name: stream9node16dev
           compose_file: docker-compose.dev.yml
-          build_service: stream9nodedev
+          build_service: stream9node16dev
           shorttag: true
           requires:
             - stream9webdev
