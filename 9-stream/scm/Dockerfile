@@ -1,4 +1,4 @@
-ARG centos=stream9-20220919.0
+ARG centos=stream9-20221206.0
 FROM aursu/centos:${centos}-base
 
 RUN microdnf -y install \

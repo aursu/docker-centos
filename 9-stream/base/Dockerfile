@@ -1,5 +1,5 @@
-# origin is https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-Container-Minimal-9-20220919.0.x86_64.tar.xz
-FROM aursu/centos:stream-container-minimal-9-20220919.0.x86_64
+# origin is https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-Container-Minimal-9-20221206.0.x86_64.tar.xz
+FROM aursu/centos:stream-container-minimal-9-20221206.0.x86_64
 
 # no weak dependencies
 COPY system/etc/dnf/dnf.conf /etc/dnf/dnf.conf
