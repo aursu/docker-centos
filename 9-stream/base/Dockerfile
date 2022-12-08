@@ -1,4 +1,5 @@
-# origin is https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-Container-Minimal-9-20221206.0.x86_64.tar.xz
+# curl https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-Container-Minimal-9-20221206.0.x86_64.tar.xz | docker load
+# docker tag centos-stream-container-minimal-9-20221206.0.x86_64:latest aursu/centos:stream-container-minimal-9-20221206.0.x86_64
 FROM aursu/centos:stream-container-minimal-9-20221206.0.x86_64
 
 # no weak dependencies
