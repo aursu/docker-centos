@@ -5,4 +5,4 @@ RUN microdnf -y install \
 		git \
 		openssh-clients \
 		rsync \
-	&& dnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
+	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
