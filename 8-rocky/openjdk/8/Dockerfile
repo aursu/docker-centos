@@ -6,4 +6,4 @@ RUN microdnf -y install \
 		unzip \
 		xz \
 		java-1.8.0-openjdk \
-    && dnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
+    && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
