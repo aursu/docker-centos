@@ -18,20 +18,24 @@ services:
       args:
         centos: $OS7
     image: "aursu/centos:${OS7TAG}-jdk-8"
-  stream8jdk:
+  rocky8jdk:
     build:
-      context: 8-stream/openjdk/8
+      context: 8-rocky/openjdk/8
       args:
-        centos: stream8
-    image: "aursu/centos:stream8-jdk-8"
-  stream8base:
+        rocky: $RL8
+    image: "aursu/rockylinux:${RL8TAG}-jdk-8"
+  rocky8base:
     build:
-      context: 8-stream/base
-    image: aursu/centos:stream8-base
-  stream8scm:
+      context: 8-rocky/base
+      args:
+        rocky: $RL8
+    image: "aursu/rockylinux:${RL8TAG}-base"
+  rocky8scm:
     build:
-      context: 8-stream/scm
-    image: aursu/centos:stream8-scm
+      context: 8-rocky/scm
+      args:
+        rocky: $RL8
+    image: "aursu/rockylinux:${RL8TAG}-scm"
   stream9jdk:
     build:
       context: 9-stream/openjdk/11

@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  docker-rpmbuild: aursu/rpmbuild@1.1.16
+  docker-rpmbuild: aursu/rpmbuild@1.1.17
 
 workflows:
   dockercentos:
@@ -11,9 +11,9 @@ workflows:
           compose_file: docker-compose.yml
           build_service: centos7base
       - docker-rpmbuild/image:
-          name: stream8base
+          name: rocky8base
           compose_file: docker-compose.yml
-          build_service: stream8base
+          build_service: rocky8base
       - docker-rpmbuild/image:
           name: stream9base
           compose_file: docker-compose.yml
@@ -26,11 +26,11 @@ workflows:
           requires:
             - centos7base
       - docker-rpmbuild/image:
-          name: stream8scm
+          name: rocky8scm
           compose_file: docker-compose.yml
-          build_service: stream8scm
+          build_service: rocky8scm
           requires:
-            - stream8base
+            - rocky8base
       - docker-rpmbuild/image:
           name: stream9scm
           compose_file: docker-compose.yml
@@ -45,11 +45,11 @@ workflows:
           requires:
             - centos7base
       - docker-rpmbuild/image:
-          name: stream8web
+          name: rocky8web
           compose_file: docker-compose.web.yml
-          build_service: stream8web
+          build_service: rocky8web
           requires:
-            - stream8base
+            - rocky8base
       - docker-rpmbuild/image:
           name: stream9web
           compose_file: docker-compose.web.yml
@@ -58,11 +58,11 @@ workflows:
           requires:
             - stream9base
       - docker-rpmbuild/image:
-          name: stream8httpd
+          name: rocky8httpd
           compose_file: docker-compose.web.yml
-          build_service: stream8httpd
+          build_service: rocky8httpd
           requires:
-            - stream8base
+            - rocky8base
       - docker-rpmbuild/image:
           name: stream9httpd
           compose_file: docker-compose.web.yml
@@ -77,11 +77,11 @@ workflows:
           requires:
             - centos7scm
       - docker-rpmbuild/image:
-          name: stream8jdk
+          name: rocky8jdk
           compose_file: docker-compose.yml
-          build_service: stream8jdk
+          build_service: rocky8jdk
           requires:
-            - stream8scm
+            - rocky8scm
       - docker-rpmbuild/image:
           name: stream9jdk
           compose_file: docker-compose.yml
@@ -113,29 +113,29 @@ workflows:
           requires:
             - centos7scm
       - docker-rpmbuild/image:
-          name: stream8node16
+          name: rocky8node16
           compose_file: docker-compose.web.yml
-          build_service: stream8node16
+          build_service: rocky8node16
           requires:
-            - stream8web
+            - rocky8web
       - docker-rpmbuild/image:
-          name: stream8node18
+          name: rocky8node18
           compose_file: docker-compose.web.yml
-          build_service: stream8node18
+          build_service: rocky8node18
           requires:
-            - stream8web
+            - rocky8web
       - docker-rpmbuild/image:
-          name: stream8systemd
+          name: rocky8systemd
           compose_file: docker-compose.dev.yml
-          build_service: stream8systemd
+          build_service: rocky8systemd
           requires:
-            - stream8scm
+            - rocky8scm
       - docker-rpmbuild/image:
-          name: stream8webdev
+          name: rocky8webdev
           compose_file: docker-compose.dev.yml
-          build_service: stream8webdev
+          build_service: rocky8webdev
           requires:
-            - stream8scm
+            - rocky8scm
       - docker-rpmbuild/image:
           name: stream9node16
           compose_file: docker-compose.web.yml
@@ -183,17 +183,17 @@ workflows:
           requires:
             - centos7webdev
       - docker-rpmbuild/image:
-          name: stream8node16dev
+          name: rocky8node16dev
           compose_file: docker-compose.dev.yml
-          build_service: stream8node16dev
+          build_service: rocky8node16dev
           requires:
-            - stream8webdev
+            - rocky8webdev
       - docker-rpmbuild/image:
-          name: stream8node18dev
+          name: rocky8node18dev
           compose_file: docker-compose.dev.yml
-          build_service: stream8node18dev
+          build_service: rocky8node18dev
           requires:
-            - stream8webdev
+            - rocky8webdev
       - docker-rpmbuild/image:
           name: stream9node16dev
           compose_file: docker-compose.dev.yml

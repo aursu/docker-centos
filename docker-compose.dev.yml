@@ -25,31 +25,31 @@ services:
       args:
         centos: $OS7
     image: "aursu/centos:${OS7TAG}-node16dev"
-  stream8systemd:
+  rocky8systemd:
     build:
-      context: 8-stream/systemd
+      context: 8-rocky/systemd
       args:
-        centos: stream8
-    image: aursu/centos:stream8-systemd
-  stream8webdev:
+        rocky: $RL8
+    image: aursu/rockylinux:${RL8TAG}-systemd
+  rocky8webdev:
     build:
-      context: 8-stream/web
+      context: 8-rocky/web
       args:
-        centos: stream8
+        rocky: $RL8
         image: scm
-    image: aursu/centos:stream8-webdev
-  stream8node16dev:
+    image: aursu/rockylinux:${RL8TAG}-webdev
+  rocky8node16dev:
     build:
       args:
-        centos: stream8
-      context: 8-stream/node16/dev
-    image: aursu/centos:stream8-node16dev
-  stream8node18dev:
+        rocky: $RL8
+      context: 8-rocky/node16/dev
+    image: aursu/rockylinux:${RL8TAG}-node16dev
+  rocky8node18dev:
     build:
       args:
-        centos: stream8
-      context: 8-stream/node18/dev
-    image: aursu/centos:stream8-node18dev
+        rocky: $RL8
+      context: 8-rocky/node18/dev
+    image: aursu/rockylinux:${RL8TAG}-node18dev
   stream9systemd:
     build:
       context: 9-stream/systemd
