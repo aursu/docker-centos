@@ -1,6 +1,9 @@
 ARG rocky=8.7.20221112
 FROM aursu/rockylinux:${rocky}-scm
 
+ARG url=https://github.com/rpmbsys
+ARG token=
+
 ARG RUNNER_VERSION=2.299.1
 ARG SHASUM=147c14700c6cb997421b9a239c012197f11ea9854cd901ee88ead6fe73a72c74
 ARG DISTRO=actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
@@ -37,6 +40,6 @@ RUN set -ex \
 USER $RUNNER_USER
 
 RUN set -ex \
-    && $RUNNER_HOME/config.sh --unattended --url $GITHUB_URL --token $GITHUB_TOKEN --work $RUNNER_HOME/work
+    && $RUNNER_HOME/config.sh --unattended --url $url --token $token --work $RUNNER_HOME/work
 
 CMD ["${RUNNER_HOME}/run.sh"]

@@ -5,6 +5,6 @@ services:
       context: github/runner
       args:
         rocky: $RL8
-    env_file:
-      - secrets/github.env
-    image: "aursu/centos:${RL8TAG}-github-runner"
+        url: https://github.com/rpmbsys
+        token: ""
+    image: "aursu/rockylinux:${RL8TAG}-github-runner"
