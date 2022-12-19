@@ -1,0 +1,10 @@
+version: "3"
+services:
+  githubrunner:
+    build:
+      context: github/runner
+      args:
+        rocky: $RL8
+    env_file:
+      - secrets/github.env
+    image: "aursu/centos:${RL8TAG}-github-runner"
