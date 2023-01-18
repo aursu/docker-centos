@@ -1,5 +1,5 @@
 ARG centos=7.9.2009
-FROM aursu/centos:${centos}-jdk-8
+FROM aursu/centos:${centos}-jdk-11
 
 ARG MYSQL_CONN_NAME=mysql-connector-j-8.0.32
 ARG MYSQL_CONN_RPM=${MYSQL_CONN_NAME}-1.el7.noarch.rpm
