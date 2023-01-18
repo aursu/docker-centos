@@ -1,5 +1,5 @@
 ARG centos=7.9.2009
-FROM aursu/centos:${centos}-jdk-11
+FROM aursu/centos:${centos}-jdk-8
 
 ARG MYSQL_CONN_NAME=mysql-connector-j-8.0.32
 ARG MYSQL_CONN_RPM=${MYSQL_CONN_NAME}-1.el7.noarch.rpm
@@ -22,6 +22,7 @@ ENV CLASSPATH=/usr/share/java/${MYSQL_CONN_NAME}.jar
 
 RUN yum -y install \
         apache-commons-daemon \
+        java-headless \
         javapackages-tools \
         mysql \
         tomcat \

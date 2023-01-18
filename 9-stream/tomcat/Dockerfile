@@ -1,5 +1,5 @@
 ARG centos=stream9-20221206.0
-FROM aursu/centos:${centos}-jdk-11
+FROM aursu/centos:${centos}-jdk-17
 
 ARG MYSQL_CONN_NAME=mysql-connector-j-8.0.32
 ARG MYSQL_CONN_RPM=${MYSQL_CONN_NAME}-1.el9.noarch.rpm
@@ -21,6 +21,7 @@ ENV LOGGING_PROPERTIES ${CATALINA_BASE}/conf/logging.properties
 ENV CLASSPATH=/usr/share/java/${MYSQL_CONN_NAME}.jar
 
 RUN microdnf -y install \
+        java-headless \
         javapackages-tools \
         mysql \
         tomcat \

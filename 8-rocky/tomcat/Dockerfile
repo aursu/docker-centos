@@ -21,6 +21,7 @@ ENV LOGGING_PROPERTIES ${CATALINA_BASE}/conf/logging.properties
 ENV CLASSPATH=/usr/share/java/${MYSQL_CONN_NAME}.jar
 
 RUN microdnf -y install \
+        java-headless \
         javapackages-tools \
         mysql \
         tomcat \
