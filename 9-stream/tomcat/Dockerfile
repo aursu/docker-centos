@@ -1,8 +1,8 @@
-ARG centos=7.9.2009
-FROM aursu/centos:${centos}-jdk-11
+ARG centos=stream9-20221206.0
+FROM aursu/centos:${centos}-jdk-17
 
 ARG MYSQL_CONN_NAME=mysql-connector-java-8.0.31
-ARG MYSQL_CONN_RPM=${MYSQL_CONN_NAME}-1.el7.noarch.rpm
+ARG MYSQL_CONN_RPM=${MYSQL_CONN_NAME}-1.el8.noarch.rpm
 ARG MYSQL_CONN_URL=https://cdn.mysql.com//Downloads/Connector-J/${MYSQL_CONN_RPM}
 ARG MYSQL_CONN_PATH=/tmp/${MYSQL_CONN_RPM}
 ARG MYSQL_PUBKEY=5072E1F5
@@ -21,7 +21,6 @@ ENV LOGGING_PROPERTIES ${CATALINA_BASE}/conf/logging.properties
 ENV CLASSPATH=/usr/share/java/${MYSQL_CONN_NAME}.jar
 
 RUN yum -y install \
-        apache-commons-daemon \
         javapackages-tools \
         mysql \
         tomcat \
