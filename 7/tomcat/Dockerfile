@@ -1,11 +1,11 @@
 ARG centos=7.9.2009
 FROM aursu/centos:${centos}-jdk-11
 
-ARG MYSQL_CONN_NAME=mysql-connector-java-8.0.31
+ARG MYSQL_CONN_NAME=mysql-connector-j-8.0.32
 ARG MYSQL_CONN_RPM=${MYSQL_CONN_NAME}-1.el7.noarch.rpm
 ARG MYSQL_CONN_URL=https://cdn.mysql.com//Downloads/Connector-J/${MYSQL_CONN_RPM}
 ARG MYSQL_CONN_PATH=/tmp/${MYSQL_CONN_RPM}
-ARG MYSQL_PUBKEY=5072E1F5
+ARG MYSQL_PUBKEY=3A79BD29
 
 ENV JAVA_ABRT=off
 ENV TOMCATS_BASE=/var/lib/tomcats/
@@ -30,7 +30,7 @@ RUN yum -y install \
 
 RUN set -ex; \
     curl -L ${MYSQL_CONN_URL} -o ${MYSQL_CONN_PATH}; \
-    gpg --recv-keys --keyserver keys.gnupg.net ${MYSQL_PUBKEY}; \
+    gpg --recv-keys --keyserver pgp.mit.edu ${MYSQL_PUBKEY}; \
     gpg --export -a ${MYSQL_PUBKEY} > ${MYSQL_PUBKEY}.asc; \
     rpm --import ${MYSQL_PUBKEY}.asc; \
     rpm -ivh ${MYSQL_CONN_PATH}; \

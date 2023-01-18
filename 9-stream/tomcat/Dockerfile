@@ -1,11 +1,11 @@
 ARG centos=stream9-20221206.0
-FROM aursu/centos:${centos}-jdk-17
+FROM aursu/centos:${centos}-jdk-11
 
-ARG MYSQL_CONN_NAME=mysql-connector-java-8.0.31
-ARG MYSQL_CONN_RPM=${MYSQL_CONN_NAME}-1.el8.noarch.rpm
+ARG MYSQL_CONN_NAME=mysql-connector-j-8.0.32
+ARG MYSQL_CONN_RPM=${MYSQL_CONN_NAME}-1.el9.noarch.rpm
 ARG MYSQL_CONN_URL=https://cdn.mysql.com//Downloads/Connector-J/${MYSQL_CONN_RPM}
 ARG MYSQL_CONN_PATH=/tmp/${MYSQL_CONN_RPM}
-ARG MYSQL_PUBKEY=5072E1F5
+ARG MYSQL_PUBKEY=3A79BD29
 
 ENV JAVA_ABRT=off
 ENV TOMCATS_BASE=/var/lib/tomcats/
@@ -20,16 +20,16 @@ ENV JAVACMD ${JAVA_HOME}/bin/java
 ENV LOGGING_PROPERTIES ${CATALINA_BASE}/conf/logging.properties
 ENV CLASSPATH=/usr/share/java/${MYSQL_CONN_NAME}.jar
 
-RUN yum -y install \
+RUN microdnf -y install \
         javapackages-tools \
         mysql \
         tomcat \
         tomcat-lib \
-    && yum clean all && rm -rf /var/cache/yum /var/lib/rpm/__db*
+    && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
 RUN set -ex; \
     curl -L ${MYSQL_CONN_URL} -o ${MYSQL_CONN_PATH}; \
-    gpg --recv-keys --keyserver keys.gnupg.net ${MYSQL_PUBKEY}; \
+    gpg --recv-keys --keyserver pgp.mit.edu ${MYSQL_PUBKEY}; \
     gpg --export -a ${MYSQL_PUBKEY} > ${MYSQL_PUBKEY}.asc; \
     rpm --import ${MYSQL_PUBKEY}.asc; \
     rpm -ivh ${MYSQL_CONN_PATH}; \
