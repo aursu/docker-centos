@@ -3,7 +3,7 @@ FROM aursu/rockylinux:${rocky}-webdev
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
 ARG NODEREPO="pub_18.x"
-ARG NODE_VERSION="18.12.1"
+ARG NODE_VERSION="18.13.0"
 ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/el/8/x86_64/nodesource-release-el8-1.noarch.rpm"
 ARG YARN_VERSION="1.22.19"
 
