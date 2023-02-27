@@ -1,4 +1,4 @@
-ARG rocky=8.7.20221112
+ARG rocky=8.7.20230215
 FROM quay.io/rockylinux/rockylinux:${rocky}-minimal
 
 # no weak dependencies
