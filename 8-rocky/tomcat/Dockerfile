@@ -30,9 +30,8 @@ RUN microdnf -y install \
 
 RUN set -ex; \
     curl -L ${MYSQL_CONN_URL} -o ${MYSQL_CONN_PATH}; \
-    gpg --recv-keys --keyserver pgp.mit.edu ${MYSQL_PUBKEY}; \
-    gpg --export -a ${MYSQL_PUBKEY} > ${MYSQL_PUBKEY}.asc; \
-    rpm --import ${MYSQL_PUBKEY}.asc; \
+    rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022; \
+    rpm --checksig ${MYSQL_CONN_PATH}; \
     rpm -ivh ${MYSQL_CONN_PATH}; \
     rm -f ${MYSQL_CONN_PATH}; \
     rm -rf /root/.gnupg
