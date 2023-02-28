@@ -8,4 +8,5 @@ RUN set -ex \
 	&& microdnf -y install \
 	    epel-release \
 		glibc-langpack-en \
+		shadow-utils \
 	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
