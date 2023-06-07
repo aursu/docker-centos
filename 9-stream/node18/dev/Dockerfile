@@ -3,7 +3,7 @@ FROM aursu/centos:${centos}-webdev
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
 ARG NODEREPO="pub_18.x"
-ARG NODE_VERSION="18.14.2"
+ARG NODE_VERSION="18.16.0"
 ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/el/9/x86_64/nodesource-release-el9-1.noarch.rpm"
 ARG YARN_VERSION="1.22.19"
 
