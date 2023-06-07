@@ -1,4 +1,4 @@
-ARG centos=stream9-20230216.0
+ARG centos=stream9-20230605.0
 FROM aursu/centos:${centos}-web
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm

@@ -48,6 +48,12 @@ services:
       args:
         rocky: $RL8
     image: aursu/rockylinux:${RL8TAG}-node18
+  rocky8ruby31:
+    build:
+      context: 8-rocky/ruby31
+      args:
+        rocky: $RL8
+    image: aursu/rockylinux:${RL8TAG}-ruby31
   stream9web:
     build:
       context: 9-stream/web

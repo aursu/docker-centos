@@ -1,5 +1,5 @@
 
-ARG rocky=8.7.20230215
+ARG rocky=8.8.20230518
 ARG image=base
 FROM aursu/rockylinux:${rocky}-${image}
 

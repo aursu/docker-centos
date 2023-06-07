@@ -1,4 +1,4 @@
-ARG rocky=8.7.20230215
+ARG rocky=8.8.20230518
 FROM aursu/rockylinux:${rocky}-webdev
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
