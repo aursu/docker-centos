@@ -171,6 +171,12 @@ workflows:
           requires:
             - centos7jdk
       - docker-rpmbuild/image:
+          name: rocky8ruby31
+          compose_file: docker-compose.web.yml
+          build_service: rocky8ruby31
+          requires:
+            - rocky8scm
+      - docker-rpmbuild/image:
           name: centos7node14dev
           compose_file: docker-compose.dev.yml
           build_service: centos7node14dev
