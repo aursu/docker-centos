@@ -50,6 +50,12 @@ services:
         rocky: $RL8
       context: 8-rocky/node18/dev
     image: aursu/rockylinux:${RL8TAG}-node18dev
+  rocky8ruby31puppet:
+    build:
+      args:
+        rocky: $RL8
+      context: 8-rocky/ruby31/puppet
+    image: aursu/rockylinux:${RL8TAG}-ruby31-puppet
   stream9systemd:
     build:
       context: 9-stream/systemd
