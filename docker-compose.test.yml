@@ -1,0 +1,11 @@
+version: "3"
+services:
+  stream9puppet:
+    build:
+      context: 9-stream/puppet7
+      args:
+        centos: $OS9
+    privileged: true
+    cap_add:
+      - SYS_ADMIN
+    image: "aursu/centos:${OS9TAG}-puppet7"
