@@ -13,12 +13,6 @@ services:
         centos: $OS7
         image: scm
     image: "aursu/centos:${OS7TAG}-webdev"
-  centos7node14dev:
-    build:
-      context: 7/node14/dev
-      args:
-        centos: $OS7
-    image: "aursu/centos:${OS7TAG}-node14dev"
   centos7node16dev:
     build:
       context: 7/node16/dev
@@ -38,18 +32,18 @@ services:
         rocky: $RL8
         image: scm
     image: aursu/rockylinux:${RL8TAG}-webdev
-  rocky8node16dev:
-    build:
-      args:
-        rocky: $RL8
-      context: 8-rocky/node16/dev
-    image: aursu/rockylinux:${RL8TAG}-node16dev
   rocky8node18dev:
     build:
       args:
         rocky: $RL8
       context: 8-rocky/node18/dev
     image: aursu/rockylinux:${RL8TAG}-node18dev
+  rocky8node20dev:
+    build:
+      args:
+        rocky: $RL8
+      context: 8-rocky/node20/dev
+    image: aursu/rockylinux:${RL8TAG}-node20dev
   rocky8ruby31puppet:
     build:
       args:
@@ -69,15 +63,15 @@ services:
         centos: $OS9
         image: scm
     image: "aursu/centos:${OS9TAG}-webdev"
-  stream9node16dev:
-    build:
-      args:
-        centos: $OS9
-      context: 9-stream/node16/dev
-    image: "aursu/centos:${OS9TAG}-node16dev"
   stream9node18dev:
     build:
       args:
         centos: $OS9
       context: 9-stream/node18/dev
     image: "aursu/centos:${OS9TAG}-node18dev"
+  stream9node20dev:
+    build:
+      args:
+        centos: $OS9
+      context: 9-stream/node20/dev
+    image: "aursu/centos:${OS9TAG}-node20dev"
