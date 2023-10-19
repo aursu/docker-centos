@@ -3,7 +3,7 @@ FROM aursu/centos:${centos}-web
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
 ARG NODEREPO="pub_16.x"
-ARG NODE_VERSION="16.20.0"
+ARG NODE_VERSION="16.20.2"
 ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/el/7/x86_64/nodesource-release-el7-1.noarch.rpm"
 
 # install nodejs RPM repo
