@@ -1,9 +1,9 @@
-ARG centos=stream9-20230605.0
+ARG centos=stream9-20231016.0
 FROM aursu/centos:${centos}-webdev
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
-ARG NODEREPO="pub_16.x"
-ARG NODE_VERSION="16.20.0"
+ARG NODEREPO="pub_20.x"
+ARG NODE_VERSION="20.5.1"
 ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/el/9/x86_64/nodesource-release-el9-1.noarch.rpm"
 ARG YARN_VERSION="1.22.19"
 

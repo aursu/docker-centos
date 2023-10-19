@@ -12,12 +12,6 @@ services:
       args:
         centos: $OS7
     image: "aursu/centos:${OS7TAG}-web"
-  centos7node14:
-    build:
-      context: 7/node14
-      args:
-        centos: $OS7
-    image: "aursu/centos:${OS7TAG}-node14"
   centos7node16:
     build:
       context: 7/node16
@@ -36,12 +30,6 @@ services:
       args:
         rocky: $RL8
     image: "aursu/rockylinux:${RL8TAG}-httpd"
-  rocky8node16:
-    build:
-      context: 8-rocky/node16
-      args:
-        rocky: $RL8
-    image: aursu/rockylinux:${RL8TAG}-node16
   rocky8node18:
     build:
       context: 8-rocky/node18
@@ -66,15 +54,15 @@ services:
       args:
         centos: $OS9
     image: "aursu/centos:${OS9TAG}-httpd"
-  stream9node16:
-    build:
-      context: 9-stream/node16
-      args:
-        centos: $OS9
-    image: "aursu/centos:${OS9TAG}-node16"
   stream9node18:
     build:
       context: 9-stream/node18
       args:
         centos: $OS9
     image: "aursu/centos:${OS9TAG}-node18"
+  stream9node20:
+    build:
+      context: 9-stream/node20
+      args:
+        centos: $OS9
+    image: "aursu/centos:${OS9TAG}-node20"
