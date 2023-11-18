@@ -28,7 +28,6 @@ RUN gem update --no-document --no-user-install --clear-sources \
 		puppet-strings \
 		puppet_metadata \
 		rspec-puppet-facts \
-		rspec-puppet-utils \
 		rubocop-rake \
 		rubocop-rspec \
 		simplecov-console \
