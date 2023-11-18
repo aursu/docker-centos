@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  docker-rpmbuild: aursu/rpmbuild@1.1.21
+  docker-rpmbuild: aursu/rpmbuild@1.1.22
 
 workflows:
   dockercentos:
@@ -89,12 +89,6 @@ workflows:
           requires:
             - stream9scm
       - docker-rpmbuild/image:
-          name: centos7node14
-          compose_file: docker-compose.web.yml
-          build_service: centos7node14
-          requires:
-            - centos7web
-      - docker-rpmbuild/image:
           name: centos7node16
           compose_file: docker-compose.web.yml
           build_service: centos7node16
@@ -113,15 +107,15 @@ workflows:
           requires:
             - centos7scm
       - docker-rpmbuild/image:
-          name: rocky8node16
-          compose_file: docker-compose.web.yml
-          build_service: rocky8node16
-          requires:
-            - rocky8web
-      - docker-rpmbuild/image:
           name: rocky8node18
           compose_file: docker-compose.web.yml
           build_service: rocky8node18
+          requires:
+            - rocky8web
+      - docker-rpmbuild/image:
+          name: rocky8node20
+          compose_file: docker-compose.web.yml
+          build_service: rocky8node20
           requires:
             - rocky8web
       - docker-rpmbuild/image:
@@ -137,16 +131,16 @@ workflows:
           requires:
             - rocky8scm
       - docker-rpmbuild/image:
-          name: stream9node16
+          name: stream9node18
           compose_file: docker-compose.web.yml
-          build_service: stream9node16
+          build_service: stream9node18
           shorttag: true
           requires:
             - stream9web
       - docker-rpmbuild/image:
-          name: stream9node18
+          name: stream9node20
           compose_file: docker-compose.web.yml
-          build_service: stream9node18
+          build_service: stream9node20
           shorttag: true
           requires:
             - stream9web
@@ -183,23 +177,11 @@ workflows:
           requires:
             - rocky8ruby31
       - docker-rpmbuild/image:
-          name: centos7node14dev
-          compose_file: docker-compose.dev.yml
-          build_service: centos7node14dev
-          requires:
-            - centos7webdev
-      - docker-rpmbuild/image:
           name: centos7node16dev
           compose_file: docker-compose.dev.yml
           build_service: centos7node16dev
           requires:
             - centos7webdev
-      - docker-rpmbuild/image:
-          name: rocky8node16dev
-          compose_file: docker-compose.dev.yml
-          build_service: rocky8node16dev
-          requires:
-            - rocky8webdev
       - docker-rpmbuild/image:
           name: rocky8node18dev
           compose_file: docker-compose.dev.yml
@@ -207,16 +189,22 @@ workflows:
           requires:
             - rocky8webdev
       - docker-rpmbuild/image:
-          name: stream9node16dev
+          name: rocky8node20dev
           compose_file: docker-compose.dev.yml
-          build_service: stream9node16dev
-          shorttag: true
+          build_service: rocky8node20dev
           requires:
-            - stream9webdev
+            - rocky8webdev
       - docker-rpmbuild/image:
           name: stream9node18dev
           compose_file: docker-compose.dev.yml
           build_service: stream9node18dev
+          shorttag: true
+          requires:
+            - stream9webdev
+      - docker-rpmbuild/image:
+          name: stream9node20dev
+          compose_file: docker-compose.dev.yml
+          build_service: stream9node20dev
           shorttag: true
           requires:
             - stream9webdev

@@ -1,10 +1,10 @@
-ARG centos=stream9-20230605.0
-FROM aursu/centos:${centos}-web
+ARG rocky=8.8.20230518
+FROM aursu/rockylinux:${rocky}-web
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
-ARG NODEREPO="pub_16.x"
-ARG NODE_VERSION="16.20.0"
-ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/el/9/x86_64/nodesource-release-el9-1.noarch.rpm"
+ARG NODEREPO="pub_20.x"
+ARG NODE_VERSION="20.5.1"
+ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/el/8/x86_64/nodesource-release-el8-1.noarch.rpm"
 
 # install nodejs RPM repo
 RUN set -ex \
