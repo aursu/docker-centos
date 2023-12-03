@@ -1,7 +1,7 @@
 ARG rocky=8.8.20230518
 FROM aursu/rockylinux:${rocky}-jdk-17
 
-ARG MYSQL_CONN_NAME=mysql-connector-j-8.0.32
+ARG MYSQL_CONN_NAME=mysql-connector-j-8.2.0
 ARG MYSQL_CONN_RPM=${MYSQL_CONN_NAME}-1.el8.noarch.rpm
 ARG MYSQL_CONN_URL=https://cdn.mysql.com//Downloads/Connector-J/${MYSQL_CONN_RPM}
 ARG MYSQL_CONN_PATH=/tmp/${MYSQL_CONN_RPM}
