@@ -9,3 +9,11 @@ services:
     cap_add:
       - SYS_ADMIN
     image: "aursu/centos:${OS9TAG}-puppet7"
+  rocky8docker:
+    build:
+      context: 8-rocky/docker
+      args:
+        rocky: $RL8
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    image: aursu/rockylinux:${RL8TAG}-docker-cli
