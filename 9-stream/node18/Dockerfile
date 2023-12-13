@@ -9,8 +9,11 @@ ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/nodistro/repo/nodesource
 # install nodejs RPM repo
 RUN set -ex \
     && rpm -Uvh ${RELEASE_URL} \
-    && rpm --import /etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL \
+    && rpm --import /etc/pki/rpm-gpg/NODESOURCE-NODEJS-GPG-SIGNING-KEY-EL \
+        /etc/pki/rpm-gpg/NODESOURCE-NSOLID-GPG-SIGNING-KEY-EL \
     && microdnf -y module disable nodejs \
+    && update-crypto-policies --set DEFAULT:SHA1 \
     && microdnf -y install \
         nodejs-${NODE_VERSION} \
+    && update-crypto-policies --set DEFAULT \
     && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*

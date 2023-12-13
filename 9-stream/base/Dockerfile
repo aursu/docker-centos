@@ -11,6 +11,7 @@ RUN set -ex \
 		centos-stream-release \
 		centos-stream-repos \
 	&& microdnf -y install \
+		crypto-policies-scripts \
 		epel-release \
 		glibc-langpack-en \
 		shadow-utils \
