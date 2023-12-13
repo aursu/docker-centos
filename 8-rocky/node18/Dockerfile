@@ -3,8 +3,8 @@ FROM aursu/rockylinux:${rocky}-web
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
 ARG NODEREPO="pub_18.x"
-ARG NODE_VERSION="18.17.1"
-ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/el/8/x86_64/nodesource-release-el8-1.noarch.rpm"
+ARG NODE_VERSION="18.19.0"
+ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm"
 
 # install nodejs RPM repo
 RUN set -ex \
