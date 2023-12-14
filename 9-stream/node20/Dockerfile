@@ -12,7 +12,6 @@ RUN set -ex \
     && update-crypto-policies --set DEFAULT:SHA1 \
     && rpm --import /etc/pki/rpm-gpg/NODESOURCE-NODEJS-GPG-SIGNING-KEY-EL \
         /etc/pki/rpm-gpg/NODESOURCE-NSOLID-GPG-SIGNING-KEY-EL \
-    && update-crypto-policies --set DEFAULT \
     && microdnf -y module disable nodejs \
     && microdnf -y install \
         nodejs-${NODE_VERSION} \
