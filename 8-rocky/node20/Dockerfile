@@ -1,6 +1,12 @@
 ARG rocky=8.8.20230518
 FROM aursu/rockylinux:${rocky}-web
 
+COPY docker-entrypoint.sh /usr/local/libexec/
+
+RUN groupadd -g 1000 node \
+  && useradd -u 1000 -g node -s /bin/bash -m node \
+  && chmod +x /usr/local/libexec/docker-entrypoint.sh
+
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
 ARG NODEREPO="pub_20.x"
 ARG NODE_VERSION="20.10.0"
@@ -15,3 +21,6 @@ RUN set -ex \
     && microdnf -y install \
         nodejs-${NODE_VERSION} \
     && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
+
+ENTRYPOINT ["/usr/local/libexec/docker-entrypoint.sh"]
+CMD [ "node" ]
