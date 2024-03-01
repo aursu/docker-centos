@@ -30,7 +30,7 @@ RUN microdnf -y install \
 
 RUN set -ex; \
     curl -L ${MYSQL_CONN_URL} -o ${MYSQL_CONN_PATH}; \
-    rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022; \
+    rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023; \
     rpm --checksig ${MYSQL_CONN_PATH}; \
     rpm -ivh ${MYSQL_CONN_PATH}; \
     rm -f ${MYSQL_CONN_PATH}; \
