@@ -12,12 +12,6 @@ services:
       args:
         centos: $OS7
     image: "aursu/centos:${OS7TAG}-scm"
-  centos7jdk:
-    build:
-      context: 7/openjdk/11
-      args:
-        centos: $OS7
-    image: "aursu/centos:${OS7TAG}-jdk-11"
   rocky8jdk:
     build:
       context: 8-rocky/openjdk/21

@@ -2,10 +2,10 @@ version: "3"
 services:
   tomcat:
     build:
-      context: 7/tomcat
+      context: 8-rocky/tomcat
       args:
-        centos: $OS7
-    image: "aursu/centos:${OS7TAG}-tomcat"
+        rocky: $RL8
+    image: "aursu/rockylinux:${RL8TAG}-tomcat"
   centos7web:
     build:
       context: 7/web
