@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  docker-rpmbuild: aursu/rpmbuild@1.1.22
+  docker-rpmbuild: aursu/rpmbuild@1.1.24
 
 workflows:
   dockercentos:
@@ -88,12 +88,6 @@ workflows:
           build_service: stream9jdk
           requires:
             - stream9scm
-      - docker-rpmbuild/image:
-          name: centos7node16
-          compose_file: docker-compose.web.yml
-          build_service: centos7node16
-          requires:
-            - centos7web
       - docker-rpmbuild/image:
           name: centos7systemd
           compose_file: docker-compose.dev.yml
@@ -182,12 +176,6 @@ workflows:
           build_service: rocky8docker
           requires:
             - rocky8scm
-      - docker-rpmbuild/image:
-          name: centos7node16dev
-          compose_file: docker-compose.dev.yml
-          build_service: centos7node16dev
-          requires:
-            - centos7webdev
       - docker-rpmbuild/image:
           name: rocky8node18dev
           compose_file: docker-compose.dev.yml
