@@ -1,4 +1,4 @@
-ARG centos=stream9-20231016.0
+ARG centos=stream9-20240226.1
 FROM aursu/centos:${centos}-web
 
 COPY docker-entrypoint.sh /usr/local/libexec/
@@ -9,7 +9,7 @@ RUN groupadd -g 1000 node \
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
 ARG NODEREPO="pub_20.x"
-ARG NODE_VERSION="20.10.0"
+ARG NODE_VERSION="20.11.1"
 ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm"
 
 # install nodejs RPM repo

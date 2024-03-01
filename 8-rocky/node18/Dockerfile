@@ -1,4 +1,4 @@
-ARG rocky=8.8.20230518
+ARG rocky=8.9.20231119
 FROM aursu/rockylinux:${rocky}-web
 
 COPY docker-entrypoint.sh /usr/local/libexec/
@@ -9,7 +9,7 @@ RUN groupadd -g 1000 node \
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
 ARG NODEREPO="pub_18.x"
-ARG NODE_VERSION="18.19.0"
+ARG NODE_VERSION="18.19.1"
 ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm"
 
 # install nodejs RPM repo
