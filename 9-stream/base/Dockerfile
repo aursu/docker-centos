@@ -1,6 +1,6 @@
-# curl https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-Container-Minimal-9-20240226.1.x86_64.tar.xz | docker load
-# docker tag centos-stream-container-minimal-9-20240226.1.x86_64:latest aursu/centos:stream-container-minimal-9-20240226.1.x86_64
-FROM aursu/centos:stream-container-minimal-9-20240226.1.x86_64
+# curl https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-Container-Minimal-9-20240429.0.x86_64.tar.xz | docker load
+# docker tag centos-stream-container-minimal-9-20240429.0.x86_64:latest aursu/centos:stream-container-minimal-9-20240429.0.x86_64
+FROM aursu/centos:stream-container-minimal-9-20240429.0.x86_64
 
 # no weak dependencies
 COPY system/etc/dnf/dnf.conf /etc/dnf/dnf.conf
