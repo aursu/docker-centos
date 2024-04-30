@@ -1,7 +1,7 @@
 ARG centos=stream9-20240429.0
-FROM aursu/centos:${centos}-jdk-21
+FROM aursu/centos:${centos}-jdk-22
 
-ARG MYSQL_CONN_NAME=mysql-connector-j-8.3.0
+ARG MYSQL_CONN_NAME=mysql-connector-j-8.4.0
 ARG MYSQL_CONN_RPM=${MYSQL_CONN_NAME}-1.el9.noarch.rpm
 ARG MYSQL_CONN_URL=https://cdn.mysql.com//Downloads/Connector-J/${MYSQL_CONN_RPM}
 ARG MYSQL_CONN_PATH=/tmp/${MYSQL_CONN_RPM}

@@ -32,10 +32,10 @@ services:
     image: "aursu/rockylinux:${RL8TAG}-scm"
   stream9jdk:
     build:
-      context: 9-stream/openjdk/21
+      context: 9-stream/openjdk/22
       args:
         centos: $OS9
-    image: "aursu/centos:${OS9TAG}-jdk-21"
+    image: "aursu/centos:${OS9TAG}-jdk-22"
   stream9base:
     build:
       context: 9-stream/base
