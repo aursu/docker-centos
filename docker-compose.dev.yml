@@ -1,24 +1,5 @@
 version: "3"
 services:
-  centos7systemd:
-    build:
-      context: 7/systemd
-      args:
-        centos: $OS7
-    image: "aursu/centos:${OS7TAG}-systemd"
-  centos7webdev:
-    build:
-      context: 7/web
-      args:
-        centos: $OS7
-        image: scm
-    image: "aursu/centos:${OS7TAG}-webdev"
-  centos7node16dev:
-    build:
-      context: 7/node16/dev
-      args:
-        centos: $OS7
-    image: "aursu/centos:${OS7TAG}-node16dev"
   rocky8systemd:
     build:
       context: 8-rocky/systemd

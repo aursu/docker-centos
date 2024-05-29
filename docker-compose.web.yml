@@ -6,18 +6,6 @@ services:
       args:
         rocky: $RL8
     image: "aursu/rockylinux:${RL8TAG}-tomcat"
-  centos7web:
-    build:
-      context: 7/web
-      args:
-        centos: $OS7
-    image: "aursu/centos:${OS7TAG}-web"
-  centos7node16:
-    build:
-      context: 7/node16
-      args:
-        centos: $OS7
-    image: "aursu/centos:${OS7TAG}-node16"
   rocky8web:
     build:
       context: 8-rocky/web

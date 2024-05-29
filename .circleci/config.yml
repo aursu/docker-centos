@@ -7,10 +7,6 @@ workflows:
   dockercentos:
     jobs:
       - docker-rpmbuild/image:
-          name: centos7base
-          compose_file: docker-compose.yml
-          build_service: centos7base
-      - docker-rpmbuild/image:
           name: rocky8base
           compose_file: docker-compose.yml
           build_service: rocky8base
@@ -19,12 +15,6 @@ workflows:
           compose_file: docker-compose.yml
           build_service: stream9base
           shorttag: true
-      - docker-rpmbuild/image:
-          name: centos7scm
-          compose_file: docker-compose.yml
-          build_service: centos7scm
-          requires:
-            - centos7base
       - docker-rpmbuild/image:
           name: rocky8scm
           compose_file: docker-compose.yml
@@ -38,12 +28,6 @@ workflows:
           shorttag: true
           requires:
             - stream9base
-      - docker-rpmbuild/image:
-          name: centos7web
-          compose_file: docker-compose.web.yml
-          build_service: centos7web
-          requires:
-            - centos7base
       - docker-rpmbuild/image:
           name: rocky8web
           compose_file: docker-compose.web.yml
@@ -82,18 +66,6 @@ workflows:
           build_service: stream9jdk
           requires:
             - stream9scm
-      - docker-rpmbuild/image:
-          name: centos7systemd
-          compose_file: docker-compose.dev.yml
-          build_service: centos7systemd
-          requires:
-            - centos7scm
-      - docker-rpmbuild/image:
-          name: centos7webdev
-          compose_file: docker-compose.dev.yml
-          build_service: centos7webdev
-          requires:
-            - centos7scm
       - docker-rpmbuild/image:
           name: rocky8node18
           compose_file: docker-compose.web.yml
