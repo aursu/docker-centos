@@ -1,17 +1,5 @@
 version: "3"
 services:
-  centos7base:
-    build:
-      context: 7/base
-      args:
-        centos: $OS7
-    image: "aursu/centos:${OS7TAG}-base"
-  centos7scm:
-    build:
-      context: 7/scm
-      args:
-        centos: $OS7
-    image: "aursu/centos:${OS7TAG}-scm"
   rocky8jdk:
     build:
       context: 8-rocky/openjdk/21
