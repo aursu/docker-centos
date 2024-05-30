@@ -1,6 +1,6 @@
 [docker]
 name=Docker
-baseurl=https://download.docker.com/linux/centos/8/x86_64/stable
+baseurl=https://download.docker.com/linux/centos/9/x86_64/stable
 gpgcheck=1
 gpgkey=https://download.docker.com/linux/centos/gpg
 sslverify=1

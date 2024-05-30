@@ -31,12 +31,24 @@ services:
         rocky: $RL8
       context: 8-rocky/ruby31/puppet
     image: aursu/rockylinux:${RL8TAG}-ruby31-puppet
+  rocky9ruby31puppet:
+    build:
+      args:
+        rocky: $RL9
+      context: 9-rocky/ruby31/puppet
+    image: aursu/rockylinux:${RL9TAG}-ruby31-puppet
   rocky8docker:
     build:
       context: 8-rocky/docker
       args:
         rocky: $RL8
     image: aursu/rockylinux:${RL8TAG}-docker-cli
+  rocky9docker:
+    build:
+      context: 9-rocky/docker
+      args:
+        rocky: $RL9
+    image: aursu/rockylinux:${RL9TAG}-docker-cli
   stream9systemd:
     build:
       context: 9-stream/systemd
@@ -62,3 +74,28 @@ services:
         centos: $OS9
       context: 9-stream/node20/dev
     image: "aursu/centos:${OS9TAG}-node20dev"
+  rocky9systemd:
+    build:
+      context: 9-rocky/systemd
+      args:
+        rocky: $RL9
+    image: aursu/rockylinux:${RL9TAG}-systemd
+  rocky9webdev:
+    build:
+      context: 9-rocky/web
+      args:
+        rocky: $RL9
+        image: scm
+    image: aursu/rockylinux:${RL9TAG}-webdev
+  rocky9node18dev:
+    build:
+      args:
+        centos: $RL9
+      context: 9-rocky/node18/dev
+    image: "aursu/centos:${RL9TAG}-node18dev"
+  rocky9node20dev:
+    build:
+      args:
+        centos: $RL9
+      context: 9-rocky/node20/dev
+    image: "aursu/centos:${RL9TAG}-node20dev"

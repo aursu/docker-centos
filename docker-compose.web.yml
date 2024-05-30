@@ -36,6 +36,12 @@ services:
       args:
         rocky: $RL8
     image: aursu/rockylinux:${RL8TAG}-ruby31
+  rocky9ruby31:
+    build:
+      context: 9-rocky/ruby31
+      args:
+        rocky: $RL9
+    image: aursu/rockylinux:${RL9TAG}-ruby31
   stream9web:
     build:
       context: 9-stream/web
@@ -60,3 +66,27 @@ services:
       args:
         centos: $OS9
     image: "aursu/centos:${OS9TAG}-node20"
+  rocky9web:
+    build:
+      context: 9-rocky/web
+      args:
+        rocky: $RL9
+    image: "aursu/rockylinux:${RL9TAG}-web"
+  rocky9httpd:
+    build:
+      context: 9-rocky/httpd
+      args:
+        rocky: $RL9
+    image: "aursu/rockylinux:${RL9TAG}-httpd"
+  rocky9node18:
+    build:
+      context: 9-rocky/node18
+      args:
+        rocky: $RL9
+    image: aursu/rockylinux:${RL9TAG}-node18
+  rocky9node20:
+    build:
+      context: 9-rocky/node20
+      args:
+        rocky: $RL9
+    image: aursu/rockylinux:${RL9TAG}-node20

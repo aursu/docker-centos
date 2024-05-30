@@ -1,7 +1,7 @@
-ARG rocky=8.9.20231119
+ARG rocky=9.4.20240509
 FROM aursu/rockylinux:${rocky}-scm
 
-RUN microdnf module enable ruby:3.1 \
+RUN microdnf -y module enable ruby:3.1 \
 	&& microdnf -y --enablerepo=powertools install \
 		ruby \
 		ruby-devel \
