@@ -1,4 +1,4 @@
-ARG centos=stream9-20240429.0
+ARG centos=stream9-20240527.0
 FROM aursu/centos:${centos}-scm
 
 ENV container docker

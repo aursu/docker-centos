@@ -1,4 +1,4 @@
-ARG centos=stream9-20240429.0
+ARG centos=stream9-20240527.0
 FROM aursu/centos:${centos}-jdk-22
 
 ARG MYSQL_CONN_NAME=mysql-connector-j-8.4.0
