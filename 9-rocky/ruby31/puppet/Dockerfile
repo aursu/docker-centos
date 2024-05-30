@@ -1,7 +1,7 @@
 ARG rocky=9.4.20240509
 FROM aursu/rockylinux:${rocky}-ruby31
 
-RUN microdnf -y --enablerepo=powertools install \
+RUN microdnf -y install \
 		zlib-devel \
 		libedit-devel \
 		libyaml-devel \
