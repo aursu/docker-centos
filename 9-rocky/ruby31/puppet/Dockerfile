@@ -1,7 +1,7 @@
 ARG rocky=9.4.20240509
 FROM aursu/rockylinux:${rocky}-ruby31
 
-RUN microdnf -y install \
+RUN microdnf -y --enablerepo=crb install \
 		zlib-devel \
 		libedit-devel \
 		libyaml-devel \
