@@ -7,11 +7,15 @@ RUN groupadd -g 1000 node \
   && useradd -u 1000 -g node -s /bin/bash -m node \
   && chmod +x /usr/local/libexec/docker-entrypoint.sh
 
-  RUN microdnf -y module enable nodejs:20 \
+RUN microdnf -y module enable nodejs:20 \
   && microdnf -y install \
     nodejs \
     npm \
-    yarnpkg \
+  && npm install -g \
+    npm@10.8.1 \
+    yarn@1.22.22 \
+  && rm -rf /root/.npm \
+  && rpm -e npm \
   && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
 ENTRYPOINT ["/usr/local/libexec/docker-entrypoint.sh"]
