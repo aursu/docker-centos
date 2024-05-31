@@ -10,9 +10,9 @@ RUN groupadd -g 1000 node \
 RUN microdnf -y module enable nodejs:18 \
     && microdnf -y install \
       nodejs \
-    && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db* \
-    && npm install -g corepack \
-    && corepack enable
+      npm \
+      yarnpkg \
+    && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
 ENTRYPOINT ["/usr/local/libexec/docker-entrypoint.sh"]
 CMD [ "node" ]
