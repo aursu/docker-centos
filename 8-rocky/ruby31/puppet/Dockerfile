@@ -32,8 +32,8 @@ RUN gem update --no-document --no-user-install --clear-sources \
 		rubocop-rspec \
 		simplecov-console \
 		winrm \
-    && rm -rf /usr/local/share/gems/gems/*/{man,.circleci,.git*,ext,benchmark,doc*,test*,examples,sample,logs,spec,acceptance} \
-	    rm -f /usr/local/share/gems/gems/*/{.*.yml,.[a-z]*,[A-Z]*,*.json,*.yml,*.txt,*.rdoc,bin/console,bin/setup,*.md,preamble} \
+	&& rm -rf /usr/local/share/gems/gems/*/{man,.circleci,.git*,benchmark,doc*,test*,examples,sample,logs,spec,acceptance} \
+	    rm -f /usr/local/share/gems/gems/*/{.*.yml,.[a-z]*,[A-Q]*,[S-Z]*,*.json,*.yml,*.txt,*.rdoc,bin/console,bin/setup,*.md} \
 	    /usr/local/share/gems/cache \
 		/root/.local \
 		/usr/local/lib64/gems/ruby/*/{gem_make.out,mkmf.log}
