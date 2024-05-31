@@ -190,6 +190,12 @@ workflows:
           requires:
             - rocky9scm
       - docker-rpmbuild/image:
+          name: rocky9ruby33
+          compose_file: docker-compose.web.yml
+          build_service: rocky9ruby33
+          requires:
+            - rocky9scm
+      - docker-rpmbuild/image:
           name: rocky8ruby31puppet
           compose_file: docker-compose.dev.yml
           build_service: rocky8ruby31puppet
@@ -201,6 +207,12 @@ workflows:
           build_service: rocky9ruby31puppet
           requires:
             - rocky9ruby31
+      - docker-rpmbuild/image:
+          name: rocky9ruby33puppet
+          compose_file: docker-compose.dev.yml
+          build_service: rocky9ruby33puppet
+          requires:
+            - rocky9ruby33
       - docker-rpmbuild/image:
           name: rocky8docker
           compose_file: docker-compose.dev.yml

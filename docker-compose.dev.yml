@@ -35,8 +35,16 @@ services:
     build:
       args:
         rocky: $RL9
-      context: 9-rocky/ruby31/puppet
+        image: ruby31
+      context: 9-rocky/ruby/puppet
     image: aursu/rockylinux:${RL9TAG}-ruby31-puppet
+  rocky9ruby33puppet:
+    build:
+      args:
+        rocky: $RL9
+        image: ruby33
+      context: 9-rocky/ruby/puppet
+    image: aursu/rockylinux:${RL9TAG}-ruby33-puppet
   rocky8docker:
     build:
       context: 8-rocky/docker

@@ -38,10 +38,16 @@ services:
     image: aursu/rockylinux:${RL8TAG}-ruby31
   rocky9ruby31:
     build:
-      context: 9-rocky/ruby31
+      context: 9-rocky/ruby/31
       args:
         rocky: $RL9
     image: aursu/rockylinux:${RL9TAG}-ruby31
+  rocky9ruby33:
+    build:
+      context: 9-rocky/ruby/33
+      args:
+        rocky: $RL9
+    image: aursu/rockylinux:${RL9TAG}-ruby33
   stream9web:
     build:
       context: 9-stream/web
