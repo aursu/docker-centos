@@ -12,12 +12,18 @@ services:
       args:
         rocky: $RL8
     image: "aursu/rockylinux:${RL8TAG}-scm"
-  rocky8jdk:
+  rocky8jdk21:
     build:
       context: 8-rocky/openjdk/21
       args:
         rocky: $RL8
     image: "aursu/rockylinux:${RL8TAG}-jdk-21"
+  rocky8jdk:
+    build:
+      context: 8-rocky/openjdk/22
+      args:
+        rocky: $RL8
+    image: "aursu/rockylinux:${RL8TAG}-jdk-22"
   stream9base:
     build:
       context: 9-stream/base
@@ -48,9 +54,15 @@ services:
       args:
         rocky: $RL9
     image: "aursu/rockylinux:${RL9TAG}-scm"
-  rocky9jdk:
+  rocky9jdk21:
     build:
       context: 9-rocky/openjdk/21
       args:
         rocky: $RL9
     image: "aursu/rockylinux:${RL9TAG}-jdk-21"
+  rocky9jdk:
+    build:
+      context: 9-rocky/openjdk/22
+      args:
+        rocky: $RL9
+    image: "aursu/rockylinux:${RL9TAG}-jdk-22"

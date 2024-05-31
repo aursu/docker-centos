@@ -84,6 +84,12 @@ workflows:
           requires:
             - rocky8scm
       - docker-rpmbuild/image:
+          name: rocky8jdk21
+          compose_file: docker-compose.yml
+          build_service: rocky8jdk21
+          requires:
+            - rocky8scm
+      - docker-rpmbuild/image:
           name: stream9jdk
           compose_file: docker-compose.yml
           build_service: stream9jdk
@@ -93,6 +99,12 @@ workflows:
           name: rocky9jdk
           compose_file: docker-compose.yml
           build_service: rocky9jdk
+          requires:
+            - rocky9scm
+      - docker-rpmbuild/image:
+          name: rocky9jdk21
+          compose_file: docker-compose.yml
+          build_service: rocky9jdk21
           requires:
             - rocky9scm
       - docker-rpmbuild/image:
