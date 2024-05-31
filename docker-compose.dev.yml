@@ -100,10 +100,10 @@ services:
       args:
         centos: $RL9
       context: 9-rocky/node18/dev
-    image: "aursu/centos:${RL9TAG}-node18dev"
+    image: "aursu/rockylinux:${RL9TAG}-node18dev"
   rocky9node20dev:
     build:
       args:
         centos: $RL9
       context: 9-rocky/node20/dev
-    image: "aursu/centos:${RL9TAG}-node20dev"
+    image: "aursu/rockylinux:${RL9TAG}-node20dev"

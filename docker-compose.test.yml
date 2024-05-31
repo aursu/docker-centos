@@ -26,7 +26,7 @@ services:
     privileged: true
     cap_add:
       - SYS_ADMIN
-    image: "aursu/centos:${RL9TAG}-puppet8"
+    image: "aursu/rockylinux:${RL9TAG}-puppet8"
   rocky8docker:
     build:
       context: 8-rocky/docker
