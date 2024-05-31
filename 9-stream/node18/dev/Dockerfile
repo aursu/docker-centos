@@ -9,7 +9,7 @@ RUN groupadd -g 1000 node \
 
 # https://github.com/nodesource/distributions/blob/master/README.md#rpm
 ARG NODEREPO="pub_18.x"
-ARG NODE_VERSION="18.20.2"
+ARG NODE_VERSION="18.20.3"
 ARG RELEASE_URL="https://rpm.nodesource.com/${NODEREPO}/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm"
 
 # install nodejs RPM repo
