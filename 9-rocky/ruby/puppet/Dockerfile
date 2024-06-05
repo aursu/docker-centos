@@ -25,6 +25,7 @@ RUN gem update --no-document --no-user-install --clear-sources \
 		hiera \
 		overcommit \
 		parallel_tests \
+		puppetlabs_spec_helper \
 		puppet-blacksmith \
 		puppet-strings \
 		puppet_metadata \
