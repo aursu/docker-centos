@@ -1,5 +1,6 @@
 ARG rocky=8.9.20231119
-FROM aursu/rockylinux:${rocky}-ruby31
+ARG image=ruby31
+FROM aursu/rockylinux:${rocky}-${image}
 
 RUN microdnf -y --enablerepo=powertools install \
 		zlib-devel \
