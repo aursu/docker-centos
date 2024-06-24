@@ -84,6 +84,12 @@ services:
       args:
         rocky: $RL9
     image: "aursu/rockylinux:${RL9TAG}-nginx"
+  rocky9resty:
+    build:
+      context: 9-rocky/nginx/resty
+      args:
+        rocky: $RL9
+    image: "aursu/rockylinux:${RL9TAG}-resty"
   rocky9httpd:
     build:
       context: 9-rocky/httpd
