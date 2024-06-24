@@ -20,19 +20,19 @@ services:
     image: "aursu/rockylinux:${RL8TAG}-httpd"
   rocky8node18:
     build:
-      context: 8-rocky/node18
+      context: 8-rocky/node/18
       args:
         rocky: $RL8
     image: aursu/rockylinux:${RL8TAG}-node18
   rocky8node20:
     build:
-      context: 8-rocky/node20
+      context: 8-rocky/node/20
       args:
         rocky: $RL8
     image: aursu/rockylinux:${RL8TAG}-node20
   rocky8ruby31:
     build:
-      context: 8-rocky/ruby31
+      context: 8-rocky/ruby/31
       args:
         rocky: $RL8
     image: aursu/rockylinux:${RL8TAG}-ruby31
@@ -62,13 +62,13 @@ services:
     image: "aursu/centos:${OS9TAG}-httpd"
   stream9node18:
     build:
-      context: 9-stream/node18
+      context: 9-stream/node/18
       args:
         centos: $OS9
     image: "aursu/centos:${OS9TAG}-node18"
   stream9node20:
     build:
-      context: 9-stream/node20
+      context: 9-stream/node/20
       args:
         centos: $OS9
     image: "aursu/centos:${OS9TAG}-node20"
@@ -92,13 +92,13 @@ services:
     image: "aursu/rockylinux:${RL9TAG}-httpd"
   rocky9node18:
     build:
-      context: 9-rocky/node18
+      context: 9-rocky/node/18
       args:
         rocky: $RL9
     image: aursu/rockylinux:${RL9TAG}-node18
   rocky9node20:
     build:
-      context: 9-rocky/node20
+      context: 9-rocky/node/20
       args:
         rocky: $RL9
     image: aursu/rockylinux:${RL9TAG}-node20
