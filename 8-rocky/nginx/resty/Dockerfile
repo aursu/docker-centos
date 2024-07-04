@@ -2,7 +2,7 @@ ARG rocky=8.9.20231119
 ARG image=nginx
 FROM aursu/rockylinux:${rocky}-${image}
 
-RUN curl -L https://openresty.org/package/rocky/openresty2.repo -o /tmp/openresty.repo \
+RUN curl -L https://openresty.org/package/rocky/openresty.repo -o /tmp/openresty.repo \
 	&& mv /tmp/openresty.repo /etc/yum.repos.d/openresty.repo
 
 RUN microdnf -y install \
