@@ -46,6 +46,18 @@ workflows:
           requires:
             - rocky8base
       - docker-rpmbuild/image:
+          name: rocky8nginx
+          compose_file: docker-compose.web.yml
+          build_service: rocky8nginx
+          requires:
+            - rocky8web
+      - docker-rpmbuild/image:
+          name: rocky8resty
+          compose_file: docker-compose.web.yml
+          build_service: rocky8resty
+          requires:
+            - rocky8nginx
+      - docker-rpmbuild/image:
           name: stream9web
           compose_file: docker-compose.web.yml
           build_service: stream9web

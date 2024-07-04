@@ -12,6 +12,18 @@ services:
       args:
         rocky: $RL8
     image: "aursu/rockylinux:${RL8TAG}-web"
+  rocky8nginx:
+    build:
+      context: 8-rocky/nginx
+      args:
+        rocky: $RL8
+    image: "aursu/rockylinux:${RL8TAG}-nginx"
+  rocky8resty:
+    build:
+      context: 8-rocky/nginx/resty
+      args:
+        rocky: $RL8
+    image: "aursu/rockylinux:${RL8TAG}-resty"
   rocky8httpd:
     build:
       context: 8-rocky/httpd
