@@ -1,4 +1,4 @@
-ARG centos=stream9-20240527.0
+ARG centos=stream9-20240715.0
 FROM aursu/centos:${centos}-systemd
 
 RUN microdnf -y install \

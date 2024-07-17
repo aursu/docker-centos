@@ -1,4 +1,4 @@
-ARG rocky=9.4.20240509
+ARG rocky=9.4.20240523
 FROM aursu/rockylinux:${rocky}-scm
 
 RUN microdnf -y module enable ruby:3.3 \

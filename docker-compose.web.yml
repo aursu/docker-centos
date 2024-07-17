@@ -35,31 +35,31 @@ services:
       context: 8-rocky/node/18
       args:
         rocky: $RL8
-    image: aursu/rockylinux:${RL8TAG}-node18
+    image: "aursu/rockylinux:${RL8TAG}-node18"
   rocky8node20:
     build:
       context: 8-rocky/node/20
       args:
         rocky: $RL8
-    image: aursu/rockylinux:${RL8TAG}-node20
+    image: "aursu/rockylinux:${RL8TAG}-node20"
   rocky8ruby31:
     build:
       context: 8-rocky/ruby/31
       args:
         rocky: $RL8
-    image: aursu/rockylinux:${RL8TAG}-ruby31
+    image: "aursu/rockylinux:${RL8TAG}-ruby31"
   rocky9ruby31:
     build:
       context: 9-rocky/ruby/31
       args:
         rocky: $RL9
-    image: aursu/rockylinux:${RL9TAG}-ruby31
+    image: "aursu/rockylinux:${RL9TAG}-ruby31"
   rocky9ruby33:
     build:
       context: 9-rocky/ruby/33
       args:
         rocky: $RL9
-    image: aursu/rockylinux:${RL9TAG}-ruby33
+    image: "aursu/rockylinux:${RL9TAG}-ruby33"
   stream9web:
     build:
       context: 9-stream/web
@@ -113,10 +113,10 @@ services:
       context: 9-rocky/node/18
       args:
         rocky: $RL9
-    image: aursu/rockylinux:${RL9TAG}-node18
+    image: "aursu/rockylinux:${RL9TAG}-node18"
   rocky9node20:
     build:
       context: 9-rocky/node/20
       args:
         rocky: $RL9
-    image: aursu/rockylinux:${RL9TAG}-node20
+    image: "aursu/rockylinux:${RL9TAG}-node20"

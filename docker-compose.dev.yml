@@ -5,59 +5,59 @@ services:
       context: 8-rocky/systemd
       args:
         rocky: $RL8
-    image: aursu/rockylinux:${RL8TAG}-systemd
+    image: "aursu/rockylinux:${RL8TAG}-systemd"
   rocky8webdev:
     build:
       context: 8-rocky/web
       args:
         rocky: $RL8
         image: scm
-    image: aursu/rockylinux:${RL8TAG}-webdev
+    image: "aursu/rockylinux:${RL8TAG}-webdev"
   rocky8node18dev:
     build:
       args:
         rocky: $RL8
       context: 8-rocky/node/18/dev
-    image: aursu/rockylinux:${RL8TAG}-node18dev
+    image: "aursu/rockylinux:${RL8TAG}-node18dev"
   rocky8node20dev:
     build:
       args:
         rocky: $RL8
       context: 8-rocky/node/20/dev
-    image: aursu/rockylinux:${RL8TAG}-node20dev
+    image: "aursu/rockylinux:${RL8TAG}-node20dev"
   rocky8ruby31puppet:
     build:
       args:
         rocky: $RL8
         image: ruby31
       context: 8-rocky/ruby/puppet
-    image: aursu/rockylinux:${RL8TAG}-ruby31-puppet
+    image: "aursu/rockylinux:${RL8TAG}-ruby31-puppet"
   rocky9ruby31puppet:
     build:
       args:
         rocky: $RL9
         image: ruby31
       context: 9-rocky/ruby/puppet
-    image: aursu/rockylinux:${RL9TAG}-ruby31-puppet
+    image: "aursu/rockylinux:${RL9TAG}-ruby31-puppet"
   rocky9ruby33puppet:
     build:
       args:
         rocky: $RL9
         image: ruby33
       context: 9-rocky/ruby/puppet
-    image: aursu/rockylinux:${RL9TAG}-ruby33-puppet
+    image: "aursu/rockylinux:${RL9TAG}-ruby33-puppet"
   rocky8docker:
     build:
       context: 8-rocky/docker
       args:
         rocky: $RL8
-    image: aursu/rockylinux:${RL8TAG}-docker-cli
+    image: "aursu/rockylinux:${RL8TAG}-docker-cli"
   rocky9docker:
     build:
       context: 9-rocky/docker
       args:
         rocky: $RL9
-    image: aursu/rockylinux:${RL9TAG}-docker-cli
+    image: "aursu/rockylinux:${RL9TAG}-docker-cli"
   stream9systemd:
     build:
       context: 9-stream/systemd
@@ -88,14 +88,14 @@ services:
       context: 9-rocky/systemd
       args:
         rocky: $RL9
-    image: aursu/rockylinux:${RL9TAG}-systemd
+    image: "aursu/rockylinux:${RL9TAG}-systemd"
   rocky9webdev:
     build:
       context: 9-rocky/web
       args:
         rocky: $RL9
         image: scm
-    image: aursu/rockylinux:${RL9TAG}-webdev
+    image: "aursu/rockylinux:${RL9TAG}-webdev"
   rocky9node18dev:
     build:
       args:
