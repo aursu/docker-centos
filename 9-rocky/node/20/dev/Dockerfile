@@ -9,10 +9,10 @@ RUN groupadd -g 1000 node \
 
 RUN microdnf -y module enable nodejs:20 \
   && microdnf -y install \
-    nodejs \
+    nodejs-1:20.14.0 \
     npm \
   && npm install -g \
-    npm@10.8.1 \
+    npm@10.8.2 \
     yarn@1.22.22 \
   && rm -rf /root/.npm \
   && rpm -e npm \
