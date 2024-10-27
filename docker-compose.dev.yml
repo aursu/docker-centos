@@ -99,12 +99,24 @@ services:
   rocky9node18dev:
     build:
       args:
-        centos: $RL9
+        rocky: $RL9
       context: 9-rocky/node/18/dev
     image: "aursu/rockylinux:${RL9TAG}-node18dev"
   rocky9node20dev:
     build:
       args:
-        centos: $RL9
+        rocky: $RL9
       context: 9-rocky/node/20/dev
     image: "aursu/rockylinux:${RL9TAG}-node20dev"
+  rocky9python312:
+    build:
+      args:
+        rocky: $RL9
+      context: 9-rocky/python/3.12
+    image: "aursu/rockylinux:${RL9TAG}-python3.12"
+  rocky9ansible:
+    build:
+      args:
+        rocky: $RL9
+      context: 9-rocky/python/ansible
+    image: "aursu/rockylinux:${RL9TAG}-ansible"
