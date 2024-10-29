@@ -47,4 +47,4 @@ RUN python3.12 -m venv ansible-env \
 COPY --chown=ansible:ansible conf/ansible.cfg /var/ansible/.ansible.cfg
 
 RUN source ansible-env/bin/activate \
-    && ansible-galaxy collection install community.sops
+    && ansible-galaxy collection install community.sops community.general
