@@ -3,7 +3,7 @@ ARG rocky=9.4.20240523
 ARG image=scm
 FROM aursu/rockylinux:${rocky}-${image}
 
-ARG DOCKER_VERSION="26.1.3"
+ARG DOCKER_VERSION="27.3.1"
 
 COPY system/etc/yum.repos.d/docker.repo /etc/yum.repos.d/docker.repo
 
