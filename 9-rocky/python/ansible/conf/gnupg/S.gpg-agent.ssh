@@ -1,0 +1,2 @@
+%Assuan%
+socket=/var/ansible/.cache/gnupg/S.gpg-agent.ssh

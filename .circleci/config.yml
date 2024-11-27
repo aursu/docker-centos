@@ -225,3 +225,15 @@ workflows:
           build_service: rocky9node20dev
           requires:
             - rocky9webdev
+      - docker-rpmbuild/image:
+          name: rocky9python312
+          compose_file: docker-compose.dev.yml
+          build_service: rocky9python312
+          requires:
+            - rocky9scm
+      - docker-rpmbuild/image:
+          name: rocky9ansible
+          compose_file: docker-compose.dev.yml
+          build_service: rocky9ansible
+          requires:
+            - rocky9python312

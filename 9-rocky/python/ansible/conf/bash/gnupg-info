@@ -1,0 +1,6 @@
+#!/bin/bash
+
+gpgconf --launch gpg-agent
+
+GPG_AGENT_INFO="/var/ansible/.cache/gnupg/S.gpg-agent"
+export GPG_AGENT_INFO
