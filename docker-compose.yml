@@ -62,7 +62,7 @@ services:
     image: "aursu/rockylinux:${RL9TAG}-jdk-21"
   rocky9jdk:
     build:
-      context: 9-rocky/openjdk/22
+      context: 9-rocky/openjdk/23
       args:
         rocky: $RL9
-    image: "aursu/rockylinux:${RL9TAG}-jdk-22"
+    image: "aursu/rockylinux:${RL9TAG}-jdk-23"

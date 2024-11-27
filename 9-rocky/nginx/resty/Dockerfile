@@ -1,4 +1,4 @@
-ARG rocky=9.4.20240523
+ARG rocky=9.5.20241118
 ARG image=nginx
 FROM aursu/rockylinux:${rocky}-${image}
 
