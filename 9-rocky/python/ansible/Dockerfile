@@ -39,7 +39,7 @@ WORKDIR /var/ansible
 RUN python3.12 -m venv ansible-env \
     && source ansible-env/bin/activate \
     && python3.12 -m pip install --upgrade pip \
-    && python3.12 -m pip install ansible-core argcomplete \
+    && python3.12 -m pip install ansible-core ansible-dev-tools argcomplete \
     && activate-global-python-argcomplete --user  \
     && rm -rf /var/ansible/.cache/pip \
     && mkdir -p /var/ansible/.cache/gnupg
