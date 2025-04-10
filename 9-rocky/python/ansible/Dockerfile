@@ -7,16 +7,17 @@ RUN groupadd -g 1000 ansible \
 RUN microdnf -y install \
     bash-completion \
     pinentry \
+    python3-pytest \
     vim \
 && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
 # Protecting Ansible secrets with SOPS
 # https://docs.ansible.com/ansible/latest/collections/community/sops/docsite/guide.html#protecting-ansible-secrets-with-sops
-RUN curl -LO https://github.com/getsops/sops/releases/download/v3.9.4/sops-v3.9.4.checksums.txt \
-    && curl -LO https://github.com/getsops/sops/releases/download/v3.9.4/sops-v3.9.4.linux.amd64 \
-    && sha256sum -c sops-v3.9.4.checksums.txt --ignore-missing \
-    && install -m0755 sops-v3.9.4.linux.amd64 /usr/local/bin/sops \
-    && rm -f sops-v3.9.4.checksums.txt sops-v3.9.4.linux.amd64
+RUN curl -LO https://github.com/getsops/sops/releases/download/v3.10.1/sops-v3.10.1.checksums.txt \
+    && curl -LO https://github.com/getsops/sops/releases/download/v3.10.1/sops-v3.10.1.linux.amd64 \
+    && sha256sum -c sops-v3.10.1.checksums.txt --ignore-missing \
+    && install -m0755 sops-v3.10.1.linux.amd64 /usr/local/bin/sops \
+    && rm -f sops-v3.10.1.checksums.txt sops-v3.10.1.linux.amd64
 
 COPY --chown=ansible:ansible conf/gnupg /var/ansible/.gnupg
 COPY --chown=ansible:ansible conf/bash /var/ansible/.bashrc.d
