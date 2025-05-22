@@ -1,0 +1,25 @@
+services:
+  rocky9base:
+    build:
+      context: base
+      args:
+        rocky: $RL9
+    image: "aursu/rockylinux:${RL9TAG}-base"
+  rocky9scm:
+    build:
+      context: scm
+      args:
+        rocky: $RL9
+    image: "aursu/rockylinux:${RL9TAG}-scm"
+  rocky9jdk21:
+    build:
+      context: openjdk/21
+      args:
+        rocky: $RL9
+    image: "aursu/rockylinux:${RL9TAG}-jdk-21"
+  rocky9jdk:
+    build:
+      context: openjdk/24
+      args:
+        rocky: $RL9
+    image: "aursu/rockylinux:${RL9TAG}-jdk-24"

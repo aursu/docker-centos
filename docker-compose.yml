@@ -1,29 +1,4 @@
-version: "3"
 services:
-  rocky8base:
-    build:
-      context: 8-rocky/base
-      args:
-        rocky: $RL8
-    image: "aursu/rockylinux:${RL8TAG}-base"
-  rocky8scm:
-    build:
-      context: 8-rocky/scm
-      args:
-        rocky: $RL8
-    image: "aursu/rockylinux:${RL8TAG}-scm"
-  rocky8jdk21:
-    build:
-      context: 8-rocky/openjdk/21
-      args:
-        rocky: $RL8
-    image: "aursu/rockylinux:${RL8TAG}-jdk-21"
-  rocky8jdk:
-    build:
-      context: 8-rocky/openjdk/23
-      args:
-        rocky: $RL8
-    image: "aursu/rockylinux:${RL8TAG}-jdk-23"
   stream9base:
     build:
       context: 9-stream/base
@@ -42,27 +17,3 @@ services:
       args:
         centos: $OS9
     image: "aursu/centos:${OS9TAG}-jdk-22"
-  rocky9base:
-    build:
-      context: 9-rocky/base
-      args:
-        rocky: $RL9
-    image: "aursu/rockylinux:${RL9TAG}-base"
-  rocky9scm:
-    build:
-      context: 9-rocky/scm
-      args:
-        rocky: $RL9
-    image: "aursu/rockylinux:${RL9TAG}-scm"
-  rocky9jdk21:
-    build:
-      context: 9-rocky/openjdk/21
-      args:
-        rocky: $RL9
-    image: "aursu/rockylinux:${RL9TAG}-jdk-21"
-  rocky9jdk:
-    build:
-      context: 9-rocky/openjdk/23
-      args:
-        rocky: $RL9
-    image: "aursu/rockylinux:${RL9TAG}-jdk-23"
