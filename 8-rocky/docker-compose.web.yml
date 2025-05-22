@@ -1,49 +1,49 @@
 services:
   tomcat:
     build:
-      context: 8-rocky/tomcat
+      context: tomcat
       args:
         rocky: $RL8
     image: "aursu/rockylinux:${RL8TAG}-tomcat"
   rocky8web:
     build:
-      context: 8-rocky/web
+      context: web
       args:
         rocky: $RL8
     image: "aursu/rockylinux:${RL8TAG}-web"
   rocky8nginx:
     build:
-      context: 8-rocky/nginx
+      context: nginx
       args:
         rocky: $RL8
     image: "aursu/rockylinux:${RL8TAG}-nginx"
   rocky8resty:
     build:
-      context: 8-rocky/nginx/resty
+      context: nginx/resty
       args:
         rocky: $RL8
     image: "aursu/rockylinux:${RL8TAG}-resty"
   rocky8httpd:
     build:
-      context: 8-rocky/httpd
+      context: httpd
       args:
         rocky: $RL8
     image: "aursu/rockylinux:${RL8TAG}-httpd"
   rocky8node18:
     build:
-      context: 8-rocky/node/18
+      context: node/18
       args:
         rocky: $RL8
     image: "aursu/rockylinux:${RL8TAG}-node18"
   rocky8node20:
     build:
-      context: 8-rocky/node/20
+      context: node/20
       args:
         rocky: $RL8
     image: "aursu/rockylinux:${RL8TAG}-node20"
   rocky8ruby31:
     build:
-      context: 8-rocky/ruby/31
+      context: ruby/31
       args:
         rocky: $RL8
     image: "aursu/rockylinux:${RL8TAG}-ruby31"

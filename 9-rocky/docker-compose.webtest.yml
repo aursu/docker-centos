@@ -1,7 +1,7 @@
 services:
   rocky9puppet8:
     build:
-      context: 9-rocky/puppet/8
+      context: puppet/8
       args:
         centos: $RL9
     privileged: true
@@ -10,7 +10,7 @@ services:
     image: "aursu/rockylinux:${RL9TAG}-puppet8"
   rocky9docker:
     build:
-      context: 9-rocky/docker
+      context: docker
       args:
         rocky: $RL9
     volumes:

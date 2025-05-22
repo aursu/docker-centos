@@ -1,7 +1,7 @@
 services:
   stream9puppet7:
     build:
-      context: 9-stream/puppet/7
+      context: puppet/7
       args:
         centos: $OS9
     privileged: true
@@ -10,7 +10,7 @@ services:
     image: "aursu/centos:${OS9TAG}-puppet7"
   stream9puppet8:
     build:
-      context: 9-stream/puppet/8
+      context: puppet/8
       args:
         centos: $OS9
     privileged: true
