@@ -1,0 +1,25 @@
+services:
+  stream9web:
+    build:
+      context: web
+      args:
+        centos: $OS9
+    image: "aursu/centos:${OS9TAG}-web"
+  stream9httpd:
+    build:
+      context: httpd
+      args:
+        centos: $OS9
+    image: "aursu/centos:${OS9TAG}-httpd"
+  stream9node18:
+    build:
+      context: node/18
+      args:
+        centos: $OS9
+    image: "aursu/centos:${OS9TAG}-node18"
+  stream9node20:
+    build:
+      context: node/20
+      args:
+        centos: $OS9
+    image: "aursu/centos:${OS9TAG}-node20"

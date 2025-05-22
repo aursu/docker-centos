@@ -1,0 +1,39 @@
+services:
+  rocky8systemd:
+    build:
+      context: systemd
+      args:
+        rocky: $RL8
+    image: "aursu/rockylinux:${RL8TAG}-systemd"
+  rocky8webdev:
+    build:
+      context: web
+      args:
+        rocky: $RL8
+        image: scm
+    image: "aursu/rockylinux:${RL8TAG}-webdev"
+  rocky8node18dev:
+    build:
+      args:
+        rocky: $RL8
+      context: node/18/dev
+    image: "aursu/rockylinux:${RL8TAG}-node18dev"
+  rocky8node20dev:
+    build:
+      args:
+        rocky: $RL8
+      context: node/20/dev
+    image: "aursu/rockylinux:${RL8TAG}-node20dev"
+  rocky8ruby31puppet:
+    build:
+      args:
+        rocky: $RL8
+        image: ruby31
+      context: ruby/puppet
+    image: "aursu/rockylinux:${RL8TAG}-ruby31-puppet"
+  rocky8docker:
+    build:
+      context: docker
+      args:
+        rocky: $RL8
+    image: "aursu/rockylinux:${RL8TAG}-docker-cli"

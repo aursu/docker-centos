@@ -1,19 +1,19 @@
 services:
   stream9base:
     build:
-      context: 9-stream/base
+      context: base
       args:
         centos: $OS9
     image: "aursu/centos:${OS9TAG}-base"
   stream9scm:
     build:
-      context: 9-stream/scm
+      context: scm
       args:
         centos: $OS9
     image: "aursu/centos:${OS9TAG}-scm"
   stream9jdk:
     build:
-      context: 9-stream/openjdk/22
+      context: openjdk/22
       args:
         centos: $OS9
     image: "aursu/centos:${OS9TAG}-jdk-22"

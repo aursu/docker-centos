@@ -1,0 +1,26 @@
+services:
+  stream9systemd:
+    build:
+      context: systemd
+      args:
+        centos: $OS9
+    image: "aursu/centos:${OS9TAG}-systemd"
+  stream9webdev:
+    build:
+      context: web
+      args:
+        centos: $OS9
+        image: scm
+    image: "aursu/centos:${OS9TAG}-webdev"
+  stream9node18dev:
+    build:
+      args:
+        centos: $OS9
+      context: node/18/dev
+    image: "aursu/centos:${OS9TAG}-node18dev"
+  stream9node20dev:
+    build:
+      args:
+        centos: $OS9
+      context: node/20/dev
+    image: "aursu/centos:${OS9TAG}-node20dev"
