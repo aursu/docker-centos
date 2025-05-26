@@ -106,12 +106,6 @@ workflows:
           requires:
             - rocky8web
       - docker-rpmbuild/image:
-          name: rocky9node18
-          compose_file: 9-rocky/docker-compose.web.yml
-          build_service: rocky9node18
-          requires:
-            - rocky9web
-      - docker-rpmbuild/image:
           name: rocky8node20
           compose_file: 8-rocky/docker-compose.web.yml
           build_service: rocky8node20
@@ -121,6 +115,12 @@ workflows:
           name: rocky9node20
           compose_file: 9-rocky/docker-compose.web.yml
           build_service: rocky9node20
+          requires:
+            - rocky9web
+      - docker-rpmbuild/image:
+          name: rocky9node22
+          compose_file: 9-rocky/docker-compose.web.yml
+          build_service: rocky9node22
           requires:
             - rocky9web
       - docker-rpmbuild/image:
@@ -208,12 +208,6 @@ workflows:
           requires:
             - rocky8webdev
       - docker-rpmbuild/image:
-          name: rocky9node18dev
-          compose_file: 9-rocky/docker-compose.dev.yml
-          build_service: rocky9node18dev
-          requires:
-            - rocky9webdev
-      - docker-rpmbuild/image:
           name: rocky8node20dev
           compose_file: 8-rocky/docker-compose.dev.yml
           build_service: rocky8node20dev
@@ -223,6 +217,12 @@ workflows:
           name: rocky9node20dev
           compose_file: 9-rocky/docker-compose.dev.yml
           build_service: rocky9node20dev
+          requires:
+            - rocky9webdev
+      - docker-rpmbuild/image:
+          name: rocky9node22dev
+          compose_file: 9-rocky/docker-compose.dev.yml
+          build_service: rocky9node22dev
           requires:
             - rocky9webdev
       - docker-rpmbuild/image:
