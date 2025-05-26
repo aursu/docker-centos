@@ -12,7 +12,7 @@ RUN microdnf -y module enable nodejs:20 \
     nodejs-1:20.18.2 \
     npm \
   && npm install -g \
-    npm@10.8.3 \
+    npm@11.4.1 \
     yarn@1.22.22 \
   && rm -rf /root/.npm \
   && rpm -e npm \

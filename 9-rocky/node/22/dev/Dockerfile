@@ -7,12 +7,12 @@ RUN groupadd -g 1000 node \
   && useradd -u 1000 -g node -s /bin/bash -m node \
   && chmod +x /usr/local/libexec/docker-entrypoint.sh
 
-RUN microdnf -y module enable nodejs:18 \
+RUN microdnf -y module enable nodejs:22 \
   && microdnf -y install \
-    nodejs \
+    nodejs-1:22.13.1 \
     npm \
   && npm install -g \
-    npm@10.8.1 \
+    npm@11.4.1 \
     yarn@1.22.22 \
   && rm -rf /root/.npm \
   && rpm -e npm \

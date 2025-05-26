@@ -1,4 +1,4 @@
-ARG rocky=9.4.20240523
+ARG rocky=9.5.20241118
 FROM aursu/rockylinux:${rocky}-python3.12
 
 RUN groupadd -g 1000 ansible \
@@ -7,7 +7,6 @@ RUN groupadd -g 1000 ansible \
 RUN microdnf -y install \
     bash-completion \
     pinentry \
-    python3-pytest \
     vim \
 && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
