@@ -14,7 +14,7 @@ RUN microdnf -y install \
     npm@11.4.1 \
     yarn@1.22.22 \
   && rm -rf /root/.npm \
-  && rpm -e npm \
+  && rpm -e nodejs-npm \
   && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
 ENTRYPOINT ["/usr/local/libexec/docker-entrypoint.sh"]
