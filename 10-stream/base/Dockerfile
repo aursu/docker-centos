@@ -15,5 +15,6 @@ RUN set -ex \
 		epel-release \
 		glibc-langpack-en \
 		shadow-utils \
-	&& rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-9 \
+	&& rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-10 \
+	&& /usr/bin/crb enable \
 	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*

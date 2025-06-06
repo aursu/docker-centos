@@ -1,0 +1,20 @@
+services:
+  stream10systemd:
+    build:
+      context: systemd
+      args:
+        centos: $OS10
+    image: "aursu/centos:${OS10TAG}-systemd"
+  stream10webdev:
+    build:
+      context: web
+      args:
+        centos: $OS10
+        image: scm
+    image: "aursu/centos:${OS10TAG}-webdev"
+  stream10node22dev:
+    build:
+      args:
+        centos: $OS10
+      context: node/22/dev
+    image: "aursu/centos:${OS10TAG}-node22dev"
