@@ -55,7 +55,7 @@ workflows:
           compose_file: 10-stream/docker-compose.web.yml
           build_service: stream10web
           requires:
-            - rocky9base
+            - stream10base
       - docker-rpmbuild/image:
           name: rocky8nginx
           compose_file: 8-rocky/docker-compose.web.yml
