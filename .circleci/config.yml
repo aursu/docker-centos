@@ -261,6 +261,12 @@ workflows:
           requires:
             - rocky9webdev
       - docker-rpmbuild/image:
+          name: stream10node22dev
+          compose_file: 10-stream/docker-compose.dev.yml
+          build_service: stream10node22dev
+          requires:
+            - stream10webdev
+      - docker-rpmbuild/image:
           name: rocky9python312
           compose_file: 9-rocky/docker-compose.dev.yml
           build_service: rocky9python312
