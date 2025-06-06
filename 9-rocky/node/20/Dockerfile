@@ -9,7 +9,7 @@ RUN groupadd -g 1000 node \
 
 RUN microdnf -y module enable nodejs:20 \
     && microdnf -y install \
-      nodejs-1:20.18.2 \
+      nodejs-1:20.19.1 \
     && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
 ENTRYPOINT ["/usr/local/libexec/docker-entrypoint.sh"]
