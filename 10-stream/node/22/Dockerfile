@@ -8,7 +8,7 @@ RUN groupadd -g 1000 node \
   && chmod +x /usr/local/libexec/docker-entrypoint.sh
 
 RUN microdnf -y install \
-      nodejs-1:22.15.0 \
+      nodejs-1:22.16.0 \
     && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
 ENTRYPOINT ["/usr/local/libexec/docker-entrypoint.sh"]
