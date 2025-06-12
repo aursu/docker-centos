@@ -16,6 +16,11 @@ workflows:
           build_service: rocky9base
           shorttag: true
       - docker-rpmbuild/image:
+          name: stream9base
+          compose_file: 9-stream/docker-compose.yml
+          build_service: stream9base
+          shorttag: true
+      - docker-rpmbuild/image:
           name: stream10base
           compose_file: 10-stream/docker-compose.yml
           build_service: stream10base
@@ -32,6 +37,12 @@ workflows:
           build_service: rocky9scm
           requires:
             - rocky9base
+      - docker-rpmbuild/image:
+          name: stream9scm
+          compose_file: 9-stream/docker-compose.yml
+          build_service: stream9scm
+          requires:
+            - stream9base
       - docker-rpmbuild/image:
           name: stream10scm
           compose_file: 10-stream/docker-compose.yml
@@ -158,6 +169,12 @@ workflows:
           build_service: rocky9systemd
           requires:
             - rocky9scm
+      - docker-rpmbuild/image:
+          name: stream9systemd
+          compose_file: 9-stream/docker-compose.dev.yml
+          build_service: stream9systemd
+          requires:
+            - stream9scm
       - docker-rpmbuild/image:
           name: stream10systemd
           compose_file: 10-stream/docker-compose.dev.yml
