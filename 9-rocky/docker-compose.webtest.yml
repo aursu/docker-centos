@@ -1,13 +1,4 @@
 services:
-  rocky9puppet8:
-    build:
-      context: puppet/8
-      args:
-        centos: $RL9
-    privileged: true
-    cap_add:
-      - SYS_ADMIN
-    image: "aursu/rockylinux:${RL9TAG}-puppet8"
   rocky9docker:
     build:
       context: docker

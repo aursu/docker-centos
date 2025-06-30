@@ -1,0 +1,13 @@
+services:
+  stream10web:
+    build:
+      context: web
+      args:
+        centos: $OS10
+    image: "aursu/centos:${OS10TAG}-web"
+  stream10node22:
+    build:
+      context: node/22
+      args:
+        centos: $OS10
+    image: "aursu/centos:${OS10TAG}-node22"

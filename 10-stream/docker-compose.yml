@@ -1,0 +1,13 @@
+services:
+  stream10base:
+    build:
+      context: base
+      args:
+        centos: $OS10
+    image: "aursu/centos:${OS10TAG}-base"
+  stream10scm:
+    build:
+      context: scm
+      args:
+        centos: $OS10
+    image: "aursu/centos:${OS10TAG}-scm"

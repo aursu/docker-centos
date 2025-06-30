@@ -23,6 +23,7 @@ RUN gem update --no-document --no-user-install --clear-sources \
 		github_changelog_generator \
 		guard-rake \
 		hiera \
+		hiera-eyaml \
 		overcommit \
 		parallel_tests \
 		puppetlabs_spec_helper \

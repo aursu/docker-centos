@@ -9,7 +9,7 @@ RUN groupadd -g 1000 node \
 
 RUN microdnf -y module enable nodejs:22 \
   && microdnf -y install \
-    nodejs-1:22.13.1 \
+    nodejs-1:22.16.0 \
     npm \
   && npm install -g \
     npm@11.4.1 \
