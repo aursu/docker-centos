@@ -50,4 +50,5 @@ RUN source ansible-env/bin/activate \
     && ansible-galaxy collection install \
         community.sops \
         community.general \
-        ansible.posix
+        ansible.posix \
+        community.crypto
