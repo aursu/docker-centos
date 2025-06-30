@@ -21,9 +21,9 @@ workflows:
           build_service: stream9base
           shorttag: true
       - docker-rpmbuild/image:
-          name: stream10base
+          name: rocky10base
           compose_file: 10-stream/docker-compose.yml
-          build_service: stream10base
+          build_service: rocky10base
           shorttag: true
       - docker-rpmbuild/image:
           name: rocky8scm
@@ -44,11 +44,11 @@ workflows:
           requires:
             - stream9base
       - docker-rpmbuild/image:
-          name: stream10scm
+          name: rocky10scm
           compose_file: 10-stream/docker-compose.yml
-          build_service: stream10scm
+          build_service: rocky10scm
           requires:
-            - stream10base
+            - rocky10base
       - docker-rpmbuild/image:
           name: rocky8web
           compose_file: 8-rocky/docker-compose.web.yml
@@ -62,11 +62,11 @@ workflows:
           requires:
             - rocky9base
       - docker-rpmbuild/image:
-          name: stream10web
+          name: rocky10web
           compose_file: 10-stream/docker-compose.web.yml
-          build_service: stream10web
+          build_service: rocky10web
           requires:
-            - stream10base
+            - rocky10base
       - docker-rpmbuild/image:
           name: rocky8nginx
           compose_file: 8-rocky/docker-compose.web.yml
@@ -152,11 +152,11 @@ workflows:
           requires:
             - rocky9web
       - docker-rpmbuild/image:
-          name: stream10node22
+          name: rocky10node22
           compose_file: 10-stream/docker-compose.web.yml
-          build_service: stream10node22
+          build_service: rocky10node22
           requires:
-            - stream10web
+            - rocky10web
       - docker-rpmbuild/image:
           name: rocky8systemd
           compose_file: 8-rocky/docker-compose.dev.yml
@@ -176,11 +176,11 @@ workflows:
           requires:
             - stream9scm
       - docker-rpmbuild/image:
-          name: stream10systemd
+          name: rocky10systemd
           compose_file: 10-stream/docker-compose.dev.yml
-          build_service: stream10systemd
+          build_service: rocky10systemd
           requires:
-            - stream10scm
+            - rocky10scm
       - docker-rpmbuild/image:
           name: rocky8webdev
           compose_file: 8-rocky/docker-compose.dev.yml
@@ -194,11 +194,11 @@ workflows:
           requires:
             - rocky9scm
       - docker-rpmbuild/image:
-          name: stream10webdev
+          name: rocky10webdev
           compose_file: 10-stream/docker-compose.dev.yml
-          build_service: stream10webdev
+          build_service: rocky10webdev
           requires:
-            - stream10scm
+            - rocky10scm
       - docker-rpmbuild/image:
           name: tomcat
           compose_file: 8-rocky/docker-compose.web.yml
@@ -278,11 +278,11 @@ workflows:
           requires:
             - rocky9webdev
       - docker-rpmbuild/image:
-          name: stream10node22dev
+          name: rocky10node22dev
           compose_file: 10-stream/docker-compose.dev.yml
-          build_service: stream10node22dev
+          build_service: rocky10node22dev
           requires:
-            - stream10webdev
+            - rocky10webdev
       - docker-rpmbuild/image:
           name: rocky9python312
           compose_file: 9-rocky/docker-compose.dev.yml

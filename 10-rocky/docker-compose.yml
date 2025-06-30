@@ -1,0 +1,13 @@
+services:
+  rocky10base:
+    build:
+      context: base
+      args:
+        centos: $RL10
+    image: "aursu/rockylinux:${RL10TAG}-base"
+  rocky10scm:
+    build:
+      context: scm
+      args:
+        centos: $RL10
+    image: "aursu/rockylinux:${RL10TAG}-scm"

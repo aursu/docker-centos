@@ -1,0 +1,13 @@
+services:
+  rocky10web:
+    build:
+      context: web
+      args:
+        centos: $RL10
+    image: "aursu/rockylinux:${RL10TAG}-web"
+  rocky10node22:
+    build:
+      context: node/22
+      args:
+        centos: $RL10
+    image: "aursu/rockylinux:${RL10TAG}-node22"

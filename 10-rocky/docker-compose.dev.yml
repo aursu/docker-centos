@@ -1,0 +1,20 @@
+services:
+  rocky10systemd:
+    build:
+      context: systemd
+      args:
+        centos: $RL10
+    image: "aursu/rockylinux:${RL10TAG}-systemd"
+  rocky10webdev:
+    build:
+      context: web
+      args:
+        centos: $RL10
+        image: scm
+    image: "aursu/rockylinux:${RL10TAG}-webdev"
+  rocky10node22dev:
+    build:
+      args:
+        centos: $RL10
+      context: node/22/dev
+    image: "aursu/rockylinux:${RL10TAG}-node22dev"
