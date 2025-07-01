@@ -22,7 +22,7 @@ workflows:
           shorttag: true
       - docker-rpmbuild/image:
           name: rocky10base
-          compose_file: 10-stream/docker-compose.yml
+          compose_file: 10-rocky/docker-compose.yml
           build_service: rocky10base
           shorttag: true
       - docker-rpmbuild/image:
@@ -45,7 +45,7 @@ workflows:
             - stream9base
       - docker-rpmbuild/image:
           name: rocky10scm
-          compose_file: 10-stream/docker-compose.yml
+          compose_file: 10-rocky/docker-compose.yml
           build_service: rocky10scm
           requires:
             - rocky10base
@@ -63,7 +63,7 @@ workflows:
             - rocky9base
       - docker-rpmbuild/image:
           name: rocky10web
-          compose_file: 10-stream/docker-compose.web.yml
+          compose_file: 10-rocky/docker-compose.web.yml
           build_service: rocky10web
           requires:
             - rocky10base
@@ -153,7 +153,7 @@ workflows:
             - rocky9web
       - docker-rpmbuild/image:
           name: rocky10node22
-          compose_file: 10-stream/docker-compose.web.yml
+          compose_file: 10-rocky/docker-compose.web.yml
           build_service: rocky10node22
           requires:
             - rocky10web
@@ -177,7 +177,7 @@ workflows:
             - stream9scm
       - docker-rpmbuild/image:
           name: rocky10systemd
-          compose_file: 10-stream/docker-compose.dev.yml
+          compose_file: 10-rocky/docker-compose.dev.yml
           build_service: rocky10systemd
           requires:
             - rocky10scm
@@ -195,7 +195,7 @@ workflows:
             - rocky9scm
       - docker-rpmbuild/image:
           name: rocky10webdev
-          compose_file: 10-stream/docker-compose.dev.yml
+          compose_file: 10-rocky/docker-compose.dev.yml
           build_service: rocky10webdev
           requires:
             - rocky10scm
@@ -279,7 +279,7 @@ workflows:
             - rocky9webdev
       - docker-rpmbuild/image:
           name: rocky10node22dev
-          compose_file: 10-stream/docker-compose.dev.yml
+          compose_file: 10-rocky/docker-compose.dev.yml
           build_service: rocky10node22dev
           requires:
             - rocky10webdev
