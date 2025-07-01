@@ -7,5 +7,4 @@ RUN microdnf -y install \
 		openssh-clients \
 		procps \
 		rsync \
-		openssl \
 	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*

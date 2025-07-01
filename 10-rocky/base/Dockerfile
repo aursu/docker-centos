@@ -9,4 +9,5 @@ RUN set -ex \
 	    epel-release \
 		glibc-langpack-en \
 		shadow-utils \
+		openssl \
 	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*

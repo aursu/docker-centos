@@ -7,10 +7,6 @@ workflows:
   dockercentos:
     jobs:
       - docker-rpmbuild/image:
-          name: rocky8base
-          compose_file: 8-rocky/docker-compose.yml
-          build_service: rocky8base
-      - docker-rpmbuild/image:
           name: rocky9base
           compose_file: 9-rocky/docker-compose.yml
           build_service: rocky9base
@@ -20,12 +16,6 @@ workflows:
           compose_file: 10-rocky/docker-compose.yml
           build_service: rocky10base
           shorttag: true
-      - docker-rpmbuild/image:
-          name: rocky8scm
-          compose_file: 8-rocky/docker-compose.yml
-          build_service: rocky8scm
-          requires:
-            - rocky8base
       - docker-rpmbuild/image:
           name: rocky9scm
           compose_file: 9-rocky/docker-compose.yml
@@ -39,12 +29,6 @@ workflows:
           requires:
             - rocky10base
       - docker-rpmbuild/image:
-          name: rocky8web
-          compose_file: 8-rocky/docker-compose.web.yml
-          build_service: rocky8web
-          requires:
-            - rocky8base
-      - docker-rpmbuild/image:
           name: rocky9web
           compose_file: 9-rocky/docker-compose.web.yml
           build_service: rocky9web
@@ -57,23 +41,17 @@ workflows:
           requires:
             - rocky10base
       - docker-rpmbuild/image:
-          name: rocky8nginx
-          compose_file: 8-rocky/docker-compose.web.yml
-          build_service: rocky8nginx
-          requires:
-            - rocky8web
-      - docker-rpmbuild/image:
           name: rocky9nginx
           compose_file: 9-rocky/docker-compose.web.yml
           build_service: rocky9nginx
           requires:
             - rocky9web
       - docker-rpmbuild/image:
-          name: rocky8resty
-          compose_file: 8-rocky/docker-compose.web.yml
-          build_service: rocky8resty
+          name: rocky10nginx
+          compose_file: 10-rocky/docker-compose.web.yml
+          build_service: rocky10nginx
           requires:
-            - rocky8nginx
+            - rocky10web
       - docker-rpmbuild/image:
           name: rocky9resty
           compose_file: 9-rocky/docker-compose.web.yml
@@ -81,29 +59,17 @@ workflows:
           requires:
             - rocky9nginx
       - docker-rpmbuild/image:
-          name: rocky8httpd
-          compose_file: 8-rocky/docker-compose.web.yml
-          build_service: rocky8httpd
+          name: rocky10resty
+          compose_file: 10-rocky/docker-compose.web.yml
+          build_service: rocky10resty
           requires:
-            - rocky8base
+            - rocky10nginx
       - docker-rpmbuild/image:
           name: rocky9httpd
           compose_file: 9-rocky/docker-compose.web.yml
           build_service: rocky9httpd
           requires:
             - rocky9base
-      - docker-rpmbuild/image:
-          name: rocky8jdk
-          compose_file: 8-rocky/docker-compose.yml
-          build_service: rocky8jdk
-          requires:
-            - rocky8scm
-      - docker-rpmbuild/image:
-          name: rocky8jdk21
-          compose_file: 8-rocky/docker-compose.yml
-          build_service: rocky8jdk21
-          requires:
-            - rocky8scm
       - docker-rpmbuild/image:
           name: rocky9jdk
           compose_file: 9-rocky/docker-compose.yml
@@ -116,18 +82,6 @@ workflows:
           build_service: rocky9jdk21
           requires:
             - rocky9scm
-      - docker-rpmbuild/image:
-          name: rocky8node18
-          compose_file: 8-rocky/docker-compose.web.yml
-          build_service: rocky8node18
-          requires:
-            - rocky8web
-      - docker-rpmbuild/image:
-          name: rocky8node20
-          compose_file: 8-rocky/docker-compose.web.yml
-          build_service: rocky8node20
-          requires:
-            - rocky8web
       - docker-rpmbuild/image:
           name: rocky9node20
           compose_file: 9-rocky/docker-compose.web.yml
@@ -147,12 +101,6 @@ workflows:
           requires:
             - rocky10web
       - docker-rpmbuild/image:
-          name: rocky8systemd
-          compose_file: 8-rocky/docker-compose.dev.yml
-          build_service: rocky8systemd
-          requires:
-            - rocky8scm
-      - docker-rpmbuild/image:
           name: rocky9systemd
           compose_file: 9-rocky/docker-compose.dev.yml
           build_service: rocky9systemd
@@ -165,12 +113,6 @@ workflows:
           requires:
             - rocky10scm
       - docker-rpmbuild/image:
-          name: rocky8webdev
-          compose_file: 8-rocky/docker-compose.dev.yml
-          build_service: rocky8webdev
-          requires:
-            - rocky8scm
-      - docker-rpmbuild/image:
           name: rocky9webdev
           compose_file: 9-rocky/docker-compose.dev.yml
           build_service: rocky9webdev
@@ -182,18 +124,6 @@ workflows:
           build_service: rocky10webdev
           requires:
             - rocky10scm
-      - docker-rpmbuild/image:
-          name: tomcat
-          compose_file: 8-rocky/docker-compose.web.yml
-          build_service: tomcat
-          requires:
-            - rocky8jdk
-      - docker-rpmbuild/image:
-          name: rocky8ruby31
-          compose_file: 8-rocky/docker-compose.web.yml
-          build_service: rocky8ruby31
-          requires:
-            - rocky8scm
       - docker-rpmbuild/image:
           name: rocky9ruby31
           compose_file: 9-rocky/docker-compose.web.yml
@@ -213,12 +143,6 @@ workflows:
           requires:
             - rocky10scm
       - docker-rpmbuild/image:
-          name: rocky8ruby31puppet
-          compose_file: 8-rocky/docker-compose.dev.yml
-          build_service: rocky8ruby31puppet
-          requires:
-            - rocky8ruby31
-      - docker-rpmbuild/image:
           name: rocky9ruby31puppet
           compose_file: 9-rocky/docker-compose.dev.yml
           build_service: rocky9ruby31puppet
@@ -237,12 +161,6 @@ workflows:
           requires:
             - rocky10ruby33
       - docker-rpmbuild/image:
-          name: rocky8docker
-          compose_file: 8-rocky/docker-compose.dev.yml
-          build_service: rocky8docker
-          requires:
-            - rocky8scm
-      - docker-rpmbuild/image:
           name: rocky9docker
           compose_file: 9-rocky/docker-compose.dev.yml
           build_service: rocky9docker
@@ -254,18 +172,6 @@ workflows:
           build_service: rocky10docker
           requires:
             - rocky10scm
-      - docker-rpmbuild/image:
-          name: rocky8node18dev
-          compose_file: 8-rocky/docker-compose.dev.yml
-          build_service: rocky8node18dev
-          requires:
-            - rocky8webdev
-      - docker-rpmbuild/image:
-          name: rocky8node20dev
-          compose_file: 8-rocky/docker-compose.dev.yml
-          build_service: rocky8node20dev
-          requires:
-            - rocky8webdev
       - docker-rpmbuild/image:
           name: rocky9node20dev
           compose_file: 9-rocky/docker-compose.dev.yml

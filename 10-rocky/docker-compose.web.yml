@@ -5,6 +5,18 @@ services:
       args:
         centos: $RL10
     image: "aursu/rockylinux:${RL10TAG}-web"
+  rocky10nginx:
+    build:
+      context: nginx
+      args:
+        rocky: $RL10
+    image: "aursu/rockylinux:${RL10TAG}-nginx"
+  rocky10resty:
+    build:
+      context: nginx/resty
+      args:
+        rocky: $RL10
+    image: "aursu/rockylinux:${RL10TAG}-resty"
   rocky10node22:
     build:
       context: node/22
