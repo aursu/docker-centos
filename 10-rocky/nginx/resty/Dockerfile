@@ -1,13 +1,12 @@
-ARG rocky=9.6.20250531
+ARG rocky=10.0.20250606
 ARG image=nginx
 FROM aursu/rockylinux:${rocky}-${image}
 
 RUN curl -L https://openresty.org/package/rocky/openresty2.repo -o /tmp/openresty.repo \
 	&& mv /tmp/openresty.repo /etc/yum.repos.d/openresty.repo \
-	&& sed -i 's/\$releasever/9/' /etc/yum.repos.d/openresty.repo \
-	&& sed -i '/gpgcheck=/s/=1/=0/' /etc/yum.repos.d/openresty.repo
+	&& sed -i 's/\$releasever/9/' /etc/yum.repos.d/openresty.repo
 
-RUN microdnf -y install \
+RUN microdnf -y --setopt=openresty.gpgcheck=0 install \
 		openresty-1.27.1.2 \
 		openresty-debug \
 	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db* \
