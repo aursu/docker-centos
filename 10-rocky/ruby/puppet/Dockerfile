@@ -24,8 +24,6 @@ RUN gem update --no-document --no-user-install --clear-sources \
 		guard-rake \
 		hiera \
 		hiera-eyaml \
-		openfact \
-		openvox \
 		overcommit \
 		parallel_tests \
 		puppetlabs_spec_helper \
@@ -37,6 +35,7 @@ RUN gem update --no-document --no-user-install --clear-sources \
 		rubocop-rspec \
 		simplecov-console \
 		winrm \
+	&& gem install --no-document --no-user-install --force openvox \
     && rm -rf /usr/local/share/gems/gems/*/{man,.circleci,.git*,benchmark,doc*,test*,examples,sample,logs,spec,acceptance} \
 	    rm -f /usr/local/share/gems/gems/*/{.*.yml,.[a-z]*,[A-Q]*,[S-Z]*,*.json,*.yml,*.txt,*.rdoc,bin/console,bin/setup,*.md} \
 	    /usr/local/share/gems/cache \
