@@ -18,3 +18,15 @@ services:
         centos: $RL10
       context: node/22/dev
     image: "aursu/rockylinux:${RL10TAG}-node22dev"
+  rocky10python312:
+    build:
+      args:
+        rocky: $RL10
+      context: python/3.12
+    image: "aursu/rockylinux:${RL10TAG}-python3.12"
+  rocky10ansible:
+    build:
+      args:
+        rocky: $RL10
+      context: python/ansible
+    image: "aursu/rockylinux:${RL10TAG}-ansible"

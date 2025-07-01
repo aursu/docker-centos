@@ -295,3 +295,15 @@ workflows:
           build_service: rocky9ansible
           requires:
             - rocky9python312
+      - docker-rpmbuild/image:
+          name: rocky10python312
+          compose_file: 10-rocky/docker-compose.dev.yml
+          build_service: rocky10python312
+          requires:
+            - rocky10scm
+      - docker-rpmbuild/image:
+          name: rocky10ansible
+          compose_file: 10-rocky/docker-compose.dev.yml
+          build_service: rocky10ansible
+          requires:
+            - rocky10python312
