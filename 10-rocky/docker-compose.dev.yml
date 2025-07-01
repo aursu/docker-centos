@@ -37,3 +37,9 @@ services:
         image: ruby33
       context: ruby/puppet
     image: "aursu/rockylinux:${RL10TAG}-ruby33-puppet"
+  rocky10docker:
+    build:
+      context: docker
+      args:
+        rocky: $RL10
+    image: "aursu/rockylinux:${RL10TAG}-docker-cli"

@@ -247,7 +247,13 @@ workflows:
           compose_file: 9-rocky/docker-compose.dev.yml
           build_service: rocky9docker
           requires:
-            - rocky8scm
+            - rocky9scm
+      - docker-rpmbuild/image:
+          name: rocky10docker
+          compose_file: 10-rocky/docker-compose.dev.yml
+          build_service: rocky10docker
+          requires:
+            - rocky10scm
       - docker-rpmbuild/image:
           name: rocky8node18dev
           compose_file: 8-rocky/docker-compose.dev.yml
