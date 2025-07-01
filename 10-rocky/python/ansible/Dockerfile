@@ -6,6 +6,7 @@ RUN groupadd -g 1000 ansible \
 
 RUN microdnf -y install \
     bash-completion \
+    gnupg2 \
     pinentry \
     vim \
 && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
