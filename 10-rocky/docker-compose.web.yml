@@ -11,3 +11,9 @@ services:
       args:
         centos: $RL10
     image: "aursu/rockylinux:${RL10TAG}-node22"
+  rocky10ruby33:
+    build:
+      context: ruby/33
+      args:
+        rocky: $RL10
+    image: "aursu/rockylinux:${RL10TAG}-ruby33"
