@@ -11,7 +11,7 @@ RUN microdnf -y install \
     nodejs-1:22.16.0 \
     npm \
   && npm install -g \
-    npm@11.4.1 \
+    npm@11.4.2 \
     yarn@1.22.22 \
   && rm -rf /root/.npm \
   && rpm -e nodejs-npm \
