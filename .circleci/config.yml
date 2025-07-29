@@ -17,16 +17,16 @@ workflows:
           build_service: rocky9base
           shorttag: true
           registry: ghcr.io
-          environment:
-            DOCKER_PASS: $GITHUB_TOKEN
+          context:
+            - github-packages
       - docker-rpmbuild/image:
           name: rocky10base
           compose_file: 10-rocky/docker-compose.yml
           build_service: rocky10base
           shorttag: true
           registry: ghcr.io
-          environment:
-            DOCKER_PASS: $GITHUB_TOKEN
+          context:
+            - github-packages
       - docker-rpmbuild/image:
           name: rocky8scm
           compose_file: 8-rocky/docker-compose.yml
@@ -38,8 +38,8 @@ workflows:
           compose_file: 9-rocky/docker-compose.yml
           build_service: rocky9scm
           registry: ghcr.io
-          environment:
-            DOCKER_PASS: $GITHUB_TOKEN
+          context:
+            - github-packages
           requires:
             - rocky9base
       - docker-rpmbuild/image:
@@ -47,8 +47,8 @@ workflows:
           compose_file: 10-rocky/docker-compose.yml
           build_service: rocky10scm
           registry: ghcr.io
-          environment:
-            DOCKER_PASS: $GITHUB_TOKEN
+          context:
+            - github-packages
           requires:
             - rocky10base
       - docker-rpmbuild/image:
@@ -56,8 +56,8 @@ workflows:
           compose_file: 9-rocky/docker-compose.web.yml
           build_service: rocky9web
           registry: ghcr.io
-          environment:
-            DOCKER_PASS: $GITHUB_TOKEN
+          context:
+            - github-packages
           requires:
             - rocky9base
       - docker-rpmbuild/image:
@@ -65,8 +65,8 @@ workflows:
           compose_file: 10-rocky/docker-compose.web.yml
           build_service: rocky10web
           registry: ghcr.io
-          environment:
-            DOCKER_PASS: $GITHUB_TOKEN
+          context:
+            - github-packages
           requires:
             - rocky10base
       - docker-rpmbuild/image:
@@ -122,8 +122,8 @@ workflows:
           compose_file: 9-rocky/docker-compose.web.yml
           build_service: rocky9node20
           registry: ghcr.io
-          environment:
-            DOCKER_PASS: $GITHUB_TOKEN
+          context:
+            - github-packages
           requires:
             - rocky9web
       - docker-rpmbuild/image:
@@ -131,8 +131,8 @@ workflows:
           compose_file: 9-rocky/docker-compose.web.yml
           build_service: rocky9node22
           registry: ghcr.io
-          environment:
-            DOCKER_PASS: $GITHUB_TOKEN
+          context:
+            - github-packages
           requires:
             - rocky9web
       - docker-rpmbuild/image:
@@ -140,8 +140,8 @@ workflows:
           compose_file: 10-rocky/docker-compose.web.yml
           build_service: rocky10node22
           registry: ghcr.io
-          environment:
-            DOCKER_PASS: $GITHUB_TOKEN
+          context:
+            - github-packages
           requires:
             - rocky10web
       - docker-rpmbuild/image:
@@ -161,8 +161,8 @@ workflows:
           compose_file: 9-rocky/docker-compose.dev.yml
           build_service: rocky9webdev
           registry: ghcr.io
-          environment:
-            DOCKER_PASS: $GITHUB_TOKEN
+          context:
+            - github-packages
           requires:
             - rocky9scm
       - docker-rpmbuild/image:
@@ -170,8 +170,8 @@ workflows:
           compose_file: 10-rocky/docker-compose.dev.yml
           build_service: rocky10webdev
           registry: ghcr.io
-          environment:
-            DOCKER_PASS: $GITHUB_TOKEN
+          context:
+            - github-packages
           requires:
             - rocky10scm
       - docker-rpmbuild/image:
@@ -227,8 +227,8 @@ workflows:
           compose_file: 9-rocky/docker-compose.dev.yml
           build_service: rocky9node20dev
           registry: ghcr.io
-          environment:
-            DOCKER_PASS: $GITHUB_TOKEN
+          context:
+            - github-packages
           requires:
             - rocky9webdev
       - docker-rpmbuild/image:
@@ -236,8 +236,8 @@ workflows:
           compose_file: 9-rocky/docker-compose.dev.yml
           build_service: rocky9node22dev
           registry: ghcr.io
-          environment:
-            DOCKER_PASS: $GITHUB_TOKEN
+          context:
+            - github-packages
           requires:
             - rocky9webdev
       - docker-rpmbuild/image:
@@ -245,8 +245,8 @@ workflows:
           compose_file: 10-rocky/docker-compose.dev.yml
           build_service: rocky10node22dev
           registry: ghcr.io
-          environment:
-            DOCKER_PASS: $GITHUB_TOKEN
+          context:
+            - github-packages
           requires:
             - rocky10webdev
       - docker-rpmbuild/image:
