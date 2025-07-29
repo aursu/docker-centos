@@ -1,5 +1,7 @@
 ARG rocky=9.6.20250531
-FROM aursu/rockylinux:${rocky}-base
+FROM ghcr.io/aursu/rockylinux:${rocky}-base
+
+LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
 
 RUN microdnf -y install \
 		findutils \

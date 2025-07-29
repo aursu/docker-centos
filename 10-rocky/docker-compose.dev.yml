@@ -11,13 +11,13 @@ services:
       args:
         centos: $RL10
         image: scm
-    image: "aursu/rockylinux:${RL10TAG}-webdev"
+    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-webdev"
   rocky10node22dev:
     build:
       args:
         centos: $RL10
       context: node/22/dev
-    image: "aursu/rockylinux:${RL10TAG}-node22dev"
+    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-node22dev"
   rocky10python312:
     build:
       args:

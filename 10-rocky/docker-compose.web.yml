@@ -4,7 +4,7 @@ services:
       context: web
       args:
         centos: $RL10
-    image: "aursu/rockylinux:${RL10TAG}-web"
+    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-web"
   rocky10nginx:
     build:
       context: nginx
@@ -28,7 +28,7 @@ services:
       context: node/22
       args:
         centos: $RL10
-    image: "aursu/rockylinux:${RL10TAG}-node22"
+    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-node22"
   rocky10ruby33:
     build:
       context: ruby/33

@@ -4,13 +4,13 @@ services:
       context: base
       args:
         rocky: $RL9
-    image: "aursu/rockylinux:${RL9TAG}-base"
+    image: "ghcr.io/aursu/rockylinux:${RL9TAG}-base"
   rocky9scm:
     build:
       context: scm
       args:
         rocky: $RL9
-    image: "aursu/rockylinux:${RL9TAG}-scm"
+    image: "ghcr.io/aursu/rockylinux:${RL9TAG}-scm"
   rocky9jdk21:
     build:
       context: openjdk/21

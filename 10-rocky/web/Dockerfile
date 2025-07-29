@@ -1,6 +1,8 @@
 ARG rocky=10.0.20250606
 ARG image=base
-FROM aursu/rockylinux:${rocky}-${image}
+FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
+
+LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
 
 # uid 33 assigned to group tape
 # (https://bugzilla.redhat.com/show_bug.cgi?id=1179585)

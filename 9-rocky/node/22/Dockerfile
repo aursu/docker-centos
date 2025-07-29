@@ -1,5 +1,7 @@
 ARG rocky=9.6.20250531
-FROM aursu/rockylinux:${rocky}-web
+FROM ghcr.io/aursu/rockylinux:${rocky}-web
+
+LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
 
 COPY docker-entrypoint.sh /usr/local/libexec/
 
