@@ -145,6 +145,15 @@ workflows:
           requires:
             - rocky10web
       - docker-rpmbuild/image:
+          name: rocky10node22circle
+          compose_file: 10-rocky/docker-compose.web.yml
+          build_service: rocky10node22circle
+          registry: ghcr.io
+          context:
+            - github-packages
+          requires:
+            - rocky10web
+      - docker-rpmbuild/image:
           name: rocky9systemd
           compose_file: 9-rocky/docker-compose.dev.yml
           build_service: rocky9systemd
