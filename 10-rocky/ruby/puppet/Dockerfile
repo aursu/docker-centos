@@ -1,6 +1,6 @@
 ARG rocky=10.0.20250606
 ARG image=ruby33
-FROM aursu/rockylinux:${rocky}-${image}
+FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 
 RUN microdnf -y --enablerepo=crb install \
 		zlib-devel \

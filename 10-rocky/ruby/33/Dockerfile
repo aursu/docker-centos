@@ -1,5 +1,5 @@
 ARG rocky=10.0.20250606
-FROM aursu/rockylinux:${rocky}-scm
+FROM ghcr.io/aursu/rockylinux:${rocky}-scm
 
 RUN microdnf -y install \
 		ruby \
