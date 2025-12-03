@@ -199,6 +199,9 @@ workflows:
           name: rocky10ruby33
           compose_file: 10-rocky/docker-compose.web.yml
           build_service: rocky10ruby33
+          registry: ghcr.io
+          context:
+            - github-packages
           requires:
             - rocky10scm
       - docker-rpmbuild/image:
@@ -217,6 +220,9 @@ workflows:
           name: rocky10ruby33puppet
           compose_file: 10-rocky/docker-compose.dev.yml
           build_service: rocky10ruby33puppet
+          registry: ghcr.io
+          context:
+            - github-packages
           requires:
             - rocky10ruby33
       - docker-rpmbuild/image:
