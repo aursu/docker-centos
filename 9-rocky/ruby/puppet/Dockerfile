@@ -11,7 +11,7 @@ RUN microdnf -y --enablerepo=crb install \
     && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
 RUN gem update --no-document --no-user-install --clear-sources \
-    && gem install --no-document --no-user-install \
+    && gem install --no-document --no-user-install --force \
 		bundle \
 		beaker-docker \
 		beaker-hiera \
