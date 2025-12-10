@@ -1,0 +1,28 @@
+name: RPM build
+on: [push]
+env:
+  DOCKER_USER: ${{ secrets.DOCKER_USER }}
+  RL10: 10.0.20250606
+  RL10TAG: 10.0.20250606
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: github
+    strategy:
+      matrix:
+        include:
+          - compose-file: 10-rocky/docker-compose.dev.yml
+            build: rocky10python312dev
+          - compose-file: 10-rocky/docker-compose.dev.yml
+            build: rocky10node22pydev
+    env:
+      BUILD_COMPOSE_FILE: ${{ matrix.compose-file }}
+      BUILD: ${{ matrix.build }}
+      DOCKER_PASS: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - run: docker compose -f $BUILD_COMPOSE_FILE build --no-cache $BUILD
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker compose -f $BUILD_COMPOSE_FILE push $BUILD

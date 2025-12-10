@@ -43,3 +43,17 @@ services:
       args:
         rocky: $RL10
     image: "aursu/rockylinux:${RL10TAG}-docker-cli"
+  rocky10python312dev:
+    build:
+      args:
+        rocky: $RL10
+        image: webdev
+      context: python/3.12
+    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-python312-dev"
+  rocky10node22pydev:
+    build:
+      args:
+        centos: $RL10
+        image: python312-dev
+      context: node/22/dev
+    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-node22-python312-dev"
