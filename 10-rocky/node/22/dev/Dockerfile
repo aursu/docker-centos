@@ -1,5 +1,6 @@
 ARG rocky=10.0.20250606
-FROM ghcr.io/aursu/rockylinux:${rocky}-webdev
+ARG image=webdev
+FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 
 LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
 
