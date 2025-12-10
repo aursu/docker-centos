@@ -16,11 +16,7 @@ jobs:
   python:
     runs-on: ubuntu-latest
     environment: github
-    permissions:
-      contents: read
-      packages: write
     strategy:
-      fail-fast: false
       matrix:
         include:
           - compose-file: 10-rocky/docker-compose.dev.yml
@@ -51,11 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: github
     needs: python
-    permissions:
-      contents: read
-      packages: write
     strategy:
-      fail-fast: false
       matrix:
         include:
           - compose-file: 10-rocky/docker-compose.dev.yml
