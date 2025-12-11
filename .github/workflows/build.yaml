@@ -16,6 +16,9 @@ jobs:
   python:
     runs-on: ubuntu-latest
     environment: github
+    permissions:
+      contents: read
+      packages: write
     strategy:
       matrix:
         include:
@@ -47,6 +50,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: github
     needs: python
+    permissions:
+      contents: read
+      packages: write
     strategy:
       matrix:
         include:

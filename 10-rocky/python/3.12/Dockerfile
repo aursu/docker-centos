@@ -2,6 +2,8 @@ ARG rocky=10.0.20250606
 ARG image=scm
 FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 
+LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
+
 RUN microdnf -y install \
 		python3-3.12.11 \
 		python3-pip \
