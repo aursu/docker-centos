@@ -10,7 +10,7 @@ services:
       context: nginx
       args:
         rocky: $RL10
-    image: "aursu/rockylinux:${RL10TAG}-nginx"
+    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-nginx"
   rocky10resty:
     build:
       context: nginx/resty

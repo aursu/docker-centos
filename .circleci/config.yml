@@ -79,6 +79,9 @@ workflows:
           name: rocky10nginx
           compose_file: 10-rocky/docker-compose.web.yml
           build_service: rocky10nginx
+          registry: ghcr.io
+          context:
+            - github-packages
           requires:
             - rocky10web
       - docker-rpmbuild/image:
