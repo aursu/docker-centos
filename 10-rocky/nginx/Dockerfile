@@ -2,6 +2,8 @@ ARG rocky=10.0.20250606
 ARG image=web
 FROM aursu/rockylinux:${rocky}-${image}
 
+LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
+
 EXPOSE 80 443
 STOPSIGNAL SIGQUIT
 
