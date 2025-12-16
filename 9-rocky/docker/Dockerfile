@@ -1,7 +1,7 @@
 
 ARG rocky=9.7.20251123
 ARG image=scm
-FROM aursu/rockylinux:${rocky}-${image}
+FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 
 ARG DOCKER_VERSION="28.1.1"
 ARG COMPOSE_VERSION="2.35.1"
