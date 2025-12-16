@@ -1,4 +1,4 @@
-ARG rocky=10.0.20250606
+ARG rocky=10.1.20251123
 FROM aursu/rockylinux:${rocky}-base
 
 ENV LANG=en_US.utf-8

@@ -1,4 +1,4 @@
-ARG rocky=9.6.20250531
+ARG rocky=9.7.20251123
 FROM aursu/rockylinux:${rocky}-jdk-22
 
 ARG MYSQL_CONN_NAME=mysql-connector-j-8.4.0
