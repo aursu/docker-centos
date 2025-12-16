@@ -23,13 +23,13 @@ services:
       args:
         rocky: $RL10
       context: python/3.12
-    image: "aursu/rockylinux:${RL10TAG}-python3.12"
+    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-python3.12"
   rocky10ansible:
     build:
       args:
         rocky: $RL10
       context: python/ansible
-    image: "aursu/rockylinux:${RL10TAG}-ansible"
+    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-ansible"
   rocky10ruby33puppet:
     build:
       args:
