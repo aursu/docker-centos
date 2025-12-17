@@ -22,7 +22,7 @@ services:
       context: httpd
       args:
         rocky: $RL10
-    image: "aursu/rockylinux:${RL10TAG}-httpd"
+    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-httpd"
   rocky10node22:
     build:
       context: node/22

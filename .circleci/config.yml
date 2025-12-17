@@ -98,6 +98,9 @@ workflows:
           name: rocky10httpd
           compose_file: 10-rocky/docker-compose.web.yml
           build_service: rocky10httpd
+          registry: ghcr.io
+          context:
+            - github-packages
           requires:
             - rocky10base
       - docker-rpmbuild/image:
@@ -158,6 +161,9 @@ workflows:
           name: rocky10systemd
           compose_file: 10-rocky/docker-compose.dev.yml
           build_service: rocky10systemd
+          registry: ghcr.io
+          context:
+            - github-packages
           requires:
             - rocky10scm
       - docker-rpmbuild/image:

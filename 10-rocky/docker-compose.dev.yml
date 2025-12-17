@@ -4,7 +4,7 @@ services:
       context: systemd
       args:
         centos: $RL10
-    image: "aursu/rockylinux:${RL10TAG}-systemd"
+    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-systemd"
   rocky10webdev:
     build:
       context: web
