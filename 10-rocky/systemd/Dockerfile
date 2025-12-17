@@ -1,4 +1,4 @@
-ARG rocky=10.1.20251123
+ARG rocky=10.1.20251126
 FROM ghcr.io/aursu/rockylinux:${rocky}-scm
 
 ENV container docker

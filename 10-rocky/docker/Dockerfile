@@ -1,5 +1,5 @@
 
-ARG rocky=10.1.20251123
+ARG rocky=10.1.20251126
 ARG image=scm
 FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 

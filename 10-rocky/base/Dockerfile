@@ -1,4 +1,4 @@
-ARG rocky=10.1.20251123
+ARG rocky=10.1.20251126
 FROM quay.io/rockylinux/rockylinux:${rocky}-minimal
 
 LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
