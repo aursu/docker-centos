@@ -6,7 +6,7 @@ FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 ARG DOCKER_VERSION="29.1.3"
 ARG COMPOSE_VERSION="5.0.0"
 ARG BUILDX_VERSION="0.30.1"
-ARG MODEL_VERSION="1.0.5"
+ARG MODEL_VERSION="1.0.6"
 
 COPY system/etc/yum.repos.d/docker.repo /etc/yum.repos.d/docker.repo
 
