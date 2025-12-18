@@ -1,5 +1,5 @@
 ARG rocky=9.6.20250531
-FROM aursu/rockylinux:${rocky}-python3.12
+FROM ghcr.io/aursu/rockylinux:${rocky}-python3.12
 
 RUN groupadd -g 1000 ansible \
     && useradd ansible -u 1000 -g 1000 -d /var/ansible -m

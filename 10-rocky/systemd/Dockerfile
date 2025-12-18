@@ -1,5 +1,5 @@
-ARG rocky=10.0.20250606
-FROM aursu/rockylinux:${rocky}-scm
+ARG rocky=10.1.20251126
+FROM ghcr.io/aursu/rockylinux:${rocky}-scm
 
 ENV container docker
 ENV LC_ALL=en_US.utf-8

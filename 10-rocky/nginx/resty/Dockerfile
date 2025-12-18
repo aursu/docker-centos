@@ -1,6 +1,8 @@
-ARG rocky=10.0.20250606
+ARG rocky=10.1.20251126
 ARG image=nginx
-FROM aursu/rockylinux:${rocky}-${image}
+FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
+
+LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
 
 RUN curl -L https://openresty.org/package/rocky/openresty2.repo -o /tmp/openresty.repo \
 	&& mv /tmp/openresty.repo /etc/yum.repos.d/openresty.repo \

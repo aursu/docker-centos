@@ -1,5 +1,5 @@
-ARG rocky=9.6.20250531
-FROM aursu/rockylinux:${rocky}-base
+ARG rocky=9.7.20251123
+FROM ghcr.io/aursu/rockylinux:${rocky}-base
 
 ENV LANG=en_US.utf-8
 

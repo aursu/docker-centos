@@ -1,16 +1,11 @@
 version: 2.1
 
 orbs:
-  docker-rpmbuild: aursu/rpmbuild@1.1.34
+  docker-rpmbuild: aursu/rpmbuild@1.1.36
 
 workflows:
   dockercentos:
     jobs:
-      - docker-rpmbuild/image:
-          name: rocky8base
-          compose_file: 8-rocky/docker-compose.yml
-          build_service: rocky8base
-          shorttag: true
       - docker-rpmbuild/image:
           name: rocky9base
           compose_file: 9-rocky/docker-compose.yml
@@ -27,12 +22,6 @@ workflows:
           registry: ghcr.io
           context:
             - github-packages
-      - docker-rpmbuild/image:
-          name: rocky8scm
-          compose_file: 8-rocky/docker-compose.yml
-          build_service: rocky8scm
-          requires:
-            - rocky8base
       - docker-rpmbuild/image:
           name: rocky9scm
           compose_file: 9-rocky/docker-compose.yml
@@ -94,6 +83,9 @@ workflows:
           name: rocky10resty
           compose_file: 10-rocky/docker-compose.web.yml
           build_service: rocky10resty
+          registry: ghcr.io
+          context:
+            - github-packages
           requires:
             - rocky10nginx
       - docker-rpmbuild/image:
@@ -106,6 +98,9 @@ workflows:
           name: rocky10httpd
           compose_file: 10-rocky/docker-compose.web.yml
           build_service: rocky10httpd
+          registry: ghcr.io
+          context:
+            - github-packages
           requires:
             - rocky10base
       - docker-rpmbuild/image:
@@ -166,6 +161,9 @@ workflows:
           name: rocky10systemd
           compose_file: 10-rocky/docker-compose.dev.yml
           build_service: rocky10systemd
+          registry: ghcr.io
+          context:
+            - github-packages
           requires:
             - rocky10scm
       - docker-rpmbuild/image:
@@ -238,6 +236,9 @@ workflows:
           name: rocky10docker
           compose_file: 10-rocky/docker-compose.dev.yml
           build_service: rocky10docker
+          registry: ghcr.io
+          context:
+            - github-packages
           requires:
             - rocky10scm
       - docker-rpmbuild/image:
@@ -283,11 +284,17 @@ workflows:
           name: rocky10python312
           compose_file: 10-rocky/docker-compose.dev.yml
           build_service: rocky10python312
+          registry: ghcr.io
+          context:
+            - github-packages
           requires:
             - rocky10scm
       - docker-rpmbuild/image:
           name: rocky10ansible
           compose_file: 10-rocky/docker-compose.dev.yml
           build_service: rocky10ansible
+          registry: ghcr.io
+          context:
+            - github-packages
           requires:
             - rocky10python312

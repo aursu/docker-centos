@@ -1,6 +1,6 @@
-ARG rocky=9.6.20250531
+ARG rocky=9.7.20251123
 ARG image=web
-FROM aursu/rockylinux:${rocky}-${image}
+FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 
 EXPOSE 80 443
 STOPSIGNAL SIGQUIT

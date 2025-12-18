@@ -1,4 +1,4 @@
-ARG rocky=9.6.20250531
+ARG rocky=9.7.20251123
 FROM aursu/rockylinux:${rocky}-python3.12
 
 RUN groupadd -g 1000 ansible \
