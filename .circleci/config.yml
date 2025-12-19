@@ -155,6 +155,9 @@ workflows:
           name: rocky9systemd
           compose_file: 9-rocky/docker-compose.dev.yml
           build_service: rocky9systemd
+          registry: ghcr.io
+          context:
+            - github-packages
           requires:
             - rocky9scm
       - docker-rpmbuild/image:

@@ -24,7 +24,7 @@ services:
       context: systemd
       args:
         rocky: $RL9
-    image: "aursu/rockylinux:${RL9TAG}-systemd"
+    image: "ghcr.io/aursu/rockylinux:${RL9TAG}-systemd"
   rocky9webdev:
     build:
       context: web
