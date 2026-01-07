@@ -1,5 +1,9 @@
-ARG rocky=9.6.20250531
+ARG rocky=10.1.20251126
 FROM ghcr.io/aursu/rockylinux:${rocky}-python3.12
+
+ARG SOPS_VERSION="3.11.0"
+ARG SOPS_DISTRO="sops-v${SOPS_VERSION}.linux.amd64"
+ARG SOPS_CHECKSUMS="sops-v${SOPS_VERSION}.checksums.txt"
 
 RUN groupadd -g 1000 ansible \
     && useradd ansible -u 1000 -g 1000 -d /var/ansible -m
@@ -13,11 +17,11 @@ RUN microdnf -y install \
 
 # Protecting Ansible secrets with SOPS
 # https://docs.ansible.com/ansible/latest/collections/community/sops/docsite/guide.html#protecting-ansible-secrets-with-sops
-RUN curl -LO https://github.com/getsops/sops/releases/download/v3.10.2/sops-v3.10.2.checksums.txt \
-    && curl -LO https://github.com/getsops/sops/releases/download/v3.10.2/sops-v3.10.2.linux.amd64 \
-    && sha256sum -c sops-v3.10.2.checksums.txt --ignore-missing \
-    && install -m0755 sops-v3.10.2.linux.amd64 /usr/local/bin/sops \
-    && rm -f sops-v3.10.2.checksums.txt sops-v3.10.2.linux.amd64
+RUN curl -LO https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/${SOPS_CHECKSUMS} \
+    && curl -LO https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/${SOPS_DISTRO} \
+    && sha256sum -c ${SOPS_CHECKSUMS} --ignore-missing \
+    && install -m0755 ${SOPS_DISTRO} /usr/local/bin/sops \
+    && rm -f ${SOPS_CHECKSUMS} ${SOPS_DISTRO}
 
 COPY --chown=ansible:ansible conf/gnupg /var/ansible/.gnupg
 COPY --chown=ansible:ansible conf/bash /var/ansible/.bashrc.d
