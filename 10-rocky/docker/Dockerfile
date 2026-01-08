@@ -4,7 +4,7 @@ ARG image=scm
 FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 
 ARG DOCKER_VERSION="29.1.3"
-ARG COMPOSE_VERSION="5.0.0"
+ARG COMPOSE_VERSION="5.0.1"
 ARG BUILDX_VERSION="0.30.1"
 ARG MODEL_VERSION="1.0.6"
 
