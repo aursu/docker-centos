@@ -11,10 +11,10 @@ RUN groupadd -g 1000 node \
   && chmod +x /usr/local/libexec/docker-entrypoint.sh
 
 RUN microdnf -y install \
-    nodejs-1:22.19.0 \
+    nodejs-1:22.22.0 \
     npm \
   && npm install -g \
-    npm@11.4.2 \
+    npm@11.8.0 \
     yarn@1.22.22 \
   && rm -rf /root/.npm \
   && rpm -e nodejs-npm \

@@ -14,7 +14,7 @@ RUN microdnf -y module enable nodejs:22 \
     nodejs-1:22.19.0 \
     npm \
   && npm install -g \
-    npm@11.4.1 \
+    npm@11.8.0 \
     yarn@1.22.22 \
   && rm -rf /root/.npm \
   && rpm -e npm \
