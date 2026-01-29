@@ -34,7 +34,7 @@ services:
       context: node/22
       args:
         centos: $RL10
-    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-node-22.16.0-b${CIRCLE_BUILD_NUM}"
+    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-node-22.22.0-b${CIRCLE_BUILD_NUM}"
   rocky10ruby33:
     build:
       context: ruby/33
