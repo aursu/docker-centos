@@ -26,6 +26,9 @@ RUN curl -LO https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/
 COPY --chown=ansible:ansible conf/gnupg /var/ansible/.gnupg
 COPY --chown=ansible:ansible conf/bash /var/ansible/.bashrc.d
 
+COPY conf/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 USER ansible
 WORKDIR /var/ansible
 
@@ -57,3 +60,6 @@ RUN source ansible-env/bin/activate \
         community.general \
         ansible.posix \
         community.crypto
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+CMD ["/bin/bash"]
