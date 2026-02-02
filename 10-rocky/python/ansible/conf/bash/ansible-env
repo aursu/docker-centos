@@ -1,5 +1,4 @@
 #!/bin/bash
 
-if [ -z "${VIRTUAL_ENV:-}" ]; then
-    source ~/ansible-env/bin/activate
-fi
+source /var/ansible/ansible-env/bin/activate
+
