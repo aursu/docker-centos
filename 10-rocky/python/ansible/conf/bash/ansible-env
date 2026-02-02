@@ -1,4 +1,3 @@
 #!/bin/bash
 
 source /var/ansible/ansible-env/bin/activate
-
