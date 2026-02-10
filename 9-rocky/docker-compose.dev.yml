@@ -56,3 +56,19 @@ services:
         rocky: $RL9
       context: python/ansible
     image: "aursu/rockylinux:${RL9TAG}-ansible"
+  rocky9ruby33pdk:
+    build:
+      args:
+        rocky: $RL9
+        image: ruby33
+        DNF_ENV_FILE: /run/secrets/forge_key
+      context: ruby/pdk
+      secrets:
+        - forge_key
+    secrets:
+      - forge_key
+    image: "ghcr.io/aursu/rockylinux:${RL9TAG}-pdk"
+
+secrets:
+  forge_key:
+    file: secrets/forge-key.sh
