@@ -1,18 +1,4 @@
 services:
-  rocky9ruby31puppet:
-    build:
-      args:
-        rocky: $RL9
-        image: ruby31
-      context: ruby/puppet
-    image: "aursu/rockylinux:${RL9TAG}-ruby31-puppet"
-  rocky9ruby33puppet:
-    build:
-      args:
-        rocky: $RL9
-        image: ruby33
-      context: ruby/puppet
-    image: "aursu/rockylinux:${RL9TAG}-ruby33-puppet"
   rocky9docker:
     build:
       context: docker
@@ -62,12 +48,12 @@ services:
         rocky: $RL9
         image: ruby33
         DNF_ENV_FILE: /run/secrets/forge_key
-      context: ruby/pdk
+      context: ruby/puppet
       secrets:
         - forge_key
     secrets:
       - forge_key
-    image: "ghcr.io/aursu/rockylinux:${RL9TAG}-pdk"
+    image: "aursu/rockylinux:${RL9TAG}-pdk"
 
 secrets:
   forge_key:
