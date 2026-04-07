@@ -4,7 +4,9 @@ FROM ghcr.io/aursu/rockylinux:${rocky}-base
 ENV LANG=en_US.utf-8
 
 RUN microdnf -y install \
-		httpd \
+		--nodocs \
+		--setopt=install_weak_deps=0 \
+		httpd-2.4.63 \
 	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
 RUN rm -f /etc/httpd/conf.modules.d/*.conf /etc/httpd/conf.d/*.conf
