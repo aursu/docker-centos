@@ -9,7 +9,7 @@ RUN curl -L https://openresty.org/package/rocky/openresty2.repo -o /tmp/openrest
 	&& sed -i 's/\$releasever/9/' /etc/yum.repos.d/openresty.repo
 
 RUN microdnf -y --setopt=openresty.gpgcheck=0 install \
-		openresty-1.27.1.2 \
+		openresty-1.29.2.3 \
 		openresty-debug \
 	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db* \
 	&& mkdir -p /usr/local/openresty/nginx/conf/conf.d
