@@ -37,9 +37,9 @@ EOF
 RUN rpm --import https://rpm.nodesource.com/gpgkey/ns-operations-public.key
 
 RUN microdnf -y install \
-    nodejs-22.22.0 \
+    nodejs-22.22.2 \
   && npm install -g \
-    npm@11.8.0 \
+    npm@11.12.1 \
     yarn@1.22.22 \
   && rm -rf /root/.npm \
   && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
