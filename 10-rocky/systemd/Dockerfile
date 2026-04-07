@@ -6,6 +6,8 @@ ENV LC_ALL=en_US.utf-8
 ENV LANG=en_US.utf-8
 
 RUN microdnf -y install \
+		--nodocs \
+		--setopt=install_weak_deps=0 \
         systemd \
         dbus \
     && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*; \
