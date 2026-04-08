@@ -1,42 +1,21 @@
 ARG rocky=9.7.20251123
-ARG image=ruby31
+ARG image=ruby33
 FROM aursu/rockylinux:${rocky}-${image}
 
-RUN microdnf -y --enablerepo=crb install \
-		zlib-devel \
-		libedit-devel \
-		libyaml-devel \
-		openssl-devel \
-		libffi-devel \
-    && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
+ARG platform=puppet8
+ARG DNF_ENV_FILE=/dev/null
+ARG AGENT_VERSION="8.16.0"
+ARG BOLT_VERSION="5.0.1"
+ARG PDK_VERSION="3.6.1.1"
 
-RUN gem update --no-document --no-user-install --clear-sources \
-    && gem install --no-document --no-user-install --force \
-		bundle \
-		beaker-docker \
-		beaker-hiera \
-		beaker-rspec \
-		beaker-vagrant \
-		beaker_puppet_helpers \
-		coveralls \
-		faraday-retry \
-		github_changelog_generator \
-		guard-rake \
-		hiera \
-		hiera-eyaml \
-		overcommit \
-		parallel_tests \
-		puppetlabs_spec_helper \
-		puppet-blacksmith \
-		puppet-strings \
-		puppet_metadata \
-		rspec-puppet-facts \
-		rubocop-rake \
-		rubocop-rspec \
-		simplecov-console \
-		winrm \
-    && rm -rf /usr/local/share/gems/gems/*/{man,.circleci,.git*,benchmark,doc*,test*,examples,sample,logs,spec,acceptance} \
-	    rm -f /usr/local/share/gems/gems/*/{.*.yml,.[a-z]*,[A-Q]*,[S-Z]*,*.json,*.yml,*.txt,*.rdoc,bin/console,bin/setup,*.md} \
-	    /usr/local/share/gems/cache \
-		/root/.local \
-		/usr/local/lib64/gems/ruby/*/{gem_make.out,mkmf.log}
+RUN --mount=type=secret,id=forge_key,required \
+	rpm -ivh https://yum-puppetcore.puppet.com/public/${platform}-release-el-9.noarch.rpm \
+		https://yum.puppet.com/puppet-tools-release-el-9.noarch.rpm \
+	&& echo username=forge-key >> /etc/yum.repos.d/${platform}-release.repo \
+	&& echo 'password=$API_KEY' >> /etc/yum.repos.d/${platform}-release.repo \
+	&& source ${DNF_ENV_FILE} \
+    && microdnf -y install \
+		puppet-agent-${AGENT_VERSION} \
+	    puppet-bolt-${BOLT_VERSION} \
+		pdk-${PDK_VERSION} \
+	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*

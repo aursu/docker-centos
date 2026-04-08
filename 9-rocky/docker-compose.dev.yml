@@ -1,18 +1,4 @@
 services:
-  rocky9ruby31puppet:
-    build:
-      args:
-        rocky: $RL9
-        image: ruby31
-      context: ruby/puppet
-    image: "aursu/rockylinux:${RL9TAG}-ruby31-puppet"
-  rocky9ruby33puppet:
-    build:
-      args:
-        rocky: $RL9
-        image: ruby33
-      context: ruby/puppet
-    image: "aursu/rockylinux:${RL9TAG}-ruby33-puppet"
   rocky9docker:
     build:
       context: docker
@@ -24,7 +10,7 @@ services:
       context: systemd
       args:
         rocky: $RL9
-    image: "aursu/rockylinux:${RL9TAG}-systemd"
+    image: "ghcr.io/aursu/rockylinux:${RL9TAG}-systemd"
   rocky9webdev:
     build:
       context: web
@@ -56,3 +42,19 @@ services:
         rocky: $RL9
       context: python/ansible
     image: "aursu/rockylinux:${RL9TAG}-ansible"
+  rocky9ruby33pdk:
+    build:
+      args:
+        rocky: $RL9
+        image: ruby33
+        DNF_ENV_FILE: /run/secrets/forge_key
+      context: ruby/puppet
+      secrets:
+        - forge_key
+    secrets:
+      - forge_key
+    image: "aursu/rockylinux:${RL9TAG}-pdk"
+
+secrets:
+  forge_key:
+    file: secrets/forge-key.sh
