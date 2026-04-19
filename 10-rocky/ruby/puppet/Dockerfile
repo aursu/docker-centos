@@ -3,8 +3,8 @@ ARG image=ruby33
 FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 
 ARG platform=openvox8
-ARG AGENT_VERSION="8.24.2"
-ARG BOLT_VERSION="5.3.0"
+ARG AGENT_VERSION="8.25.0"
+ARG BOLT_VERSION="5.4.0"
 ARG PDK_VERSION="3.4.0.1"
 
 RUN microdnf -y --enablerepo=crb install \
