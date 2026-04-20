@@ -28,7 +28,7 @@ services:
       context: httpd
       args:
         rocky: $RL8
-    image: "aursu/rockylinux:${RL8TAG}-httpd"
+    image: "ghcr.io/aursu/rockylinux:${RL8TAG}-httpd"
   rocky8node18:
     build:
       context: node/18
