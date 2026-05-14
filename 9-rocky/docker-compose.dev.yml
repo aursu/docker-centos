@@ -18,12 +18,12 @@ services:
         rocky: $RL9
         image: scm
     image: "ghcr.io/aursu/rockylinux:${RL9TAG}-webdev"
-  rocky9node20dev:
+  rocky9node24dev:
     build:
       args:
         rocky: $RL9
-      context: node/20/dev
-    image: "ghcr.io/aursu/rockylinux:${RL9TAG}-node20dev"
+      context: node/24/dev
+    image: "ghcr.io/aursu/rockylinux:${RL9TAG}-node24dev"
   rocky9node22dev:
     build:
       args:

@@ -18,6 +18,12 @@ services:
         centos: $RL10
       context: node/22/dev
     image: "ghcr.io/aursu/rockylinux:${RL10TAG}-node22dev"
+  rocky10node24dev:
+    build:
+      args:
+        centos: $RL10
+      context: node/24/dev
+    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-node24dev"
   rocky10python312:
     build:
       args:

@@ -35,15 +35,15 @@ services:
       args:
         rocky: $RL9
     image: "aursu/rockylinux:${RL9TAG}-httpd"
-  rocky9node20:
-    build:
-      context: node/20
-      args:
-        rocky: $RL9
-    image: "ghcr.io/aursu/rockylinux:${RL9TAG}-node20"
   rocky9node22:
     build:
       context: node/22
       args:
         rocky: $RL9
     image: "ghcr.io/aursu/rockylinux:${RL9TAG}-node22"
+  rocky9node24:
+    build:
+      context: node/24
+      args:
+        rocky: $RL9
+    image: "ghcr.io/aursu/rockylinux:${RL9TAG}-node24"
