@@ -1,7 +1,7 @@
 ARG rocky=10.1.20251126
 FROM ghcr.io/aursu/rockylinux:${rocky}-python3.12
 
-ARG SOPS_VERSION="3.11.0"
+ARG SOPS_VERSION="3.13.0"
 ARG SOPS_DISTRO="sops-v${SOPS_VERSION}.linux.amd64"
 ARG SOPS_CHECKSUMS="sops-v${SOPS_VERSION}.checksums.txt"
 
