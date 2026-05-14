@@ -8,6 +8,7 @@ COPY system/etc/dnf/dnf.conf /etc/dnf/dnf.conf
 
 RUN set -ex \
 	&& microdnf -y update \
+	    curl \
 		glib2 \
 		gnupg2 \
 		gnutls \
@@ -17,6 +18,7 @@ RUN set -ex \
 		libcurl \
 		libnghttp2 \
 		libssh \
+		libxml2 \
 		openssl-libs \
 	&& microdnf -y install \
 		--nodocs \
