@@ -35,13 +35,13 @@ services:
       args:
         rocky: $RL9
       context: python/3.12
-    image: "aursu/rockylinux:${RL9TAG}-python3.12"
+    image: "ghcr.io/aursu/rockylinux:${RL9TAG}-python3.12"
   rocky9ansible:
     build:
       args:
         rocky: $RL9
       context: python/ansible
-    image: "aursu/rockylinux:${RL9TAG}-ansible"
+    image: "ghcr.io/aursu/rockylinux:${RL9TAG}-ansible"
   rocky9ruby33pdk:
     build:
       args:

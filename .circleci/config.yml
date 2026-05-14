@@ -298,12 +298,18 @@ workflows:
           name: rocky9python312
           compose_file: 9-rocky/docker-compose.dev.yml
           build_service: rocky9python312
+          registry: ghcr.io
+          context:
+            - github-packages
           requires:
             - rocky9scm
       - docker-rpmbuild/image:
           name: rocky9ansible
           compose_file: 9-rocky/docker-compose.dev.yml
           build_service: rocky9ansible
+          registry: ghcr.io
+          context:
+            - github-packages
           requires:
             - rocky9python312
       - docker-rpmbuild/image:
