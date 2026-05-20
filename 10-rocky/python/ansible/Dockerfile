@@ -5,6 +5,9 @@ ARG SOPS_VERSION="3.13.0"
 ARG SOPS_DISTRO="sops-v${SOPS_VERSION}.linux.amd64"
 ARG SOPS_CHECKSUMS="sops-v${SOPS_VERSION}.checksums.txt"
 
+ENV PATH="/var/ansible/ansible-env/bin:${PATH}"
+ENV VIRTUAL_ENV="/var/ansible/ansible-env"
+
 RUN groupadd -g 1000 ansible \
     && useradd ansible -u 1000 -g 1000 -d /var/ansible -m
 
