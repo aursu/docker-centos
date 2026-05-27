@@ -6,6 +6,7 @@ LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
 RUN microdnf -y install \
 		--nodocs \
 		--setopt=install_weak_deps=0 \
+		diffutils \
 		findutils \
 		git \
 		openssh-clients \

@@ -4,6 +4,7 @@ FROM ghcr.io/aursu/rockylinux:${rocky}-base
 LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
 
 RUN microdnf -y install \
+		diffutils \
 		findutils \
 		git \
 		openssh-clients \
