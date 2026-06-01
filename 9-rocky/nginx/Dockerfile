@@ -2,12 +2,15 @@ ARG rocky=9.7.20251123
 ARG image=web
 FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 
+ARG NGINX_VERSION="1.31.1"
+
+COPY system/etc/yum.repos.d/nginx.repo /etc/yum.repos.d/nginx.repo
+
 EXPOSE 80 443
 STOPSIGNAL SIGQUIT
 
-RUN microdnf -y module enable nginx:1.24 \
-    && microdnf -y install \
-		nginx-1.24.0 \
+RUN microdnf -y install --enablerepo=nginx-mainline \
+		nginx-${NGINX_VERSION} \
 	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
 RUN openssl dhparam -out /etc/nginx/dhparam.pem 4096 \

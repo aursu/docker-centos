@@ -4,11 +4,15 @@ FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 
 LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
 
+ARG NGINX_VERSION="1.31.1"
+
+COPY system/etc/yum.repos.d/nginx.repo /etc/yum.repos.d/nginx.repo
+
 EXPOSE 80 443
 STOPSIGNAL SIGQUIT
 
-RUN microdnf -y install \
-		nginx-1.26.3 \
+RUN microdnf -y install --enablerepo=nginx-mainline \
+		nginx-${NGINX_VERSION} \
 	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
 RUN openssl dhparam -out /etc/nginx/dhparam.pem 4096 \
