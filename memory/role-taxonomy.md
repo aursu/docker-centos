@@ -12,7 +12,7 @@ Each variant directory (`8-rocky/`, `9-rocky/`, `9-stream/`, `10-rocky/`, `10-st
 |---|---|---|
 | `base/` | Minimal OS install: security updates, ca-certificates, basic tools, locale | upstream Quay minimal |
 | `scm/` | + git, curl, jq, build essentials, common SCM/CI tooling | `<version>-base` |
-| `docker/` | + Docker CLI (no daemon) | `<version>-scm` |
+| `docker/` | + Docker CLI (no daemon) + buildx/compose/scout plugins + **skopeo** (OCI image inspect/copy/delete) | `<version>-scm` |
 | `systemd/` | + systemd init (for VM-like containers; requires `--privileged`) | `<version>-base` |
 | `httpd/` | + Apache HTTP server | `<version>-base` (or `-scm`) |
 | `nginx/` | + nginx | `<version>-base` |
@@ -71,3 +71,13 @@ Decision flow:
 `scm/` already gathers git, curl, build tools. It's the natural home for "the toolbox you reach for when scripting things" — which is exactly the same audience as jq, yq, ripgrep, etc.
 
 Avoid the temptation to create more granular roles (`tools/`, `cli/`, `devops/`). The current taxonomy is the result of years of consolidation; adding role variants increases CI matrix complexity superlinearly.
+
+## Why skopeo lives in `docker/` (not `scm/`)
+
+Skopeo is specifically an **OCI/Docker image-ecosystem** tool — registry-direct inspect, copy, delete, sync. Its mental model and dependencies (containers-common, libostree, image storage helpers) are the same family as the Docker CLI itself.
+
+Putting it in `docker/` rather than `scm/` keeps both layers' purposes clean:
+- `scm/` = "general scripting + SCM" (git, curl, jq).
+- `docker/` = "image-ecosystem CLI" (docker-cli, buildx, compose, scout, skopeo).
+
+Anything `FROM <version>-docker-cli` (or further downstream, e.g. `docker → kube → kube2` chains used by jumpbox-style consumers) inherits skopeo automatically. Consumers that only need scripting tools (the `-scm` layer) don't pay the ~30 MB skopeo + containers-common cost.

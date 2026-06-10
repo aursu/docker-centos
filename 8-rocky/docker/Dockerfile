@@ -12,4 +12,5 @@ RUN set -ex \
 	&& microdnf -y install \
 	    docker-ce-cli-${DOCKER_VERSION} \
 		docker-compose-plugin-${COMPOSE_VERSION} \
+		skopeo \
 	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*

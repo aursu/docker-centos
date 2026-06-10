@@ -19,5 +19,6 @@ RUN set -ex \
 		docker-buildx-plugin-${BUILDX_VERSION} \
 		docker-compose-plugin-${COMPOSE_VERSION} \
 		docker-model-plugin-${MODEL_VERSION} \
+		skopeo \
 	&& curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh -s -- -b /usr/libexec/docker/cli-plugins v${SCOUT_VERSION} \
 	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
