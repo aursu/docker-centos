@@ -2,7 +2,7 @@ ARG rocky=10.1.20251126
 FROM ghcr.io/aursu/rockylinux:${rocky}-web
 
 ARG NODE_VERSION="24.x"
-ARG NODEJS_VERSION="24.16.0"
+ARG NODEJS_VERSION="24.17.0"
 
 LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
 

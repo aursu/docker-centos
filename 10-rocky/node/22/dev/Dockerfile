@@ -3,7 +3,7 @@ ARG image=webdev
 FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 
 ARG NODE_VERSION="22.x"
-ARG NODEJS_VERSION="22.22.3"
+ARG NODEJS_VERSION="22.23.0"
 ARG NPM_VERSION="11.16.0"
 ARG YARN_VERSION="4.15.0"
 

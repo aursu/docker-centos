@@ -34,7 +34,7 @@ services:
       context: node/22
       args:
         centos: $RL10
-    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-node-22.22.3-b${CIRCLE_BUILD_NUM}"
+    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-node-22.23.0-b${CIRCLE_BUILD_NUM}"
   rocky10node24:
     build:
       context: node/24
@@ -46,7 +46,7 @@ services:
       context: node/24
       args:
         centos: $RL10
-    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-node-24.15.0-b${CIRCLE_BUILD_NUM}"
+    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-node-24.17.0-b${CIRCLE_BUILD_NUM}"
   rocky10ruby33:
     build:
       context: ruby/33
