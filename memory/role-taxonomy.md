@@ -19,7 +19,8 @@ Each variant directory (`8-rocky/`, `9-rocky/`, `9-stream/`, `10-rocky/`, `10-st
 | `nginx/resty/` | + OpenResty (nginx + LuaJIT + ngx_lua) | `<version>-nginx` or sibling |
 | `node/<N>/` | + Node.js major version N | `<version>-base` (or `-scm`) |
 | `node/<N>/dev/` | + dev toolchain on top of node/<N> | `<version>-node<N>` |
-| `python/` | + Python (currently Rocky 10 only) | `<version>-base` |
+| `python/<ver>/` | + Python (e.g. `python/3.12/` → `-python3.12`); Rocky 9 and 10 | `<version>-scm` (10-rocky exposes an `image` build-arg, default `scm`) |
+| `python/ansible/` | + Ansible layered on a Python image (→ `-ansible`) | `<version>-python<ver>` |
 | `openjdk/<N>/` | + OpenJDK version N | `<version>-base` |
 | `tomcat/` | + Apache Tomcat | `<version>-jdk-<N>` |
 | `ruby/<N>/` | + Ruby major version N | `<version>-base` |
@@ -33,12 +34,12 @@ Each variant directory (`8-rocky/`, `9-rocky/`, `9-stream/`, `10-rocky/`, `10-st
 
 ```
                       ┌── docker/
-                      ├── scm/ ──┼── web/
-                      │         └── (other scm-derived roles)
+                      ├── scm/ ──┬── web/
+                      │          ├── python/<ver>/ ── python/ansible/
+                      │          └── (other scm-derived roles)
    <variant>/base/ ──┤
                       ├── nginx/ ── nginx/resty/
                       ├── node/<N>/ ── node/<N>/dev/
-                      ├── python/
                       ├── openjdk/<N>/ ── tomcat/
                       ├── ruby/<N>/ ── ruby/puppet/
                       ├── httpd/
