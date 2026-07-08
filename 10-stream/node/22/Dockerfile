@@ -1,4 +1,4 @@
-ARG centos=stream10-20251215.0
+ARG centos=stream10-20260707.1
 FROM aursu/centos:${centos}-web
 
 COPY docker-entrypoint.sh /usr/local/libexec/

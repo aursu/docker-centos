@@ -1,4 +1,4 @@
-ARG rocky=10.1.20251126
+ARG rocky=10.2.20260525.0
 FROM ghcr.io/aursu/rockylinux:${rocky}-python3.12
 
 ARG SOPS_VERSION="3.13.1"
