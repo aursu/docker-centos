@@ -20,7 +20,7 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 USER ansible
 WORKDIR /var/ansible
 
-RUN python3.12 -m venv .venv \
+RUN python3.12 -m venv --prompt .venv .venv \
     && pip install --upgrade pip \
     && pip install \
             "PyYAML==6.0.3" \

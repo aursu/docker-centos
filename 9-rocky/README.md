@@ -152,18 +152,17 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
   pytest runner, use the `-python3.12-dev` overlay below.
 
 ### python3.12-dev — `ghcr.io/aursu/rockylinux:9.8.20260525.0-python3.12-dev`
-[Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/python/dev/Dockerfile)
+[Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/python/3.12/dev/Dockerfile)
 - **FROM** `-python3.12`
 - **Adds** `bash-completion vim`; an `ansible` uid/gid **1000** user
   (home `/var/ansible`); a **venv** at `/var/ansible/.venv` with
   `PyYAML 6.0.3`, `pytest 9.1.1`, `argcomplete 3.7.0`;
   `activate-global-python-argcomplete`; an entrypoint that activates the venv.
-- **Role** the **pytest test-runner image** (dev overlay of python3.12).
+- **Role** the **pytest test-runner image** (dev overlay of python3.12), and
+  the shared Python base the `ansible` image builds on top of.
   `ENV PATH`/`VIRTUAL_ENV` point at the venv so it is active without the
   entrypoint too.
-- **Notes** the venv owner is named `ansible` (uid 1000, `/var/ansible`) even
-  though this is a generic pytest image — reuses the ansible slot. Missing
-  the source label.
+- **Notes** missing the source label.
 
 ### ansible — `ghcr.io/aursu/rockylinux:9.8.20260525.0-ansible`
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/python/ansible/Dockerfile)

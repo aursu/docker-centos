@@ -71,26 +71,16 @@ so GHCR links back. Only `base`, `scm`, and the `node*` images have it.
 
 **Missing on:** `docker`, `systemd`, `httpd`, `web`, `nginx`, `nginx/resty`,
 `tomcat`, `openjdk/21`, `openjdk/26`, `ruby/31`, `ruby/33`, `ruby/puppet`,
-`python/3.12`, `python/dev`, `python/ansible`.
+`python/3.12`, `python/3.12/dev`, `python/ansible`.
 
 **Fix** — add the `LABEL` line under each `FROM`. (Cheap, mechanical; do it
 in the same pass as the registry fix.)
-
-### 5. `python/dev/` naming diverges from the node convention
-Node dev overlays live at `node/<N>/dev/`; the Python dev overlay is at
-`python/dev/` (not `python/3.12/dev/`), and its venv owner is the `ansible`
-user (uid 1000, `/var/ansible`) even though it's a generic pytest image.
-
-**Fix (optional)** — for consistency, either move to `python/3.12/dev/`, or
-rename the build user to something role-neutral (e.g. `build`). Functionally
-fine as-is; this is about readability. If Rocky 9/10 diverge here, keep them
-in lockstep.
 
 ---
 
 ## P3 — hardening / robustness
 
-### 6. Unverified Docker Scout install
+### 5. Unverified Docker Scout install
 [`docker/Dockerfile`](https://github.com/aursu/docker-centos/blob/master/9-rocky/docker/Dockerfile)
 runs `curl -sSfL …/scout-cli/main/install.sh | sh` with no checksum/signature
 check — pulls an install script from `main` at build time.
@@ -100,7 +90,7 @@ mirroring the SOPS pattern already used in
 [`python/ansible/Dockerfile`](https://github.com/aursu/docker-centos/blob/master/9-rocky/python/ansible/Dockerfile)
 (`sha256sum -c … --ignore-missing`).
 
-### 7. nginx builds a 4096-bit dhparam at image-build time
+### 6. nginx builds a 4096-bit dhparam at image-build time
 [`nginx/Dockerfile`](https://github.com/aursu/docker-centos/blob/master/9-rocky/nginx/Dockerfile)
 runs `openssl dhparam -out … 4096` during build. Two problems: it makes the
 build slow/non-deterministic, and it **bakes one shared DH parameter into the
@@ -110,7 +100,7 @@ published image** — every container from this tag uses the same params.
 drop custom dhparam entirely (modern TLS uses ECDHE; fixed FFDHE groups are
 acceptable and don't need per-image generation).
 
-### 8. Exact RPM pins age out of upstream repos
+### 7. Exact RPM pins age out of upstream repos
 Many images pin exact builds (`java-21-openjdk-1:21.0.11.0.10`,
 `nodejs-22.23.0`, `docker-ce-cli-29.4.3`, `openresty-1.29.2.3`,
 `puppet-agent-8.16.0`). When upstream rotates the repo, the exact NEVR
@@ -121,7 +111,7 @@ disappears and the build breaks — even without any change here.
 and keep the pins moving with the version-bump workflow rather than letting
 them rot. (See [version-bump workflow](../memory/version-bump-workflow.md).)
 
-### 9. `epel-release` enabled in `base`
+### 8. `epel-release` enabled in `base`
 [`base/Dockerfile`](https://github.com/aursu/docker-centos/blob/master/9-rocky/base/Dockerfile)
 installs `epel-release`, so **every** descendant image has EPEL enabled. If a
 downstream only wants RHEL/Rocky core packages, EPEL can silently satisfy a
