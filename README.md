@@ -6,7 +6,7 @@ downstream image-build repos.
 
 - Orientation & conventions: [CLAUDE.md](CLAUDE.md)
 - Reference docs (tag convention, role taxonomy, CI, version bumps): [memory/](memory/)
-- **Rocky Linux 9 catalog** (per-image detail): [docs/9-rocky-catalog.md](docs/9-rocky-catalog.md)
+- **Rocky Linux 9 catalog** (per-image detail): [9-rocky/README.md](9-rocky/README.md)
 
 ## Tag convention
 
@@ -26,7 +26,7 @@ bump point, pinned per variant in `<variant>/.env`. See
 > follows it for every image. `8-rocky` and `9-rocky` still publish several
 > roles to the bare Docker Hub `aursu/…` namespace (flagged 🐳 below), and the
 > Stream variants publish entirely to Docker Hub. See
-> [docs/9-rocky-recommendations.md](docs/9-rocky-recommendations.md).
+> [9-rocky/RECOMMENDATIONS.md](9-rocky/RECOMMENDATIONS.md).
 
 Legend: 🐳 = published to Docker Hub (`aursu/…`), not GHCR.
 
@@ -34,7 +34,7 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`), not GHCR.
 
 ## 9-rocky — Rocky Linux 9 (`RL9TAG=9.8.20260525.0`)
 
-Full per-image detail in [docs/9-rocky-catalog.md](docs/9-rocky-catalog.md).
+Full per-image detail in [9-rocky/README.md](9-rocky/README.md).
 
 ### base / scm / infra
 - `ghcr.io/aursu/rockylinux:9.8.20260525.0-base`

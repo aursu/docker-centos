@@ -5,6 +5,8 @@ ARG SOPS_VERSION="3.13.2"
 ARG SOPS_DISTRO="sops-v${SOPS_VERSION}.linux.amd64"
 ARG SOPS_CHECKSUMS="sops-v${SOPS_VERSION}.checksums.txt"
 
+USER root
+
 RUN microdnf -y install \
     gnupg2 \
     pinentry \
