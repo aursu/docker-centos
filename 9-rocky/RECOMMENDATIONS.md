@@ -40,30 +40,23 @@ Note the internal `FROM` chains that reference bare tags too — e.g.
 repointed to `ghcr.io/…` in lockstep or the downstream build pulls the wrong
 (or non-existent) parent.
 
-### 2. `tomcat/` is broken and orphaned
-[`tomcat/Dockerfile`](https://github.com/aursu/docker-centos/blob/master/9-rocky/tomcat/Dockerfile)
-builds `FROM …-jdk-22`, but 9-rocky only produces **jdk-21** and **jdk-26**.
-It has no compose service and no CI job — it cannot build.
+### 2. `tomcat/` builds but isn't wired into compose/CI
+The [`tomcat/Dockerfile`](https://github.com/aursu/docker-centos/blob/master/9-rocky/tomcat/Dockerfile)
+was optimized (2026-07): `FROM …-jdk-26` (was a non-existent jdk-22), stale
+`functions` override removed, redundant packages/ENV dropped, exec-form `CMD`.
+Verified against `tomcat-9.0.117-1.el9_8`: java runs as PID 1 and `docker stop`
+is graceful (exit 143). What remains:
 
-**Fix** — pick one:
-- **Drop it** if Tomcat isn't needed on Rocky 9 (delete the dir), or
-- **Wire it up**: repoint `FROM` to `…-jdk-21` (or add a jdk-22 build), add a
-  `rocky9tomcat` service to `docker-compose.web.yml`, and a CI job
-  `requires: rocky9jdk21`. Model on `8-rocky`'s tomcat.
-
-**Also — the `functions` override is stale (verified against
-`tomcat-9.0.117-1.el9_8`).** The custom
-[`system/usr/libexec/tomcat/functions`](https://github.com/aursu/docker-centos/blob/master/9-rocky/tomcat/system/usr/libexec/tomcat/functions)
-replaces the non-jsvc launch line with a plain invocation that drops **both
-`eval` and `exec`**. The stock EL9 file launches java via
-`eval "exec \"${JAVACMD}\" …"`, i.e. it **execs** java so it becomes PID 1.
-Without `exec`, `CMD /usr/libexec/tomcat/server start` leaves the `server`
-bash script as PID 1 and java as a child — so `docker stop` (SIGTERM to PID 1)
-never reaches Tomcat and it is SIGKILLed after the grace period (no graceful
-shutdown). The Dockerfile comment ("switch from eval to exec to support
-Docker") is now inverted — the stock file is the one that execs.
-**Fix** — add `exec` to the non-jsvc branch of the override, or delete the
-override entirely (stock EL9 already execs correctly, so it is now redundant).
+- **Still no compose service / CI job**, so nothing builds it. Add a
+  `rocky9tomcat` service (build context `tomcat`, `FROM …-jdk-26`) and a CI job
+  `requires: rocky9jdk`. Model on `8-rocky`'s tomcat.
+- The `FROM` still points at the bare `aursu/…` jdk-26 (Docker Hub). Move it to
+  `ghcr.io/…` together with jdk-26 as part of the registry-drift fix (P1.1).
+- **JVM awareness (not a bug today):** `tomcat` pulls Java 8 via `ecj` (JSP
+  compiler), but the base's JDK 26 stays the higher-priority `jre` alternative,
+  so Tomcat runs on 26. Also, `server` always passes `-Djava.endorsed.dirs=`;
+  a modern JVM tolerates the *empty* value but **aborts on a non-empty one**
+  (verified: exit 1) — keep `JAVA_ENDORSED_DIRS` unset.
 
 ### 3. `pdk` has no CI job
 `rocky9ruby33pdk` exists only in `docker-compose.dev.yml`; CI builds the

@@ -24,11 +24,12 @@ quay …:9.8…-minimal
         └── scm ──┬── docker-cli             │    ├── node22 / node24
                   ├── systemd                │    └── (webdev) ── node22dev / node24dev
                   ├── jdk-21                  │
-                  ├── jdk-26                  └── (webdev = web FROM scm, dev overlay)
+                  ├── jdk-26 ── tomcat*        └── (webdev = web FROM scm, dev overlay)
                   ├── ruby31
                   ├── ruby33 ── pdk
-                  ├── python3.12 ── python3.12-dev (pytest) ── ansible
-                  └── (tomcat: orphaned, FROM jdk-22 which is not built)
+                  └── python3.12 ── python3.12-dev (pytest) ── ansible
+
+  * tomcat: Dockerfile fixed (FROM jdk-26), but not yet wired into compose/CI
 ```
 
 Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/…`.
@@ -176,11 +177,15 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
 - **Notes** builds cleanly on the dev overlay — no duplicate user/venv
   creation. Missing the source label.
 
-### tomcat — *orphaned, not built* ⚠️
+### tomcat — `aursu/rockylinux:9.8.20260525.0-tomcat` 🐳 *(not wired into compose/CI yet)*
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/tomcat/Dockerfile)
-- **FROM** `aursu/rockylinux:9.8.20260525.0-jdk-22` — **jdk-22 is not built
-  in 9-rocky** (only jdk-21/jdk-26).
-- No compose service, no CI job. Would fail to build as-is.
-- The custom `functions` override drops `exec` from the JVM launch (verified
-  against `tomcat-9.0.117-1.el9_8`), which breaks graceful `docker stop`. See
-  [recommendations](RECOMMENDATIONS.md).
+- **FROM** `-jdk-26`
+- **Adds** `tomcat` (pulls tomcat-lib, javapackages-tools, and ecj/java-8 for
+  JSP); MySQL Connector/J `9.7.0` fetched + signature-checked from MySQL and
+  placed on the shared classpath via `$CLASSPATH`. Carries the source label.
+- **Runs** as the `tomcat` user; `CMD ["/usr/libexec/tomcat/server","start"]`.
+  Uses the **stock** EL9 `functions` (which already `exec`s the JVM → java is
+  PID 1 → graceful `docker stop`, verified exit 143 on `tomcat-9.0.117-1.el9_8`).
+- **Notes** builds on the base's JDK 26 (`jre` alternative wins over the java-8
+  that ecj pulls). Still **no compose service / CI job** — add one to build it
+  (see [recommendations](RECOMMENDATIONS.md)).
