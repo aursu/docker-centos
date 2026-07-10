@@ -34,7 +34,7 @@ services:
     build:
       args:
         rocky: $RL10
-      context: python/dev
+      context: python/3.12/dev
     image: "ghcr.io/aursu/rockylinux:${RL10TAG}-python3.12-dev"
   rocky10ansible:
     build:
