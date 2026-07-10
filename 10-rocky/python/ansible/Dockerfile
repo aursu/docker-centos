@@ -14,7 +14,7 @@ RUN microdnf -y install \
 
 # Protecting Ansible secrets with SOPS
 # https://docs.ansible.com/ansible/latest/collections/community/sops/docsite/guide.html#protecting-ansible-secrets-with-sops
-RUN curl -LO https://github.com/getsops/sops/releases/download/v${SOP S_VERSION}/${SOPS_CHECKSUMS} \
+RUN curl -LO https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/${SOPS_CHECKSUMS} \
     && curl -LO https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/${SOPS_DISTRO} \
     && sha256sum -c ${SOPS_CHECKSUMS} --ignore-missing \
     && install -m0755 ${SOPS_DISTRO} /usr/local/bin/sops \
