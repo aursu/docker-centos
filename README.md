@@ -60,6 +60,7 @@ Full per-image detail in [9-rocky/README.md](9-rocky/README.md).
 - `aursu/rockylinux:9.8.20260525.0-ruby33` 🐳
 - `aursu/rockylinux:9.8.20260525.0-pdk` 🐳 *(no CI job — built only via `docker-compose.dev.yml`)*
 - `ghcr.io/aursu/rockylinux:9.8.20260525.0-python3.12`
+- `ghcr.io/aursu/rockylinux:9.8.20260525.0-python3.12-dev` *(pytest venv)*
 - `ghcr.io/aursu/rockylinux:9.8.20260525.0-ansible`
 
 > `tomcat/Dockerfile` is present but **orphaned** — no compose service, no CI
@@ -82,6 +83,7 @@ Full per-image detail in [9-rocky/README.md](9-rocky/README.md).
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-ruby33`
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-ruby33-puppet`
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-python3.12`
+- `ghcr.io/aursu/rockylinux:10.2.20260525.0-python3.12-dev` *(pytest venv)*
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-ansible`
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-node22`
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-node24`

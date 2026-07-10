@@ -27,7 +27,7 @@ quay …:9.8…-minimal
                   ├── jdk-26                  └── (webdev = web FROM scm, dev overlay)
                   ├── ruby31
                   ├── ruby33 ── pdk
-                  ├── python3.12 ── ansible
+                  ├── python3.12 ── python3.12-dev (pytest) ── ansible
                   └── (tomcat: orphaned, FROM jdk-22 which is not built)
 ```
 
@@ -148,20 +148,34 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
 - **FROM** `-scm`
 - **Adds** `python3.12` RPM, then `pip` bootstrapped globally via
   `get-pip.py` piped to `python3.12` **as root**.
-- **Notes** pip installs into the system 3.12 interpreter. See the
-  [pytest recommendation](RECOMMENDATIONS.md#pytest) for the venv-based
-  approach.
+- **Notes** pip installs into the system 3.12 interpreter. For a venv-based
+  pytest runner, use the `-python3.12-dev` overlay below.
+
+### python3.12-dev — `ghcr.io/aursu/rockylinux:9.8.20260525.0-python3.12-dev`
+[Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/python/dev/Dockerfile)
+- **FROM** `-python3.12`
+- **Adds** `bash-completion vim`; an `ansible` uid/gid **1000** user
+  (home `/var/ansible`); a **venv** at `/var/ansible/.venv` with
+  `PyYAML 6.0.3`, `pytest 9.1.1`, `argcomplete 3.7.0`;
+  `activate-global-python-argcomplete`; an entrypoint that activates the venv.
+- **Role** the **pytest test-runner image** (dev overlay of python3.12).
+  `ENV PATH`/`VIRTUAL_ENV` point at the venv so it is active without the
+  entrypoint too.
+- **Notes** the venv owner is named `ansible` (uid 1000, `/var/ansible`) even
+  though this is a generic pytest image — reuses the ansible slot. Missing
+  the source label.
 
 ### ansible — `ghcr.io/aursu/rockylinux:9.8.20260525.0-ansible`
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/python/ansible/Dockerfile)
-- **FROM** `-python3.12`
-- **Adds** an `ansible` uid/gid **1000** user, a **venv** at
-  `/var/ansible/ansible-env` (`ansible-core 2.20.5`,
-  `ansible-dev-tools 26.4.6`, `argcomplete 3.6.3`), SOPS `3.13.1`
-  (checksum-verified), GnuPG scaffolding, bash completion, and Galaxy
+- **FROM** `-python3.12-dev`
+- **Inherits** the `ansible` user (uid/gid **1000**, `/var/ansible`) and the
+  `/var/ansible/.venv` venv from the dev image.
+- **Adds** `gnupg2 pinentry`; SOPS `3.13.2` (checksum-verified);
+  `ansible-core 2.20.5` + `ansible-dev-tools 26.4.6` pip-installed into the
+  inherited venv; GnuPG scaffolding (`conf/gnupg`); `~/.ansible.cfg`; Galaxy
   collections from `conf/requirements.yml`.
-- **Notes** this is the **reference pattern** for the pytest recommendation:
-  dedicated user + `ENV PATH`/`VIRTUAL_ENV` + `python -m venv` + argcomplete.
+- **Notes** builds cleanly on the dev overlay — no duplicate user/venv
+  creation. Missing the source label.
 
 ### tomcat — *orphaned, not built* ⚠️
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/tomcat/Dockerfile)
