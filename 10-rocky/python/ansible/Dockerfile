@@ -46,11 +46,13 @@ WORKDIR /var/ansible
 #
 # The configuration file
 # https://docs.ansible.com/ansible/latest/reference_appendices/config.html#the-configuration-file
-RUN python -m venv ansible-env \
-    && source ansible-env/bin/activate \
-    && python -m pip install --upgrade pip \
-    && python -m pip install ansible-core ansible-dev-tools argcomplete \
-    && activate-global-python-argcomplete --user  \
+RUN python3.12 -m venv ansible-env \
+    && pip install --upgrade pip \
+    && pip install \
+           "ansible-core==2.21.1" \
+           "ansible-dev-tools==26.7.1" \
+           "argcomplete==3.7.0" \
+    && activate-global-python-argcomplete --user \
     && rm -rf /var/ansible/.cache/pip \
     && mkdir -p /var/ansible/.cache/gnupg
 

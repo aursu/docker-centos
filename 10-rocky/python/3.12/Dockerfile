@@ -6,6 +6,7 @@ RUN microdnf -y install \
 		--nodocs \
 		--setopt=install_weak_deps=0 \
 		python3-3.12.13 \
-		python3-pip \
 		python-unversioned-command \
-    && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
+    && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db* \
+	&& curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12 \
+	&& rm -rf /root/.cache
