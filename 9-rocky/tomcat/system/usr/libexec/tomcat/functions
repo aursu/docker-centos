@@ -28,7 +28,7 @@ run() {
         run_jsvc $@
     else
         set_javacmd
-        "${JAVACMD}" ${FLAGS} -classpath "${CLASSPATH}" \
+        exec "${JAVACMD}" ${FLAGS} -classpath "${CLASSPATH}" \
             ${OPTIONS} "${MAIN_CLASS}" "${@}"
     fi
 }

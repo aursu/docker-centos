@@ -180,5 +180,7 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/tomcat/Dockerfile)
 - **FROM** `aursu/rockylinux:9.8.20260525.0-jdk-22` — **jdk-22 is not built
   in 9-rocky** (only jdk-21/jdk-26).
-- No compose service, no CI job. Would fail to build as-is. See
+- No compose service, no CI job. Would fail to build as-is.
+- The custom `functions` override drops `exec` from the JVM launch (verified
+  against `tomcat-9.0.117-1.el9_8`), which breaks graceful `docker stop`. See
   [recommendations](RECOMMENDATIONS.md).

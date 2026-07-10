@@ -51,6 +51,20 @@ It has no compose service and no CI job — it cannot build.
   `rocky9tomcat` service to `docker-compose.web.yml`, and a CI job
   `requires: rocky9jdk21`. Model on `8-rocky`'s tomcat.
 
+**Also — the `functions` override is stale (verified against
+`tomcat-9.0.117-1.el9_8`).** The custom
+[`system/usr/libexec/tomcat/functions`](https://github.com/aursu/docker-centos/blob/master/9-rocky/tomcat/system/usr/libexec/tomcat/functions)
+replaces the non-jsvc launch line with a plain invocation that drops **both
+`eval` and `exec`**. The stock EL9 file launches java via
+`eval "exec \"${JAVACMD}\" …"`, i.e. it **execs** java so it becomes PID 1.
+Without `exec`, `CMD /usr/libexec/tomcat/server start` leaves the `server`
+bash script as PID 1 and java as a child — so `docker stop` (SIGTERM to PID 1)
+never reaches Tomcat and it is SIGKILLed after the grace period (no graceful
+shutdown). The Dockerfile comment ("switch from eval to exec to support
+Docker") is now inverted — the stock file is the one that execs.
+**Fix** — add `exec` to the non-jsvc branch of the override, or delete the
+override entirely (stock EL9 already execs correctly, so it is now redundant).
+
 ### 3. `pdk` has no CI job
 `rocky9ruby33pdk` exists only in `docker-compose.dev.yml`; CI builds the
 Rocky 10 equivalent (`rocky10ruby33puppet`) but nothing for Rocky 9.
