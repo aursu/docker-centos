@@ -1,32 +1,28 @@
 ARG rocky=10.2.20260525.0
-FROM ghcr.io/aursu/rockylinux:${rocky}-python3.12
+FROM ghcr.io/aursu/rockylinux:${rocky}-python3.12-dev
 
-ARG SOPS_VERSION="3.13.1"
+ARG SOPS_VERSION="3.13.2"
 ARG SOPS_DISTRO="sops-v${SOPS_VERSION}.linux.amd64"
 ARG SOPS_CHECKSUMS="sops-v${SOPS_VERSION}.checksums.txt"
 
-ENV PATH="/var/ansible/ansible-env/bin:${PATH}"
-ENV VIRTUAL_ENV="/var/ansible/ansible-env"
-
-RUN groupadd -g 1000 ansible \
-    && useradd ansible -u 1000 -g 1000 -d /var/ansible -m
+USER root
 
 RUN microdnf -y install \
-    bash-completion \
     gnupg2 \
     pinentry \
-    vim \
 && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
 # Protecting Ansible secrets with SOPS
 # https://docs.ansible.com/ansible/latest/collections/community/sops/docsite/guide.html#protecting-ansible-secrets-with-sops
-RUN curl -LO https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/${SOPS_CHECKSUMS} \
+RUN curl -LO https://github.com/getsops/sops/releases/download/v${SOP S_VERSION}/${SOPS_CHECKSUMS} \
     && curl -LO https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/${SOPS_DISTRO} \
     && sha256sum -c ${SOPS_CHECKSUMS} --ignore-missing \
     && install -m0755 ${SOPS_DISTRO} /usr/local/bin/sops \
     && rm -f ${SOPS_CHECKSUMS} ${SOPS_DISTRO}
 
 COPY --chown=ansible:ansible conf/gnupg /var/ansible/.gnupg
+RUN install -d -m 0700 -o ansible -g ansible /var/ansible/.cache/gnupg
+
 COPY --chown=ansible:ansible conf/bash /var/ansible/.bashrc.d
 
 COPY conf/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
@@ -46,25 +42,18 @@ WORKDIR /var/ansible
 #
 # The configuration file
 # https://docs.ansible.com/ansible/latest/reference_appendices/config.html#the-configuration-file
-RUN python3.12 -m venv ansible-env \
-    && pip install --upgrade pip \
-    && pip install \
+RUN pip install \
            "ansible-core==2.21.1" \
            "ansible-dev-tools==26.7.1" \
-           "argcomplete==3.7.0" \
-    && activate-global-python-argcomplete --user \
-    && rm -rf /var/ansible/.cache/pip \
-    && mkdir -p /var/ansible/.cache/gnupg
+    && rm -rf /var/ansible/.cache/pip
 
 # ansible-config init --disabled -t all  > ~/.ansible.cfg
 COPY --chown=ansible:ansible conf/ansible.cfg /var/ansible/.ansible.cfg
 
-RUN source ansible-env/bin/activate \
-    && ansible-galaxy collection install \
-        community.sops \
-        community.general \
-        ansible.posix \
-        community.crypto
+# Install Ansible collections from the project's requirements.yml.
+# Bumping a collection version or adding a new one is a one-line edit to the file;
+# Docker's layer cache invalidates only this step.
+COPY --chown=ansible:ansible conf/requirements.yml requirements.yml
 
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-CMD ["/bin/bash"]
+RUN ansible-galaxy collection install -r requirements.yml \
+    && rm -f requirements.yml

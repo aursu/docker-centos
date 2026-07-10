@@ -331,6 +331,15 @@ workflows:
           requires:
             - rocky9scm
       - docker-rpmbuild/image:
+          name: rocky9python312dev
+          compose_file: 9-rocky/docker-compose.dev.yml
+          build_service: rocky9python312dev
+          registry: ghcr.io
+          context:
+            - github-packages
+          requires:
+            - rocky9python312
+      - docker-rpmbuild/image:
           name: rocky9ansible
           compose_file: 9-rocky/docker-compose.dev.yml
           build_service: rocky9ansible
@@ -338,7 +347,7 @@ workflows:
           context:
             - github-packages
           requires:
-            - rocky9python312
+            - rocky9python312dev
       - docker-rpmbuild/image:
           name: rocky10python312
           compose_file: 10-rocky/docker-compose.dev.yml
@@ -349,6 +358,15 @@ workflows:
           requires:
             - rocky10scm
       - docker-rpmbuild/image:
+          name: rocky10python312dev
+          compose_file: 10-rocky/docker-compose.dev.yml
+          build_service: rocky10python312dev
+          registry: ghcr.io
+          context:
+            - github-packages
+          requires:
+            - rocky10python312
+      - docker-rpmbuild/image:
           name: rocky10ansible
           compose_file: 10-rocky/docker-compose.dev.yml
           build_service: rocky10ansible
@@ -356,4 +374,4 @@ workflows:
           context:
             - github-packages
           requires:
-            - rocky10python312
+            - rocky10python312dev

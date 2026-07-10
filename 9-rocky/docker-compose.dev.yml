@@ -36,6 +36,12 @@ services:
         rocky: $RL9
       context: python/3.12
     image: "ghcr.io/aursu/rockylinux:${RL9TAG}-python3.12"
+  rocky9python312dev:
+    build:
+      args:
+        rocky: $RL9
+      context: python/dev
+    image: "ghcr.io/aursu/rockylinux:${RL9TAG}-python3.12-dev"
   rocky9ansible:
     build:
       args:

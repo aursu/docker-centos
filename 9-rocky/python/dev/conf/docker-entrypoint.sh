@@ -5,8 +5,4 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 source ~/.venv/bin/activate
 unset VIRTUAL_ENV_DISABLE_PROMPT
 
-if [ "$(id -un)" = "ansible" ] && command -v gpgconf >/dev/null; then
-    gpgconf --launch gpg-agent
-fi
-
 exec "$@"
