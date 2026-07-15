@@ -11,7 +11,7 @@ ARG MYSQL_CONN_URL=https://cdn.mysql.com//Downloads/Connector-J/${MYSQL_CONN_RPM
 LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
 
 ENV CATALINA_HOME=/usr/share/tomcat
-ENV CATALINA_BASE=/usr/share/tomcat
+ENV CATALINA_BASE $CATALINA_HOME
 ENV CATALINA_TMPDIR=/var/cache/tomcat/temp
 ENV JAVA_HOME=/usr/lib/jvm/jre
 ENV CLASSPATH=/usr/share/java/${MYSQL_CONN_NAME}.jar
