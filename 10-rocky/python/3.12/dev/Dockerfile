@@ -20,12 +20,19 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 USER ansible
 WORKDIR /var/ansible
 
+# PyJWT[crypto] + cryptography are baked in here rather than in a consumer
+# layer: RS256 JWT signing (GitHub App token exchange and similar) is generic
+# enough to belong to the dev venv, and abi3 wheels mean no C toolchain is
+# pulled in. cryptography is pinned explicitly even though PyJWT's crypto extra
+# (and ansible-core downstream) only declare it unbounded.
 RUN python3.12 -m venv --prompt .venv .venv \
     && pip install --upgrade pip \
     && pip install \
             "PyYAML==6.0.3" \
             "pytest==9.1.1" \
             "argcomplete==3.7.0" \
+            "PyJWT[crypto]==2.13.0" \
+            "cryptography==50.0.0" \
     && activate-global-python-argcomplete --user \
     && rm -rf /var/ansible/.cache/pip
 
