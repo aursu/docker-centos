@@ -37,3 +37,15 @@ services:
       args:
         rocky: $RL8
     image: "aursu/rockylinux:${RL8TAG}-docker-cli"
+  rocky8python36:
+    build:
+      args:
+        rocky: $RL8
+      context: python
+    image: "ghcr.io/aursu/rockylinux:${RL8TAG}-python3.6"
+  rocky8python36dev:
+    build:
+      args:
+        rocky: $RL8
+      context: python/dev
+    image: "ghcr.io/aursu/rockylinux:${RL8TAG}-python3.6-dev"

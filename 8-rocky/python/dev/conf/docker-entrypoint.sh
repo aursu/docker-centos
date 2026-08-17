@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+source ~/.venv/bin/activate
+unset VIRTUAL_ENV_DISABLE_PROMPT
+
+exec "$@"
