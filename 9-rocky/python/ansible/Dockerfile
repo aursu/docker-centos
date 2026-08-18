@@ -52,8 +52,8 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 # Left as USER ansible, pip would silently fall back to a --user install into
 # ~/.local, whose bin directory is not.
 RUN /usr/bin/python3.12 -m pip install --no-cache-dir \
-        "ansible-core==2.20.5" \
-        "ansible-dev-tools==26.4.6"
+        "ansible-core==2.21.3" \
+        "ansible-dev-tools==26.8.0"
 
 USER ansible
 WORKDIR /var/ansible

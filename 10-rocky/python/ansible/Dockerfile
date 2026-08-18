@@ -14,8 +14,8 @@ RUN microdnf -y install \
 
 # Protecting Ansible secrets with SOPS
 # https://docs.ansible.com/ansible/latest/collections/community/sops/docsite/guide.html#protecting-ansible-secrets-with-sops
-RUN curl -LO https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/${SOPS_CHECKSUMS} \
-    && curl -LO https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/${SOPS_DISTRO} \
+RUN curl -fLO https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/${SOPS_CHECKSUMS} \
+    && curl -fLO https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/${SOPS_DISTRO} \
     && sha256sum -c ${SOPS_CHECKSUMS} --ignore-missing \
     && install -m0755 ${SOPS_DISTRO} /usr/local/bin/sops \
     && rm -f ${SOPS_CHECKSUMS} ${SOPS_DISTRO}
@@ -28,9 +28,6 @@ COPY --chown=ansible:ansible conf/bash /var/ansible/.bashrc.d
 COPY conf/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-USER ansible
-WORKDIR /var/ansible
-
 # Installing and upgrading Ansible with pip
 # https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible-with-pip
 #
@@ -42,10 +39,19 @@ WORKDIR /var/ansible
 #
 # The configuration file
 # https://docs.ansible.com/ansible/latest/reference_appendices/config.html#the-configuration-file
-RUN pip install \
-           "ansible-core==2.21.1" \
-           "ansible-dev-tools==26.7.1" \
-    && rm -rf /var/ansible/.cache/pip
+
+# The base image carries no virtualenv, so this installs into the system
+# site-packages under /usr/local and therefore has to run as root. That is the
+# right place for it: the packages serve every user of the image, and the
+# console scripts land in /usr/local/bin, which is on PATH in a plain `RUN`.
+# Left as USER ansible, pip would silently fall back to a --user install into
+# ~/.local, whose bin directory is not.
+RUN /usr/bin/python3.12 -m pip install --no-cache-dir \
+        "ansible-core==2.21.3" \
+        "ansible-dev-tools==26.8.0"
+
+USER ansible
+WORKDIR /var/ansible
 
 # ansible-config init --disabled -t all  > ~/.ansible.cfg
 COPY --chown=ansible:ansible conf/ansible.cfg /var/ansible/.ansible.cfg
@@ -57,3 +63,9 @@ COPY --chown=ansible:ansible conf/requirements.yml requirements.yml
 
 RUN ansible-galaxy collection install -r requirements.yml \
     && rm -f requirements.yml
+
+# Declared here, not inherited: the parent dev image no longer sets one (it
+# existed there only to activate a venv). This entrypoint still has work of its
+# own to do — it launches gpg-agent for the ansible user.
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+CMD ["/bin/bash"]
