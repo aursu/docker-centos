@@ -23,9 +23,9 @@ Five distro variants at the top level; each contains a `docker-compose.yml` and 
 ```
 .
 ├── 8-rocky/        Rocky Linux 8.10   (long-tail legacy)
-├── 9-rocky/        Rocky Linux 9.7    (current default for most consumers)
+├── 9-rocky/        Rocky Linux 9.8    (current default for most consumers)
 ├── 9-stream/       CentOS Stream 9    (forward-looking)
-├── 10-rocky/       Rocky Linux 10.1   (newest)
+├── 10-rocky/       Rocky Linux 10.2   (newest)
 ├── 10-stream/      CentOS Stream 10
 ├── .circleci/      Build pipeline config (orb-based)
 ├── .github/        cleanup.yml workflow (GHCR untagged-image cleanup)
@@ -36,7 +36,7 @@ Each variant directory has the same shape (modulo what's needed):
 
 ```
 <variant>/
-├── .env                        Pins upstream OS version, e.g. RL9TAG="9.7.20251123"
+├── .env                        Pins upstream OS version, e.g. RL9TAG="9.8.20260525.0"
 ├── docker-compose.yml          Main build services (production-tagged images)
 ├── docker-compose.web.yml      Web-role overlay services
 ├── docker-compose.webtest.yml  Test overlay (where applicable)
@@ -60,14 +60,14 @@ Each variant directory has the same shape (modulo what's needed):
 
 ## Image tag convention
 
-`<repo>:<distro-version>-<role>` — the **distro version is the source-of-truth bump point**. Example tags from `9-rocky` (current pinned `RL9TAG=9.7.20251123`):
+`<repo>:<distro-version>-<role>` — the **distro version is the source-of-truth bump point**. Example tags from `9-rocky` (current pinned `RL9TAG=9.8.20260525.0`):
 
 ```
-ghcr.io/aursu/rockylinux:9.7.20251123-base
-ghcr.io/aursu/rockylinux:9.7.20251123-scm
-ghcr.io/aursu/rockylinux:9.7.20251123-node20
-ghcr.io/aursu/rockylinux:9.7.20251123-jdk-21
-ghcr.io/aursu/rockylinux:9.7.20251123-ruby33-puppet
+ghcr.io/aursu/rockylinux:9.8.20260525.0-base
+ghcr.io/aursu/rockylinux:9.8.20260525.0-scm
+ghcr.io/aursu/rockylinux:9.8.20260525.0-node22
+ghcr.io/aursu/rockylinux:9.8.20260525.0-jdk-21
+ghcr.io/aursu/rockylinux:9.8.20260525.0-python3.12-dev
 ```
 
 The `aursu/centos:stream9-…` and `aursu/centos:stream10-…` lines use `stream<N>-<date>-<role>`. See `README.md` for the full tag inventory.
@@ -86,9 +86,9 @@ Build order within a variant: `base → scm → (everything else)`. Cross-varian
 
 ## Conventions to follow
 
-- **Version bumps touch multiple files in lockstep.** A minor OS upgrade (e.g. Rocky `9.6.20250531 → 9.7.20251123`) needs the same string replaced in `Dockerfile`s, `.github/workflows/*.yaml`, `.env`, `build/.env`, and per-build `.env` files. Pattern:
+- **Version bumps touch multiple files in lockstep.** A minor OS upgrade (e.g. Rocky `9.7.20251123 → 9.8.20260525.0`) needs the same string replaced in `Dockerfile`s, `.github/workflows/*.yaml`, `.env`, `build/.env`, and per-build `.env` files. Pattern:
   ```bash
-  sed -i 's/9.6.20250531/9.7.20251123/' \
+  sed -i 's/9.7.20251123/9.8.20260525.0/' \
     */Dockerfile* */.github/*/*.yaml */.env */build/.env */build/*/.env
   ```
   Confirm with `grep -r <OLD>` before committing.
