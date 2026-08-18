@@ -6,7 +6,7 @@ type: reference
 
 ## When you need to bump
 
-- Upstream publishes a new Rocky/CentOS Stream minor build (e.g. Rocky 9.6.20250531 → 9.7.20251123).
+- Upstream publishes a new Rocky/CentOS Stream minor build (e.g. Rocky 9.7.20251123 → 9.8.20260525.0).
 - A CVE notice tells you to rebuild against the latest upstream.
 - A scheduled refresh cadence (monthly is a reasonable default).
 
@@ -24,7 +24,7 @@ The version string appears in multiple files, and **they must move together** or
 Canonical one-liner from operator practice:
 
 ```bash
-sed -i 's/9.6.20250531/9.7.20251123/' \
+sed -i 's/9.7.20251123/9.8.20260525.0/' \
     */Dockerfile* \
     */.github/*/*.yaml \
     */.env \
@@ -39,8 +39,8 @@ sed -i 's/9.6.20250531/9.7.20251123/' \
 ## Verification
 
 ```bash
-grep -r '9.6.20250531' .   # expect: no output
-grep -r '9.7.20251123' .   # expect: matches across .env, Dockerfile, workflows
+grep -r '9.7.20251123' .   # expect: no output
+grep -r '9.8.20260525.0' .   # expect: matches across .env, Dockerfile, workflows
 ```
 
 Then run a sanity build locally for at least the `base` role:
@@ -55,18 +55,18 @@ docker compose build rocky9base
 One commit per version bump, with a clear message:
 
 ```
-Bump Rocky 9 upstream to 9.7.20251123
+Bump Rocky 9 upstream to 9.8.20260525.0
 ```
 
 If multiple distros bump in the same window, separate commits — easier to revert one independently.
 
 ## Tagging the bump (optional but recommended)
 
-CircleCI's `shorttag: true` produces a stable short-tag in addition to the moving `<distro-version>-<role>` tag. Adding a git tag at the bump commit gives you a fixed reference point for "the day we went to 9.7.20251123":
+CircleCI's `shorttag: true` produces a stable short-tag in addition to the moving `<distro-version>-<role>` tag. Adding a git tag at the bump commit gives you a fixed reference point for "the day we went to 9.8.20260525.0":
 
 ```bash
-git tag rocky9-9.7.20251123
-git push origin rocky9-9.7.20251123
+git tag rocky9-9.8.20260525.0
+git push origin rocky9-9.8.20260525.0
 ```
 
 ## What NOT to do
