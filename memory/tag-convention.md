@@ -13,15 +13,15 @@ type: reference
 Examples:
 
 ```
-ghcr.io/aursu/rockylinux:9.7.20251123-base
-ghcr.io/aursu/rockylinux:9.7.20251123-scm
-ghcr.io/aursu/rockylinux:9.7.20251123-node20
-ghcr.io/aursu/rockylinux:9.7.20251123-jdk-21
-ghcr.io/aursu/rockylinux:9.7.20251123-ruby33-puppet
-ghcr.io/aursu/centos:stream9-20240715.0-web
+ghcr.io/aursu/rockylinux:9.8.20260525.0-base
+ghcr.io/aursu/rockylinux:9.8.20260525.0-scm
+ghcr.io/aursu/rockylinux:9.8.20260525.0-node22
+ghcr.io/aursu/rockylinux:9.8.20260525.0-jdk-21
+ghcr.io/aursu/rockylinux:9.8.20260525.0-python3.12-dev
+ghcr.io/aursu/centos:stream9-20260706.0-web
 ```
 
-The `<distro-version>` part is the **upstream source-of-truth identifier** — for Rocky it's the exact minor + dated build (`9.7.20251123` = Rocky 9.7 build 2025-11-23); for CentOS Stream it's `stream<N>-<date>` (`stream9-20240715.0`).
+The `<distro-version>` part is the **upstream source-of-truth identifier** — for Rocky it's the exact minor + dated build (`9.8.20260525.0` = Rocky 9.8, upstream build 2026-05-25, `.0` a same-day respin counter); for CentOS Stream it's `stream<N>-<date>` (`stream9-20260706.0`).
 
 ## How variants pin the upstream
 
@@ -29,14 +29,14 @@ Each variant directory has a `.env` that holds the upstream pin:
 
 ```bash
 # 9-rocky/.env
-RL9="9.7.20251123"
-RL9TAG="9.7.20251123"
+RL9="9.8.20260525.0"
+RL9TAG="9.8.20260525.0"
 ```
 
 The `Dockerfile` consumes the upstream version via build-arg + the `ARG` directive:
 
 ```dockerfile
-ARG rocky=9.7.20251123
+ARG rocky=9.8.20260525.0
 FROM quay.io/rockylinux/rockylinux:${rocky}-minimal
 ```
 
@@ -52,7 +52,7 @@ So `RL9` (build-arg passed in) and `RL9TAG` (output tag suffix) are deliberately
 
 - **A bump in `.env` propagates to every image of that variant** automatically — the role layers above `base` all inherit the same `<distro-version>` prefix via the multi-stage `FROM ghcr.io/aursu/rockylinux:${RL9TAG}-scm`-style chain.
 - **The tag is immutable in practice.** Consumers that want a stable pin can use the full `<version>-<role>` tag; consumers that want to track the latest build for a major version need to do so externally (this repo does not produce `:9-base` or `:latest`-style floating tags).
-- **The upstream Quay digest** (`quay.io/rockylinux/rockylinux:<X>-minimal`) is the canonical authority for what "Rocky 9.7.20251123" means. If Quay re-publishes the same tag with different content (rare but possible), a rebuild here picks it up — the dated build suffix is best-effort, not cryptographically pinned.
+- **The upstream Quay digest** (`quay.io/rockylinux/rockylinux:<X>-minimal`) is the canonical authority for what "Rocky 9.8.20260525.0" means. If Quay re-publishes the same tag with different content (rare but possible), a rebuild here picks it up — the dated build suffix is best-effort, not cryptographically pinned.
 
 ## How to apply
 
