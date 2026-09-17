@@ -19,3 +19,18 @@ RUN --mount=type=secret,id=forge_key,required \
 	    puppet-bolt-${BOLT_VERSION} \
 		pdk-${PDK_VERSION} \
 	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
+
+RUN microdnf -y --enablerepo=crb install \
+		zlib-devel \
+		libedit-devel \
+		libyaml-devel \
+		openssl-devel \
+		libffi-devel \
+    && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
+
+RUN --mount=type=bind,source=gem-setup.sh,target=/root/bin/gem-setup.sh \
+	/root/bin/gem-setup.sh \
+		bundler \
+		hiera-eyaml
+
+RUN bundle config set --global path /root/.gem
