@@ -101,6 +101,21 @@ prune_development_files() {
     find "$gem_dir/gems" -maxdepth 2 -type f "${files[@]}" "${keep[@]}" -delete
 }
 
+# `gem update --system` installs RubyGems, and the bundler it vendors, outside
+# the gem directory — into site_ruby, where the pruning above does not reach.
+# Two things there are not code: the manual pages (this image has no man(1) to
+# read them) and the ronn sources they were generated from.
+#
+# bundler/templates is deliberately left alone: its spec/ and test/ directories
+# are the skeleton `bundle gem` copies into a newly generated gem.
+prune_manuals() {
+    local site_dir=$1
+
+    log_info "pruning manual pages installed outside the gem directory"
+    find "$site_dir" -type d -name man -prune -exec rm -rf {} +
+    find "$site_dir" -type f -name '*.ronn' -delete
+}
+
 remove_caches() {
     local gem_dir=$1 ext_dir=$2
 
@@ -121,7 +136,7 @@ remove_caches() {
 }
 
 main() {
-    local gem_dir ext_dir
+    local gem_dir ext_dir site_dir
 
     command -v gem > /dev/null || die "gem is not on PATH"
 
@@ -130,10 +145,12 @@ main() {
     # (lib64/gems/ruby), and the split is not the same on every distribution.
     gem_dir=$(gem env gemdir) || die "could not determine the gem directory"
     ext_dir=$(ruby -e 'require "rubygems"; print Gem.default_ext_dir_for(Gem.dir).to_s')
+    site_dir=$(ruby -rrbconfig -e 'print RbConfig::CONFIG["sitelibdir"]')
 
     install_gems "$@"
     remove_superseded_gems
     prune_development_files "$gem_dir" "$ext_dir"
+    prune_manuals "$site_dir"
     remove_caches "$gem_dir" "$ext_dir"
 
     log_info "gems installed in $gem_dir: $(du -sh "$gem_dir" | cut -f1)"
