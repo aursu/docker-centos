@@ -41,34 +41,38 @@ readonly KEEP_FILES=(
 )
 
 # Join a list of names into a find(1) expression: ( -name a -o -name b ... ).
-# Built as an array so no name is ever re-split or glob-expanded by the shell.
-name_expression() {
-    local -a expression=('(')
+# Built as an array so no name is ever re-split or glob-expanded by the shell,
+# and filled through a nameref (bash 4.3+) so the caller's array is written in
+# place - no subshell, no serialising the expression through a pipe. The
+# underscore keeps the nameref from colliding with a caller's variable name.
+build_find_args() {
+    local -n _result=$1
+    shift
+
     local name
 
+    _result=('(')
     for name in "$@"; do
-        [ "${#expression[@]}" -eq 1 ] || expression+=(-o)
-        expression+=(-name "$name")
+        [[ ${#_result[@]} -gt 1 ]] && _result+=('-o')
+        _result+=('-name' "$name")
     done
-
-    expression+=(')')
-    printf '%s\n' "${expression[@]}"
+    _result+=(')')
 }
 
 install_gems() {
     log_info "updating RubyGems itself"
-    gem update --no-document --system
+    gem update --no-document --system --no-user-install
 
     # Bring the gems that shipped with the distribution's ruby up to their
     # current releases. Drop this call to keep the distribution's own versions
     # — it is what pulls in the compiler and the *-devel headers at build time.
     log_info "updating the gems that came with the distribution"
-    gem update --no-document
+    gem update --no-document --no-user-install
 
-    [ "$#" -gt 0 ] || return 0
+    [[ $# -gt 0 ]] || return 0
 
     log_info "installing: $*"
-    gem install --no-document "$@"
+    gem install --no-document --no-user-install "$@"
 }
 
 # `gem update --system` installs rubygems-update to do its job and leaves it
@@ -81,17 +85,18 @@ remove_superseded_gems() {
 
 prune_development_files() {
     local gem_dir=$1 ext_dir=$2
-    local -a roots=("$gem_dir/gems") directories=() files=() keep=() pattern
+    local -a roots=("$gem_dir/gems") directories=() files=() keep=()
+    local pattern
 
-    if [ -d "$ext_dir" ]; then
+    if [[ -d $ext_dir ]]; then
         roots+=("$ext_dir")
     fi
 
-    mapfile -t directories < <(name_expression "${PRUNE_DIRS[@]}")
-    mapfile -t files < <(name_expression "${PRUNE_FILES[@]}")
+    build_find_args directories "${PRUNE_DIRS[@]}"
+    build_find_args files "${PRUNE_FILES[@]}"
 
     for pattern in "${KEEP_FILES[@]}"; do
-        keep+=(! -name "$pattern")
+        keep+=('!' '-name' "$pattern")
     done
 
     log_info "pruning tests, documentation and extension sources"
@@ -125,7 +130,7 @@ remove_caches() {
     # creates whether or not anything was written into them.
     rm -rf "$gem_dir/cache" "$gem_dir/doc" "$gem_dir/build_info"
 
-    if [ -d "$ext_dir" ]; then
+    if [[ -d $ext_dir ]]; then
         rm -f "$ext_dir"/*/gem_make.out "$ext_dir"/*/mkmf.log
     fi
 
