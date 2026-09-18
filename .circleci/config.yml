@@ -394,6 +394,15 @@ workflows:
           requires:
             - rocky10python312
       - docker-rpmbuild/image:
+          name: rocky10python312cdev
+          compose_file: 10-rocky/docker-compose.dev.yml
+          build_service: rocky10python312cdev
+          registry: ghcr.io
+          context:
+            - github-packages
+          requires:
+            - rocky10python312dev
+      - docker-rpmbuild/image:
           name: rocky10ansible
           compose_file: 10-rocky/docker-compose.dev.yml
           build_service: rocky10ansible

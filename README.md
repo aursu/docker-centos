@@ -84,6 +84,7 @@ Full per-image detail in [9-rocky/README.md](9-rocky/README.md).
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-ruby33-puppet`
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-python3.12`
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-python3.12-dev` *(pytest + PyJWT[crypto]/cryptography venv)*
+- `ghcr.io/aursu/rockylinux:10.2.20260525.0-python3.12-cdev` *(+ C toolchain: gcc/make/binutils, libcmocka-devel, gcov)*
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-ansible`
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-node22`
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-node24`
