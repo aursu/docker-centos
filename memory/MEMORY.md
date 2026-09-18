@@ -10,5 +10,6 @@ Generic, project-neutral knowledge about this repo. Travels with the repo so any
 - [Version-bump workflow](version-bump-workflow.md) — multi-file sed pattern for distro minor-version upgrades, verification grep
 - [Role taxonomy](role-taxonomy.md) — what each role layer (base, scm, web, nginx, node, openjdk, ruby, python, systemd, tomcat, docker, puppet) is meant to contain
 - [CircleCI build pipeline](circleci-pipeline.md) — `aursu/rpmbuild@1.1.36` orb usage, base → scm → others dependency chain, GHCR push
+- [Version pins that rot](version-pins-that-rot.md) — a micro pin on one half of a package pair stops depsolving; `java-latest-openjdk` changes major and old builds vanish — pin the versioned stable package; how to query what is actually available
 - [Ruby gem layer in the puppet images](ruby-gem-layer.md) — gems installed by a bind-mounted `gem-setup.sh`; the three roots a cleanup must cover (gem dir, ext dir, `site_ruby`); what must not be pruned; how a change is verified
 - [Secrets directory pattern](secrets-directory.md) — what `secrets/` is for, what's gitignored, what kind of material lives there
