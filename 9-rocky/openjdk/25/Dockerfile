@@ -5,5 +5,5 @@ RUN microdnf -y install \
 		bzip2 \
 		unzip \
 		xz \
-		java-latest-openjdk-1:26.0.2.0.10 \
+		java-25-openjdk-1:25.0.4.1.1 \
     && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*

@@ -55,7 +55,7 @@ Full per-image detail in [9-rocky/README.md](9-rocky/README.md).
 
 ### language runtimes
 - `aursu/rockylinux:9.8.20260525.0-jdk-21` 🐳
-- `aursu/rockylinux:9.8.20260525.0-jdk-26` 🐳
+- `aursu/rockylinux:9.8.20260525.0-jdk-25` 🐳
 - `aursu/rockylinux:9.8.20260525.0-ruby31` 🐳
 - `aursu/rockylinux:9.8.20260525.0-ruby33` 🐳
 - `aursu/rockylinux:9.8.20260525.0-pdk` 🐳 *(no CI job — built only via `docker-compose.dev.yml`)*
@@ -65,7 +65,7 @@ Full per-image detail in [9-rocky/README.md](9-rocky/README.md).
 
 > `tomcat/Dockerfile` is present but **orphaned** — no compose service, no CI
 > job, and it builds `FROM …-jdk-22` which 9-rocky does not produce (only
-> jdk-21 / jdk-26). It cannot build as-is.
+> jdk-21 / jdk-25). It cannot build as-is.
 
 ---
 

@@ -24,12 +24,12 @@ quay …:9.8…-minimal
         └── scm ──┬── docker-cli             │    ├── node22 / node24
                   ├── systemd                │    └── (webdev) ── node22dev / node24dev
                   ├── jdk-21                  │
-                  ├── jdk-26 ── tomcat*        └── (webdev = web FROM scm, dev overlay)
+                  ├── jdk-25 ── tomcat*        └── (webdev = web FROM scm, dev overlay)
                   ├── ruby31
                   ├── ruby33 ── pdk
                   └── python3.12 ── python3.12-dev (pytest) ── ansible
 
-  * tomcat: Dockerfile fixed (FROM jdk-26), but not yet wired into compose/CI
+  * tomcat: Dockerfile fixed (FROM jdk-25), but not yet wired into compose/CI
 ```
 
 Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/…`.
@@ -119,9 +119,9 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
 - **Adds** same Node install plus `npm 11.14.1` (via npmjs install.sh),
   `corepack` + `yarn 4.14.1`, `tar`, `which`. Carries the source label.
 
-### jdk-21 / jdk-26 — `aursu/rockylinux:9.8.20260525.0-jdk-21` / `-jdk-26` 🐳
+### jdk-21 / jdk-25 — `aursu/rockylinux:9.8.20260525.0-jdk-21` / `-jdk-25` 🐳
 [openjdk/21 Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/openjdk/21/Dockerfile) ·
-[openjdk/26 Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/openjdk/26/Dockerfile)
+[openjdk/25 Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/openjdk/25/Dockerfile)
 - **FROM** `-scm`
 - **Adds** `bzip2 unzip xz` + `java-21-openjdk 21.0.11.0.10` /
   `java-latest-openjdk 26.0.1.0.8` (exact-pinned).
@@ -179,7 +179,7 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
 
 ### tomcat — `aursu/rockylinux:9.8.20260525.0-tomcat` 🐳 *(not wired into compose/CI yet)*
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/tomcat/Dockerfile)
-- **FROM** `-jdk-26`
+- **FROM** `-jdk-25`
 - **Adds** `tomcat` (pulls tomcat-lib, javapackages-tools, and ecj/java-8 for
   JSP); MySQL Connector/J `9.7.0` fetched + signature-checked from MySQL and
   placed on the shared classpath via `$CLASSPATH`. Carries the source label.

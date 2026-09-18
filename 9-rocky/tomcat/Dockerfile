@@ -1,8 +1,8 @@
 ARG rocky=9.8.20260525.0
-# NOTE: jdk-26 is currently published bare (Docker Hub). When the registry
+# NOTE: jdk-25 is currently published bare (Docker Hub). When the registry
 # drift is fixed (see 9-rocky/RECOMMENDATIONS.md P1.1), move this to
-# ghcr.io/aursu/rockylinux together with jdk-26.
-FROM aursu/rockylinux:${rocky}-jdk-26
+# ghcr.io/aursu/rockylinux together with jdk-25.
+FROM aursu/rockylinux:${rocky}-jdk-25
 
 ARG MYSQL_CONN_NAME=mysql-connector-j-9.7.0
 ARG MYSQL_CONN_RPM=${MYSQL_CONN_NAME}-1.el9.noarch.rpm
@@ -17,7 +17,7 @@ ENV JAVA_HOME=/usr/lib/jvm/jre
 ENV CLASSPATH=/usr/share/java/${MYSQL_CONN_NAME}.jar
 
 # `tomcat` pulls its own runtime deps: tomcat-lib, javapackages-tools
-# (java-functions + build-classpath) and ecj (JSP compiler). The jdk-26 base
+# (java-functions + build-classpath) and ecj (JSP compiler). The jdk-25 base
 # stays the highest-priority `jre` alternative, so Tomcat runs on JDK 26.
 RUN microdnf -y install tomcat \
     && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
