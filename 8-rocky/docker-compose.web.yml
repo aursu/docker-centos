@@ -29,18 +29,18 @@ services:
       args:
         rocky: $RL8
     image: "ghcr.io/aursu/rockylinux:${RL8TAG}-httpd"
-  rocky8node18:
+  rocky8node22:
     build:
-      context: node/18
+      context: node/22
       args:
         rocky: $RL8
-    image: "aursu/rockylinux:${RL8TAG}-node18"
-  rocky8node20:
+    image: "ghcr.io/aursu/rockylinux:${RL8TAG}-node22"
+  rocky8node24:
     build:
-      context: node/20
+      context: node/24
       args:
         rocky: $RL8
-    image: "aursu/rockylinux:${RL8TAG}-node20"
+    image: "ghcr.io/aursu/rockylinux:${RL8TAG}-node24"
   rocky8ruby31:
     build:
       context: ruby/31

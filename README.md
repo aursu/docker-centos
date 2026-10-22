@@ -99,7 +99,7 @@ Full per-image detail in [9-rocky/README.md](9-rocky/README.md).
 - `ghcr.io/aursu/rockylinux:8.10.20240528-scm`
 - `ghcr.io/aursu/rockylinux:8.10.20240528-web`
 - `ghcr.io/aursu/rockylinux:8.10.20240528-httpd`
-- `aursu/rockylinux:8.10.20240528-webdev` 🐳
+- `ghcr.io/aursu/rockylinux:8.10.20240528-webdev`
 - `aursu/rockylinux:8.10.20240528-systemd` 🐳
 - `aursu/rockylinux:8.10.20240528-docker-cli` 🐳
 - `aursu/rockylinux:8.10.20240528-nginx` 🐳
@@ -109,10 +109,10 @@ Full per-image detail in [9-rocky/README.md](9-rocky/README.md).
 - `aursu/rockylinux:8.10.20240528-tomcat` 🐳
 - `aursu/rockylinux:8.10.20240528-ruby31` 🐳
 - `aursu/rockylinux:8.10.20240528-ruby31-puppet` 🐳
-- `aursu/rockylinux:8.10.20240528-node18` 🐳
-- `aursu/rockylinux:8.10.20240528-node18dev` 🐳
-- `aursu/rockylinux:8.10.20240528-node20` 🐳
-- `aursu/rockylinux:8.10.20240528-node20dev` 🐳
+- `ghcr.io/aursu/rockylinux:8.10.20240528-node22`
+- `ghcr.io/aursu/rockylinux:8.10.20240528-node24`
+- `ghcr.io/aursu/rockylinux:8.10.20240528-node22dev`
+- `ghcr.io/aursu/rockylinux:8.10.20240528-node24dev`
 
 ---
 

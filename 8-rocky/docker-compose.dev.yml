@@ -11,19 +11,19 @@ services:
       args:
         rocky: $RL8
         image: scm
-    image: "aursu/rockylinux:${RL8TAG}-webdev"
-  rocky8node18dev:
+    image: "ghcr.io/aursu/rockylinux:${RL8TAG}-webdev"
+  rocky8node22dev:
     build:
       args:
         rocky: $RL8
-      context: node/18/dev
-    image: "aursu/rockylinux:${RL8TAG}-node18dev"
-  rocky8node20dev:
+      context: node/22/dev
+    image: "ghcr.io/aursu/rockylinux:${RL8TAG}-node22dev"
+  rocky8node24dev:
     build:
       args:
         rocky: $RL8
-      context: node/20/dev
-    image: "aursu/rockylinux:${RL8TAG}-node20dev"
+      context: node/24/dev
+    image: "ghcr.io/aursu/rockylinux:${RL8TAG}-node24dev"
   rocky8ruby31puppet:
     build:
       args:
