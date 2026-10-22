@@ -38,6 +38,11 @@ EOF
 
 RUN rpm --import https://rpm.nodesource.com/gpgkey/ns-operations-public.key
 
+# Corepack's activated yarn must be visible to every uid (the image runs as
+# `node` or an arbitrary --user), not only to root's ~/.cache; world-writable
+# so a project pinning another yarn via packageManager can still download it.
+ENV COREPACK_HOME=/usr/local/share/corepack
+
 RUN microdnf -y install \
     curl \
     nodejs-${NODEJS_VERSION} \
@@ -47,6 +52,7 @@ RUN microdnf -y install \
   && curl -f -L -s https://www.npmjs.com/install.sh | sh \
   && corepack enable \
   && corepack prepare yarn@${YARN_VERSION} --activate \
+  && chmod -R a+rwX ${COREPACK_HOME} \
   && rm -rf /root/.npm \
   && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
