@@ -109,7 +109,7 @@ acceptable and don't need per-image generation).
 
 ### 7. Exact RPM pins age out of upstream repos
 Many images pin exact builds (`java-21-openjdk-1:21.0.11.0.10`,
-`nodejs-22.23.0`, `docker-ce-cli-29.4.3`, `openresty-1.29.2.3`,
+`nodejs-22.23.4`, `docker-ce-cli-29.4.3`, `openresty-1.29.2.3`,
 `puppet-agent-8.16.0`). When upstream rotates the repo, the exact NEVR
 disappears and the build breaks — even without any change here.
 

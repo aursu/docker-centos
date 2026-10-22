@@ -109,15 +109,15 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
 [node/24 Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/node/24/Dockerfile)
 - **FROM** `-web`
 - **Adds** NodeSource repos (nodejs + nsolid), imports the NS GPG key,
-  installs `nodejs 22.23.0` / `24.17.0`; creates uid/gid **1000** `node`
+  installs `nodejs 22.23.4` / `24.22.1`; creates uid/gid **1000** `node`
   user; `docker-entrypoint.sh`. Carries the source label.
 
 ### node22dev / node24dev — `ghcr.io/aursu/rockylinux:9.8.20260525.0-node22dev` / `-node24dev`
 [node/22/dev Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/node/22/dev/Dockerfile) ·
 [node/24/dev Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/node/24/dev/Dockerfile)
 - **FROM** `-webdev`
-- **Adds** same Node install plus `npm 11.14.1` (via npmjs install.sh),
-  `corepack` + `yarn 4.14.1`, `tar`, `which`. Carries the source label.
+- **Adds** same Node install plus `npm 11.21.1` (via npmjs install.sh),
+  `corepack` + `yarn 4.18.1`, `tar`, `which`. Carries the source label.
 
 ### jdk-21 / jdk-25 — `aursu/rockylinux:9.8.20260525.0-jdk-21` / `-jdk-25` 🐳
 [openjdk/21 Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/openjdk/21/Dockerfile) ·
