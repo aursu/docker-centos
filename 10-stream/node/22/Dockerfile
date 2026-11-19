@@ -1,4 +1,4 @@
-ARG centos=stream10-20260707.1
+ARG centos=stream10-20261118.0
 FROM aursu/centos:${centos}-web
 
 COPY docker-entrypoint.sh /usr/local/libexec/
@@ -8,7 +8,7 @@ RUN groupadd -g 1000 node \
   && chmod +x /usr/local/libexec/docker-entrypoint.sh
 
 RUN microdnf -y install \
-      nodejs-1:22.16.0 \
+      nodejs-1:22.23.4 \
     && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
 ENTRYPOINT ["/usr/local/libexec/docker-entrypoint.sh"]

@@ -13,7 +13,7 @@ services:
     image: "aursu/centos:${OS9TAG}-scm"
   stream9jdk:
     build:
-      context: openjdk/22
+      context: openjdk/25
       args:
         centos: $OS9
-    image: "aursu/centos:${OS9TAG}-jdk-22"
+    image: "aursu/centos:${OS9TAG}-jdk-25"

@@ -47,8 +47,9 @@ that when a major disappears the role is renamed, not repaired — the published
 tag carries the major in its name, so the rename reaches the compose service,
 the tag inventories in the READMEs, and every image built `FROM` it.
 
-Still carrying the same trap, unfixed: `8-rocky/openjdk/24` and
-`9-stream/openjdk/22` both pin a `java-latest-openjdk` build.
+Still carrying the same trap, unfixed: `8-rocky/openjdk/24` pins a
+`java-latest-openjdk` build. (`9-stream/openjdk/22` was renamed to
+`openjdk/25` with `java-25-openjdk` in 2026-11.)
 
 ## Find out what is available instead of guessing
 

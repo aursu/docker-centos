@@ -1,7 +1,7 @@
-# curl  https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-Container-Minimal-10-20250520.0.x86_64.tar.xz | docker load
-# docker tag centos-stream-container-minimal-10-20250520.0.x86_64:latest aursu/centos:stream-container-minimal-10-20250520.0.x86_64
-# curl https://cloud.centos.org/centos/10-stream/x86_64/images/CentOS-Stream-Container-Minimal-10-20260707.1.x86_64.tar.xz |  docker import - aursu/centos:stream-container-minimal-10-20260707.1.x86_64
-FROM aursu/centos:stream-container-minimal-10-20260707.1.x86_64
+# Parent: CentOS Stream Container Minimal 10 OCI image, built into
+# aursu/centos:stream-container-minimal-10-<build>.x86_64 by the procedure in
+# README.md, "CentOS Stream base images".
+FROM aursu/centos:stream-container-minimal-10-20261118.0.x86_64
 
 # no weak dependencies
 COPY system/etc/dnf/dnf.conf /etc/dnf/dnf.conf

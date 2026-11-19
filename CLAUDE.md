@@ -13,7 +13,7 @@ This repo produces parent / role-based images that downstream projects build on 
 | Build tool | Docker / docker-compose |
 | CI | CircleCI (`aursu/rpmbuild` orb v1.1.37) |
 | Registry target | `ghcr.io/aursu/*` (image-source label points back at this repo) |
-| Source base images | `quay.io/rockylinux/rockylinux:<version>-minimal` + Quay CentOS Stream equivalents |
+| Source base images | `quay.io/rockylinux/rockylinux:<version>-minimal`; Stream: `aursu/centos:stream-container-minimal-<N>-<build>.x86_64`, built from the upstream OCI image (README, "CentOS Stream base images") |
 | Branch | single `master`, no env-* branches |
 
 ## Layout

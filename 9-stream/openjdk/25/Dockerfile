@@ -1,9 +1,9 @@
-ARG centos=stream9-20260706.0
+ARG centos=stream9-20261118.0
 FROM aursu/centos:${centos}-scm
 
 RUN microdnf -y install \
 		bzip2 \
 		unzip \
 		xz \
-		java-latest-openjdk-22.0.2.0.9 \
+		java-25-openjdk-1:25.0.4.1.1 \
     && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
