@@ -10,7 +10,7 @@ type: reference
 
 ```yaml
 orbs:
-  docker-rpmbuild: aursu/rpmbuild@1.1.36
+  docker-rpmbuild: aursu/rpmbuild@1.1.38
 
 workflows:
   dockercentos:
@@ -39,6 +39,10 @@ only: CI keeps building and pushing the previous version's tags.
 
 **An OS bump therefore needs a new orb release** with the executor
 environment updated, and `.circleci/config.yml` moved to that orb version.
+The orb releases only when the head commit subject on its `master` carries
+`[semver:patch]` (or minor/major), so its PRs are merged with rebase or
+squash, never a merge commit; see the orb's README, "Releasing". Move
+`.circleci/config.yml` only after the new version shows up in the registry.
 To see what an orb version pins:
 
 ```sh
@@ -52,7 +56,7 @@ A variant whose base updates `rocky-release` (10-rocky) reports the *current*
 point release in `/etc/rocky-release` even when it was built from an older
 base. So that file is not evidence of which base was used.
 
-## The orb (`aursu/rpmbuild@1.1.37`)
+## The orb (`aursu/rpmbuild@1.1.38`)
 
 The `docker-rpmbuild/image` task does:
 

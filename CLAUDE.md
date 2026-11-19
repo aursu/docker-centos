@@ -74,7 +74,7 @@ The `aursu/centos:stream9-…` and `aursu/centos:stream10-…` lines use `stream
 
 ## Build pipeline (CircleCI)
 
-`.circleci/config.yml` defines one `workflows.dockercentos` job per `(variant × role)` combo. Each job uses the `aursu/rpmbuild@1.1.37` orb's `docker-rpmbuild/image` task with:
+`.circleci/config.yml` defines one `workflows.dockercentos` job per `(variant × role)` combo. Each job uses the `aursu/rpmbuild@1.1.38` orb's `docker-rpmbuild/image` task with:
 
 - `compose_file`: which variant's `docker-compose.yml`
 - `build_service`: which compose service
