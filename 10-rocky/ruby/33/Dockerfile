@@ -1,7 +1,7 @@
 ARG rocky=10.2.20260525.0
 FROM ghcr.io/aursu/rockylinux:${rocky}-scm
 
-ARG RUBY_VERSION="3.3.10"
+ARG RUBY_VERSION="3.3.13"
 
 RUN microdnf -y install \
 		--nodocs \
