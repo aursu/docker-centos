@@ -1,4 +1,4 @@
-ARG rocky=9.8.20260525.0
+ARG rocky=9.9.20261112.0
 FROM ghcr.io/aursu/rockylinux:${rocky}-python3.12
 
 # No virtualenv here. A container is already the isolation boundary, and the

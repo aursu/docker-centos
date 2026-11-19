@@ -1,4 +1,4 @@
-ARG rocky=9.8.20260525.0
+ARG rocky=9.9.20261112.0
 FROM ghcr.io/aursu/rockylinux:${rocky}-scm
 
 # python3.12 is the ONLY interpreter here. el9's `python3` package is 3.9, and
