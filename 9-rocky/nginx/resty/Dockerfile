@@ -6,8 +6,8 @@ RUN curl -L https://openresty.org/package/rocky/openresty2.repo -o /tmp/openrest
 	&& mv /tmp/openresty.repo /etc/yum.repos.d/openresty.repo
 
 RUN microdnf -y install \
-		openresty-1.29.2.3 \
-		openresty-debug \
+		openresty-1.31.8.1 \
+		openresty-debug-1.31.8.1 \
 	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db* \
 	&& mkdir -p /usr/local/openresty/nginx/conf/conf.d
 

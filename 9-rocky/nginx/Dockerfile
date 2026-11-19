@@ -2,7 +2,7 @@ ARG rocky=9.9.20261112.0
 ARG image=web
 FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 
-ARG NGINX_VERSION="1.31.1"
+ARG NGINX_VERSION="1.31.9"
 
 COPY system/etc/yum.repos.d/nginx.repo /etc/yum.repos.d/nginx.repo
 

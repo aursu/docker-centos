@@ -3,9 +3,9 @@ ARG rocky=9.9.20261112.0
 ARG image=scm
 FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 
-ARG DOCKER_VERSION="29.4.3"
-ARG COMPOSE_VERSION="5.1.3"
-ARG SCOUT_VERSION="1.21.0"
+ARG DOCKER_VERSION="29.10.0"
+ARG COMPOSE_VERSION="5.8.0"
+ARG SCOUT_VERSION="1.29.0"
 # source: https://github.com/docker/scout-cli/releases (verified against the release checksums file)
 ARG SCOUT_URL="https://github.com/docker/scout-cli/releases/download/v${SCOUT_VERSION}"
 
