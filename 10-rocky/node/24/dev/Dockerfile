@@ -3,8 +3,8 @@ ARG image=webdev
 FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 
 ARG NODE_VERSION="24.x"
-ARG NODEJS_VERSION="24.22.1"
-ARG NPM_VERSION="11.21.1"
+ARG NODEJS_VERSION="24.22.3"
+ARG NPM_VERSION="12.2.3"
 ARG YARN_VERSION="4.18.1"
 
 LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
