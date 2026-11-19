@@ -20,5 +20,12 @@ RUN set -ex \
 		docker-compose-plugin-${COMPOSE_VERSION} \
 		docker-model-plugin-${MODEL_VERSION} \
 		skopeo \
-	&& curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh -s -- -b /usr/libexec/docker/cli-plugins v${SCOUT_VERSION} \
+		tar \
+	&& scout_tmp="$(mktemp -d)" && cd "$scout_tmp" \
+	&& curl -fsSL -O "${SCOUT_URL}/docker-scout_${SCOUT_VERSION}_linux_amd64.tar.gz" \
+	&& curl -fsSL -O "${SCOUT_URL}/docker-scout_${SCOUT_VERSION}_checksums.txt" \
+	&& sha256sum --ignore-missing -c "docker-scout_${SCOUT_VERSION}_checksums.txt" \
+	&& tar -xzf "docker-scout_${SCOUT_VERSION}_linux_amd64.tar.gz" docker-scout \
+	&& install -m 0755 docker-scout /usr/libexec/docker/cli-plugins/docker-scout \
+	&& cd / && rm -rf "$scout_tmp" \
 	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
