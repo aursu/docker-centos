@@ -29,13 +29,36 @@ workflows:
 
 One job entry per `(variant × role)` combination. Cross-variant builds run in parallel; within a variant, `base → scm → others` is enforced via `requires:`.
 
-## The orb (`aursu/rpmbuild@1.1.36`)
+## The orb pins the OS versions, not `.env`
+
+The orb's `default` executor sets `RL8`, `RL8TAG`, `RL9`, `RL9TAG`, `RL10`,
+`RL10TAG`, `OS9`, `OS9TAG`, `OS10` and `OS10TAG` as **environment
+variables**. Compose ranks the shell environment above the `.env` file, so in
+CI these values win. Bumping `<variant>/.env` alone changes local builds
+only: CI keeps building and pushing the previous version's tags.
+
+**An OS bump therefore needs a new orb release** with the executor
+environment updated, and `.circleci/config.yml` moved to that orb version.
+To see what an orb version pins:
+
+```sh
+curl -fsS https://circleci.com/graphql-unstable -H 'Content-Type: application/json' \
+  -d '{"query":"query { orbVersion(orbVersionRef: \"aursu/rpmbuild@<ver>\") { source } }"}' \
+  | python3 -c 'import json,sys;print(json.load(sys.stdin)["data"]["orbVersion"]["source"])' \
+  | sed -n '/^executors:/,/machine:/p'
+```
+
+A variant whose base updates `rocky-release` (10-rocky) reports the *current*
+point release in `/etc/rocky-release` even when it was built from an older
+base. So that file is not evidence of which base was used.
+
+## The orb (`aursu/rpmbuild@1.1.37`)
 
 The `docker-rpmbuild/image` task does:
 
 1. Check out the repo.
 2. Set up docker-buildx with multi-platform support.
-3. Read `.env` from the variant directory (so `RLxTAG` is populated).
+3. Run in the `default` executor, whose environment supplies `RLx`/`RLxTAG`/`OSx`/`OSxTAG` (see above). Compose still reads `.env`, but the executor values override it.
 4. `docker compose -f <compose_file> build <build_service>`.
 5. Tag the result both as the full `<distro-version>-<role>` and (if `shorttag: true`) a short variant.
 6. Push to the configured `registry:` (here `ghcr.io`).
