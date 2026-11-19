@@ -11,7 +11,7 @@ This repo produces parent / role-based images that downstream projects build on 
 | Aspect | Choice |
 |---|---|
 | Build tool | Docker / docker-compose |
-| CI | CircleCI (`aursu/rpmbuild` orb v1.1.36) |
+| CI | CircleCI (`aursu/rpmbuild` orb v1.1.37) |
 | Registry target | `ghcr.io/aursu/*` (image-source label points back at this repo) |
 | Source base images | `quay.io/rockylinux/rockylinux:<version>-minimal` + Quay CentOS Stream equivalents |
 | Branch | single `master`, no env-* branches |
@@ -74,7 +74,7 @@ The `aursu/centos:stream9-…` and `aursu/centos:stream10-…` lines use `stream
 
 ## Build pipeline (CircleCI)
 
-`.circleci/config.yml` defines one `workflows.dockercentos` job per `(variant × role)` combo. Each job uses the `aursu/rpmbuild@1.1.36` orb's `docker-rpmbuild/image` task with:
+`.circleci/config.yml` defines one `workflows.dockercentos` job per `(variant × role)` combo. Each job uses the `aursu/rpmbuild@1.1.37` orb's `docker-rpmbuild/image` task with:
 
 - `compose_file`: which variant's `docker-compose.yml`
 - `build_service`: which compose service
@@ -85,6 +85,8 @@ The `aursu/centos:stream9-…` and `aursu/centos:stream10-…` lines use `stream
 Build order within a variant: `base → scm → (everything else)`. Cross-variant builds run in parallel.
 
 ## Conventions to follow
+
+- **The orb pins the OS versions for CI.** Its executor sets `RLx`/`RLxTAG`/`OSx`/`OSxTAG`, which override `.env` — an OS bump is not live in CI until a new `aursu/rpmbuild` orb release carries it and `.circleci/config.yml` uses that release. See [memory/circleci-pipeline.md](memory/circleci-pipeline.md).
 
 - **Version bumps touch multiple files in lockstep.** A minor OS upgrade (e.g. Rocky `9.7.20251123 → 9.8.20260525.0`) needs the same string replaced in `Dockerfile`s, `.github/workflows/*.yaml`, `.env`, `build/.env`, and per-build `.env` files. Pattern:
   ```bash
