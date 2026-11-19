@@ -34,10 +34,10 @@ RUN microdnf -y install \
 # packages now serve every user, so the completion should too.
 RUN /usr/bin/python3.12 -m pip install --no-cache-dir \
             "PyYAML==6.0.3" \
-            "pytest==9.1.1" \
-            "argcomplete==3.7.0" \
-            "PyJWT[crypto]==2.13.0" \
-            "cryptography==50.0.0" \
+            "pytest==9.2.0" \
+            "argcomplete==3.7.2" \
+            "PyJWT[crypto]==2.15.1" \
+            "cryptography==50.0.2" \
     && activate-global-python-argcomplete --dest=/etc/bash_completion.d
 
 USER ansible
