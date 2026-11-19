@@ -61,3 +61,9 @@ services:
       args:
         rocky: $RL10
     image: "ghcr.io/aursu/rockylinux:${RL10TAG}-docker-cli"
+  rocky10gh:
+    build:
+      context: gh
+      args:
+        rocky: $RL10
+    image: "ghcr.io/aursu/rockylinux:${RL10TAG}-gh"
