@@ -75,6 +75,7 @@ Full per-image detail in [9-rocky/README.md](9-rocky/README.md).
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-scm`
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-systemd`
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-docker-cli`
+- `ghcr.io/aursu/rockylinux:10.2.20260525.0-gh` *(GitHub CLI, version pinned from the latest-only gh-cli repo)*
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-web`
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-webdev`
 - `ghcr.io/aursu/rockylinux:10.2.20260525.0-httpd`

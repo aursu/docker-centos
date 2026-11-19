@@ -331,6 +331,15 @@ workflows:
           requires:
             - rocky10scm
       - docker-rpmbuild/image:
+          name: rocky10gh
+          compose_file: 10-rocky/docker-compose.dev.yml
+          build_service: rocky10gh
+          registry: ghcr.io
+          context:
+            - github-packages
+          requires:
+            - rocky10scm
+      - docker-rpmbuild/image:
           name: rocky8node22dev
           compose_file: 8-rocky/docker-compose.dev.yml
           build_service: rocky8node22dev

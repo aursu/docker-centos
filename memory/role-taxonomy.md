@@ -13,6 +13,7 @@ Each variant directory (`8-rocky/`, `9-rocky/`, `9-stream/`, `10-rocky/`, `10-st
 | `base/` | Minimal OS install: security updates, ca-certificates, basic tools, locale | upstream Quay minimal |
 | `scm/` | + git, curl, jq, build essentials, common SCM/CI tooling | `<version>-base` |
 | `docker/` | + Docker CLI (no daemon) + buildx/compose/scout plugins + **skopeo** (OCI image inspect/copy/delete) | `<version>-scm` |
+| `gh/` | + GitHub CLI (`gh`) from the vendor RPM repo, version pinned (repo keeps only the latest — a stale pin fails the build) | `<version>-scm` |
 | `systemd/` | + systemd init (for VM-like containers; requires `--privileged`) | `<version>-base` |
 | `httpd/` | + Apache HTTP server | `<version>-base` (or `-scm`) |
 | `nginx/` | + nginx | `<version>-base` |
