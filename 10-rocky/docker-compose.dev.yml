@@ -3,25 +3,25 @@ services:
     build:
       context: systemd
       args:
-        centos: $RL10
+        rocky: $RL10
     image: "ghcr.io/aursu/rockylinux:${RL10TAG}-systemd"
   rocky10webdev:
     build:
       context: web
       args:
-        centos: $RL10
+        rocky: $RL10
         image: gh
     image: "ghcr.io/aursu/rockylinux:${RL10TAG}-webdev"
   rocky10node22dev:
     build:
       args:
-        centos: $RL10
+        rocky: $RL10
       context: node/22/dev
     image: "ghcr.io/aursu/rockylinux:${RL10TAG}-node22dev"
   rocky10node24dev:
     build:
       args:
-        centos: $RL10
+        rocky: $RL10
       context: node/24/dev
     image: "ghcr.io/aursu/rockylinux:${RL10TAG}-node24dev"
   rocky10python312:
