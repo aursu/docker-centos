@@ -1,6 +1,6 @@
 ---
 name: Version pins that rot
-description: Which package pins in these Dockerfiles break on their own over time, why, and what to pin instead
+description: Which package pins in these Dockerfiles break on their own over time, why, and how to pin instead (exact, pairs together)
 type: reference
 ---
 
@@ -19,18 +19,21 @@ package python-unversioned-command-3.12.14 requires python3 = 3.12.14,
 but none of the providers can be installed
 ```
 
-**Rule:** pin what the image's *name* promises, not the micro version the
-distro rebuilds. On a distro whose platform python already is the wanted minor
-version, take both packages unpinned and assert the identity in the same layer,
-so a distro that ever moves it fails the build loudly instead of publishing a
-mislabelled image:
+The defect was the *half* pin, not the pin. **Rule:** every package is pinned
+to an exact version, and packages that must move together are pinned together
+to the same version, bumped in one change:
 
 ```dockerfile
-	&& python3 --version | grep -q '^Python 3\.12\.' \
+		python3-3.12.16 \
+		python-unversioned-command-3.12.16 \
 ```
 
-The pin is only necessary where the wanted interpreter is *not* the platform
-one — there, install the versioned package (`python3.12`) and never the
+No `--version | grep` assert alongside: the exact pin already says which
+version the image carries. A pin that stops resolving fails the build, and is
+bumped to what the repository now offers (query below).
+
+Where the wanted interpreter is *not* the platform one (el9: platform python
+is 3.9), install the versioned package (`python3.12-<version>`) and never the
 unversioned command, which would drag the platform interpreter in behind it.
 
 ## `java-latest-openjdk` is a moving target
