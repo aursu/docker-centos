@@ -59,14 +59,5 @@ services:
       args:
         rocky: $RL9
         image: ruby33
-        DNF_ENV_FILE: /run/secrets/forge_key
       context: ruby/puppet
-      secrets:
-        - forge_key
-    secrets:
-      - forge_key
     image: "aursu/rockylinux:${RL9TAG}-pdk"
-
-secrets:
-  forge_key:
-    file: secrets/forge-key.sh

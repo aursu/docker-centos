@@ -2,23 +2,10 @@ ARG rocky=9.9.20261112.0
 ARG image=ruby33
 FROM aursu/rockylinux:${rocky}-${image}
 
-ARG platform=puppet8
-ARG DNF_ENV_FILE=/dev/null
-ARG AGENT_VERSION="8.16.0"
-ARG BOLT_VERSION="5.0.1"
-ARG PDK_VERSION="3.6.1.1"
-
-RUN --mount=type=secret,id=forge_key,required \
-	rpm -ivh https://yum-puppetcore.puppet.com/public/${platform}-release-el-9.noarch.rpm \
-		https://yum.puppet.com/puppet-tools-release-el-9.noarch.rpm \
-	&& echo username=forge-key >> /etc/yum.repos.d/${platform}-release.repo \
-	&& echo 'password=$API_KEY' >> /etc/yum.repos.d/${platform}-release.repo \
-	&& source ${DNF_ENV_FILE} \
-    && microdnf -y install \
-		puppet-agent-${AGENT_VERSION} \
-	    puppet-bolt-${BOLT_VERSION} \
-		pdk-${PDK_VERSION} \
-	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
+ARG platform=openvox8
+ARG AGENT_VERSION="8.34.0"
+ARG BOLT_VERSION="5.6.0"
+ARG PDK_VERSION="3.4.0.1"
 
 RUN microdnf -y --enablerepo=crb install \
 		zlib-devel \
@@ -27,6 +14,14 @@ RUN microdnf -y --enablerepo=crb install \
 		openssl-devel \
 		libffi-devel \
     && microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
+
+RUN rpm -ivh https://yum.voxpupuli.org/${platform}-release-el-9.noarch.rpm \
+		https://yum.puppet.com/puppet-tools-release-el-9.noarch.rpm \
+    && microdnf -y install \
+		openvox-agent-${AGENT_VERSION} \
+	    openbolt-${BOLT_VERSION} \
+		pdk-${PDK_VERSION} \
+	&& microdnf clean all && rm -rf /var/cache/dnf /var/lib/rpm/__db*
 
 RUN --mount=type=bind,source=gem-setup.sh,target=/root/bin/gem-setup.sh \
 	/root/bin/gem-setup.sh \
