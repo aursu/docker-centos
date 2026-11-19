@@ -8,6 +8,8 @@ ARG COMPOSE_VERSION="5.8.0"
 ARG BUILDX_VERSION="0.39.0"
 ARG MODEL_VERSION="1.2.9"
 ARG SCOUT_VERSION="1.29.0"
+# source: https://github.com/docker/scout-cli/releases (verified against the release checksums file)
+ARG SCOUT_URL="https://github.com/docker/scout-cli/releases/download/v${SCOUT_VERSION}"
 
 COPY system/etc/yum.repos.d/docker.repo /etc/yum.repos.d/docker.repo
 
