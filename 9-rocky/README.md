@@ -138,9 +138,9 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
 ### pdk — `aursu/rockylinux:9.9.20261112.0-pdk` 🐳
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/ruby/puppet/Dockerfile)
 - **FROM** `-ruby33` (build-arg `image=ruby33`)
-- **Adds** Puppet Core + tools repos, then `puppet-agent 8.16.0`,
-  `puppet-bolt 5.0.1`, `pdk 3.6.1.1`. Consumes a Forge API key via a
-  build secret (`forge_key` → `DNF_ENV_FILE`).
+- **Adds** OpenVox 8 + Puppet tools repos, then `openvox-agent 8.34.0`,
+  `openbolt 5.6.0`, `pdk 3.4.0.1` (the latest PDK outside Puppet Core).
+  No build secret.
 - **Notes** **no CI job** — only buildable via `docker-compose.dev.yml`.
   Missing label; 🐳. (10-rocky builds the equivalent as `-ruby33-puppet`.)
 
