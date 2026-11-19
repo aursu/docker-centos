@@ -11,12 +11,12 @@ services:
       args:
         centos: $OS9
     image: "aursu/centos:${OS9TAG}-httpd"
-  stream9node18:
+  stream9node22:
     build:
-      context: node/18
+      context: node/22
       args:
         centos: $OS9
-    image: "aursu/centos:${OS9TAG}-node18"
+    image: "aursu/centos:${OS9TAG}-node22"
   stream9node20:
     build:
       context: node/20

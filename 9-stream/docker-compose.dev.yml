@@ -12,12 +12,12 @@ services:
         centos: $OS9
         image: scm
     image: "aursu/centos:${OS9TAG}-webdev"
-  stream9node18dev:
+  stream9node22dev:
     build:
       args:
         centos: $OS9
-      context: node/18/dev
-    image: "aursu/centos:${OS9TAG}-node18dev"
+      context: node/22/dev
+    image: "aursu/centos:${OS9TAG}-node22dev"
   stream9node20dev:
     build:
       args:

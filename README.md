@@ -126,8 +126,8 @@ Full per-image detail in [9-rocky/README.md](9-rocky/README.md).
 - `aursu/centos:stream9-20260706.0-httpd`
 - `aursu/centos:stream9-20260706.0-systemd`
 - `aursu/centos:stream9-20260706.0-jdk-22`
-- `aursu/centos:stream9-20260706.0-node18`
-- `aursu/centos:stream9-20260706.0-node18dev`
+- `aursu/centos:stream9-20260706.0-node22`
+- `aursu/centos:stream9-20260706.0-node22dev`
 - `aursu/centos:stream9-20260706.0-node20`
 - `aursu/centos:stream9-20260706.0-node20dev`
 - `aursu/centos:stream9-20260706.0-puppet7`
