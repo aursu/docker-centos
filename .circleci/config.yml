@@ -284,7 +284,7 @@ workflows:
           context:
             - github-packages
           requires:
-            - rocky10scm
+            - rocky10gh
       - docker-rpmbuild/image:
           name: rocky9ruby31
           compose_file: 9-rocky/docker-compose.web.yml
