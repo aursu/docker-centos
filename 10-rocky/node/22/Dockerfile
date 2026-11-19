@@ -1,4 +1,4 @@
-ARG rocky=10.2.20260525.0
+ARG rocky=10.3.20261112.0
 FROM ghcr.io/aursu/rockylinux:${rocky}-web
 
 ARG NODE_VERSION="22.x"

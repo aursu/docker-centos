@@ -1,4 +1,4 @@
-ARG rocky=10.2.20260525.0
+ARG rocky=10.3.20261112.0
 FROM ghcr.io/aursu/rockylinux:${rocky}-scm
 
 LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
