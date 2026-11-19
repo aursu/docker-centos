@@ -18,9 +18,9 @@ bump point, pinned per variant in `<variant>/.env`. See
 |---------|----------------------|-----------------|
 | `8-rocky/` | `RL8TAG=8.10.20240528` | mixed: `ghcr.io/aursu/rockylinux` + `aursu/rockylinux` (Docker Hub) |
 | `9-rocky/` | `RL9TAG=9.9.20261112.0` | mixed: `ghcr.io/aursu/rockylinux` + `aursu/rockylinux` (Docker Hub) |
-| `9-stream/` | `OS9TAG=stream9-20260706.0` | `aursu/centos` (Docker Hub) |
+| `9-stream/` | `OS9TAG=stream9-20261118.0` | `aursu/centos` (Docker Hub) |
 | `10-rocky/` | `RL10TAG=10.3.20261112.0` | `ghcr.io/aursu/rockylinux` (all GHCR) ✅ |
-| `10-stream/` | `OS10TAG=stream10-20260707.1` | `aursu/centos` (Docker Hub) |
+| `10-stream/` | `OS10TAG=stream10-20261118.0` | `aursu/centos` (Docker Hub) |
 
 > ⚠️ **Registry drift.** The stated target is `ghcr.io/aursu/*`, and `10-rocky`
 > follows it for every image. `8-rocky` and `9-rocky` still publish several
@@ -117,33 +117,67 @@ Full per-image detail in [9-rocky/README.md](9-rocky/README.md).
 
 ---
 
-## 9-stream — CentOS Stream 9 (`OS9TAG=stream9-20260706.0`) — Docker Hub
+## 9-stream — CentOS Stream 9 (`OS9TAG=stream9-20261118.0`) — Docker Hub
 
-- `aursu/centos:stream9-20260706.0-base`
-- `aursu/centos:stream9-20260706.0-scm`
-- `aursu/centos:stream9-20260706.0-web`
-- `aursu/centos:stream9-20260706.0-webdev`
-- `aursu/centos:stream9-20260706.0-httpd`
-- `aursu/centos:stream9-20260706.0-systemd`
-- `aursu/centos:stream9-20260706.0-jdk-22`
-- `aursu/centos:stream9-20260706.0-node22`
-- `aursu/centos:stream9-20260706.0-node22dev`
-- `aursu/centos:stream9-20260706.0-node20`
-- `aursu/centos:stream9-20260706.0-node20dev`
-- `aursu/centos:stream9-20260706.0-puppet7`
-- `aursu/centos:stream9-20260706.0-puppet8`
+- `aursu/centos:stream9-20261118.0-base`
+- `aursu/centos:stream9-20261118.0-scm`
+- `aursu/centos:stream9-20261118.0-web`
+- `aursu/centos:stream9-20261118.0-webdev`
+- `aursu/centos:stream9-20261118.0-httpd`
+- `aursu/centos:stream9-20261118.0-systemd`
+- `aursu/centos:stream9-20261118.0-jdk-25`
+- `aursu/centos:stream9-20261118.0-node22`
+- `aursu/centos:stream9-20261118.0-node22dev`
+- `aursu/centos:stream9-20261118.0-node20`
+- `aursu/centos:stream9-20261118.0-node20dev`
+- `aursu/centos:stream9-20261118.0-puppet7`
+- `aursu/centos:stream9-20261118.0-puppet8`
 
 ---
 
-## 10-stream — CentOS Stream 10 (`OS10TAG=stream10-20260707.1`) — Docker Hub
+## 10-stream — CentOS Stream 10 (`OS10TAG=stream10-20261118.0`) — Docker Hub
 
-- `aursu/centos:stream10-20260707.1-base`
-- `aursu/centos:stream10-20260707.1-scm`
-- `aursu/centos:stream10-20260707.1-web`
-- `aursu/centos:stream10-20260707.1-webdev`
-- `aursu/centos:stream10-20260707.1-systemd`
-- `aursu/centos:stream10-20260707.1-node22`
-- `aursu/centos:stream10-20260707.1-node22dev`
+- `aursu/centos:stream10-20261118.0-base`
+- `aursu/centos:stream10-20261118.0-scm`
+- `aursu/centos:stream10-20261118.0-web`
+- `aursu/centos:stream10-20261118.0-webdev`
+- `aursu/centos:stream10-20261118.0-systemd`
+- `aursu/centos:stream10-20261118.0-node22`
+- `aursu/centos:stream10-20261118.0-node22dev`
+
+---
+
+## CentOS Stream base images
+
+The Stream variants build `FROM aursu/centos:stream-container-minimal-<N>-<build>.x86_64`,
+a plain copy of the upstream *CentOS Stream Container Minimal* image. Since
+build `20261118.0` that image is made from the upstream **OCI layout**
+(`*.oci.tar`), not by `docker import` of the `*.tar.xz`. It is done by hand
+once per upstream build, before `<N>-stream/.env` and `<N>-stream/base/Dockerfile`
+are bumped to it.
+
+```sh
+STREAM=9                 # 9 or 10
+BUILD=20261118.0         # from https://cloud.centos.org/centos/${STREAM}-stream/x86_64/images/
+OCI_DIR=/tmp/centos${STREAM}-oci
+IMAGE=aursu/centos:stream-container-minimal-${STREAM}-${BUILD}.x86_64
+
+mkdir -p "$OCI_DIR"
+curl -sL "https://cloud.centos.org/centos/${STREAM}-stream/x86_64/images/CentOS-Stream-Container-Minimal-${STREAM}-${BUILD}.x86_64.oci.tar" \
+  | tar -xf - -C "$OCI_DIR"
+docker buildx create --name oci-builder --driver docker-container --use
+docker buildx build --build-context base=oci-layout://"$OCI_DIR" --load -t "$IMAGE" - <<'EOF'
+FROM base
+EOF
+docker push "$IMAGE"
+docker buildx use desktop-linux
+docker buildx rm oci-builder
+rm -rf "$OCI_DIR"
+```
+
+The `oci-layout://` build context needs the `docker-container` buildx driver,
+hence the temporary `oci-builder`. `desktop-linux` is the Docker Desktop
+builder; on a Linux host, switch back to `default` instead.
 
 ---
 
