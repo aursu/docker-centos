@@ -5,8 +5,8 @@ security support through **31 May 2032**
 ([release notes](https://docs.rockylinux.org/release_notes/#rocky-9)).
 
 Per-image reference for everything produced under `9-rocky/`.
-Current pin: **`RL9TAG=9.8.20260525.0`** ([`.env`](.env)), upstream
-`quay.io/rockylinux/rockylinux:9.8.20260525.0-minimal`.
+Current pin: **`RL9TAG=9.9.20261112.0`** ([`.env`](.env)), upstream
+`quay.io/rockylinux/rockylinux:9.9.20261112.0-minimal`.
 
 Companion docs:
 [root inventory](../README.md) ·
@@ -36,9 +36,9 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
 
 ## Images
 
-### base — `ghcr.io/aursu/rockylinux:9.8.20260525.0-base`
+### base — `ghcr.io/aursu/rockylinux:9.9.20261112.0-base`
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/base/Dockerfile)
-- **FROM** `quay.io/rockylinux/rockylinux:9.8.20260525.0-minimal`
+- **FROM** `quay.io/rockylinux/rockylinux:9.9.20261112.0-minimal`
 - **Adds** security updates to a curated TLS/crypto/XML/curl library set;
   `epel-release`, `glibc-langpack-en`, `shadow-utils`. Installs a
   no-weak-deps `dnf.conf`, `--nodocs`, `install_weak_deps=0`. Cleans dnf
@@ -46,14 +46,14 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
 - **Notes** minimal footprint; `epel-release` is enabled repo-wide for all
   descendants. Carries the `org.opencontainers.image.source` label.
 
-### scm — `ghcr.io/aursu/rockylinux:9.8.20260525.0-scm`
+### scm — `ghcr.io/aursu/rockylinux:9.9.20261112.0-scm`
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/scm/Dockerfile)
 - **FROM** `-base`
 - **Adds** `diffutils findutils git openssh-clients procps rsync`.
 - **Role** the "general scripting + SCM toolbox" catch-all; parent for most
   derived roles. Carries the source label.
 
-### docker-cli — `aursu/rockylinux:9.8.20260525.0-docker-cli` 🐳
+### docker-cli — `aursu/rockylinux:9.9.20261112.0-docker-cli` 🐳
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/docker/Dockerfile)
 - **FROM** `-scm` (build-arg `image=scm`)
 - **Adds** `docker-ce-cli 29.4.3`, `docker-compose-plugin 5.1.3`, `skopeo`,
@@ -62,13 +62,13 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
 - **Notes** no daemon (CLI only); `docker.sock` mounted at run time. Missing
   the source label. Scout install is unverified (no checksum/signature).
 
-### systemd — `ghcr.io/aursu/rockylinux:9.8.20260525.0-systemd`
+### systemd — `ghcr.io/aursu/rockylinux:9.9.20261112.0-systemd`
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/systemd/Dockerfile)
 - **FROM** `-scm`
 - **Adds** `systemd`; masks/removes most `*.wants` units; `CMD /usr/sbin/init`.
 - **Run** requires `--privileged` (see [root README](../README.md#systemd-containers)). Missing label.
 
-### httpd — `aursu/rockylinux:9.8.20260525.0-httpd` 🐳
+### httpd — `aursu/rockylinux:9.9.20261112.0-httpd` 🐳
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/httpd/Dockerfile)
 - **FROM** `-base`
 - **Adds** stock `httpd`; wipes default `conf.d/*` + `conf.modules.d/*` and
@@ -76,19 +76,19 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
 - **Runs** `httpd -DFOREGROUND`, `EXPOSE 80`. Missing label; 🐳 on Docker Hub
   while 8-rocky/10-rocky publish httpd to GHCR.
 
-### web — `ghcr.io/aursu/rockylinux:9.8.20260525.0-web`
+### web — `ghcr.io/aursu/rockylinux:9.9.20261112.0-web`
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/web/Dockerfile)
 - **FROM** `-base` (build-arg `image=base`; `webdev` overrides `image=scm`)
 - **Adds** the `www-data` uid/gid **33** account (deletes the conflicting
   `tape` group first), and `/var/www/html` owned by it.
 - **Role** shared parent for nginx/httpd/node web images. Missing label.
 
-### webdev — `ghcr.io/aursu/rockylinux:9.8.20260525.0-webdev`
+### webdev — `ghcr.io/aursu/rockylinux:9.9.20261112.0-webdev`
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/web/Dockerfile)
 - Same Dockerfile as `web`, built `FROM …-scm` (dev overlay adds the scm
   toolbox). Parent for the `node*dev` images.
 
-### nginx — `aursu/rockylinux:9.8.20260525.0-nginx` 🐳
+### nginx — `aursu/rockylinux:9.9.20261112.0-nginx` 🐳
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/nginx/Dockerfile)
 - **FROM** `-web`
 - **Adds** `nginx 1.31.1` from nginx-mainline repo; generates a **4096-bit
@@ -97,14 +97,14 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
 - **Notes** dhparam generation makes the build slow and bakes a *shared*
   DH parameter into the published image. Missing label; 🐳.
 
-### resty — `aursu/rockylinux:9.8.20260525.0-resty` 🐳
+### resty — `aursu/rockylinux:9.9.20261112.0-resty` 🐳
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/nginx/resty/Dockerfile)
 - **FROM** `-nginx`
 - **Adds** `openresty 1.29.2.3` + `openresty-debug` from the OpenResty repo;
   curated `nginx.conf` + `00-proxy.conf` under `/usr/local/openresty`.
 - **Notes** missing label; 🐳.
 
-### node22 / node24 — `ghcr.io/aursu/rockylinux:9.8.20260525.0-node22` / `-node24`
+### node22 / node24 — `ghcr.io/aursu/rockylinux:9.9.20261112.0-node22` / `-node24`
 [node/22 Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/node/22/Dockerfile) ·
 [node/24 Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/node/24/Dockerfile)
 - **FROM** `-web`
@@ -112,14 +112,14 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
   installs `nodejs 22.23.4` / `24.22.1`; creates uid/gid **1000** `node`
   user; `docker-entrypoint.sh`. Carries the source label.
 
-### node22dev / node24dev — `ghcr.io/aursu/rockylinux:9.8.20260525.0-node22dev` / `-node24dev`
+### node22dev / node24dev — `ghcr.io/aursu/rockylinux:9.9.20261112.0-node22dev` / `-node24dev`
 [node/22/dev Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/node/22/dev/Dockerfile) ·
 [node/24/dev Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/node/24/dev/Dockerfile)
 - **FROM** `-webdev`
 - **Adds** same Node install plus `npm 11.21.1` (via npmjs install.sh),
   `corepack` + `yarn 4.18.1`, `tar`, `which`. Carries the source label.
 
-### jdk-21 / jdk-25 — `aursu/rockylinux:9.8.20260525.0-jdk-21` / `-jdk-25` 🐳
+### jdk-21 / jdk-25 — `aursu/rockylinux:9.9.20261112.0-jdk-21` / `-jdk-25` 🐳
 [openjdk/21 Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/openjdk/21/Dockerfile) ·
 [openjdk/25 Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/openjdk/25/Dockerfile)
 - **FROM** `-scm`
@@ -127,7 +127,7 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
   `java-latest-openjdk 26.0.1.0.8` (exact-pinned).
 - **Notes** missing label; 🐳. Exact RPM pins age out of the repo over time.
 
-### ruby31 / ruby33 — `aursu/rockylinux:9.8.20260525.0-ruby31` / `-ruby33` 🐳
+### ruby31 / ruby33 — `aursu/rockylinux:9.9.20261112.0-ruby31` / `-ruby33` 🐳
 [ruby/31 Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/ruby/31/Dockerfile) ·
 [ruby/33 Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/ruby/33/Dockerfile)
 - **FROM** `-scm`
@@ -135,16 +135,16 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
   make gcc-c++ redhat-rpm-config glibc-devel` (native-gem build toolchain).
 - **Notes** missing label; 🐳.
 
-### pdk — `aursu/rockylinux:9.8.20260525.0-pdk` 🐳
+### pdk — `aursu/rockylinux:9.9.20261112.0-pdk` 🐳
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/ruby/puppet/Dockerfile)
 - **FROM** `-ruby33` (build-arg `image=ruby33`)
-- **Adds** Puppet Core + tools repos, then `puppet-agent 8.16.0`,
-  `puppet-bolt 5.0.1`, `pdk 3.6.1.1`. Consumes a Forge API key via a
-  build secret (`forge_key` → `DNF_ENV_FILE`).
+- **Adds** OpenVox 8 + Puppet tools repos, then `openvox-agent 8.34.0`,
+  `openbolt 5.6.0`, `pdk 3.4.0.1` (the latest PDK outside Puppet Core).
+  No build secret.
 - **Notes** **no CI job** — only buildable via `docker-compose.dev.yml`.
   Missing label; 🐳. (10-rocky builds the equivalent as `-ruby33-puppet`.)
 
-### python3.12 — `ghcr.io/aursu/rockylinux:9.8.20260525.0-python3.12`
+### python3.12 — `ghcr.io/aursu/rockylinux:9.9.20261112.0-python3.12`
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/python/3.12/Dockerfile)
 - **FROM** `-scm`
 - **Adds** `python3.12` RPM, then `pip` bootstrapped globally via
@@ -152,7 +152,7 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
 - **Notes** pip installs into the system 3.12 interpreter. For a venv-based
   pytest runner, use the `-python3.12-dev` overlay below.
 
-### python3.12-dev — `ghcr.io/aursu/rockylinux:9.8.20260525.0-python3.12-dev`
+### python3.12-dev — `ghcr.io/aursu/rockylinux:9.9.20261112.0-python3.12-dev`
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/python/3.12/dev/Dockerfile)
 - **FROM** `-python3.12`
 - **Adds** `bash-completion vim`; an `ansible` uid/gid **1000** user
@@ -165,7 +165,7 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
   entrypoint too.
 - **Notes** missing the source label.
 
-### ansible — `ghcr.io/aursu/rockylinux:9.8.20260525.0-ansible`
+### ansible — `ghcr.io/aursu/rockylinux:9.9.20261112.0-ansible`
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/python/ansible/Dockerfile)
 - **FROM** `-python3.12-dev`
 - **Inherits** the `ansible` user (uid/gid **1000**, `/var/ansible`) and the
@@ -177,7 +177,7 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`) instead of `ghcr.io/aursu/�
 - **Notes** builds cleanly on the dev overlay — no duplicate user/venv
   creation. Missing the source label.
 
-### tomcat — `aursu/rockylinux:9.8.20260525.0-tomcat` 🐳 *(not wired into compose/CI yet)*
+### tomcat — `aursu/rockylinux:9.9.20261112.0-tomcat` 🐳 *(not wired into compose/CI yet)*
 [Dockerfile](https://github.com/aursu/docker-centos/blob/master/9-rocky/tomcat/Dockerfile)
 - **FROM** `-jdk-25`
 - **Adds** `tomcat` (pulls tomcat-lib, javapackages-tools, and ecj/java-8 for

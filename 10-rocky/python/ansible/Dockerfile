@@ -1,7 +1,7 @@
-ARG rocky=10.2.20260525.0
+ARG rocky=10.3.20261112.0
 FROM ghcr.io/aursu/rockylinux:${rocky}-python3.12-dev
 
-ARG SOPS_VERSION="3.13.2"
+ARG SOPS_VERSION="3.13.3"
 ARG SOPS_DISTRO="sops-v${SOPS_VERSION}.linux.amd64"
 ARG SOPS_CHECKSUMS="sops-v${SOPS_VERSION}.checksums.txt"
 
@@ -47,8 +47,8 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 # Left as USER ansible, pip would silently fall back to a --user install into
 # ~/.local, whose bin directory is not.
 RUN /usr/bin/python3.12 -m pip install --no-cache-dir \
-        "ansible-core==2.21.3" \
-        "ansible-dev-tools==26.8.0"
+        "ansible-core==2.21.6" \
+        "ansible-dev-tools==26.11.0"
 
 USER ansible
 WORKDIR /var/ansible

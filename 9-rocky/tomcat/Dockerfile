@@ -1,4 +1,4 @@
-ARG rocky=9.8.20260525.0
+ARG rocky=9.9.20261112.0
 # NOTE: jdk-25 is currently published bare (Docker Hub). When the registry
 # drift is fixed (see 9-rocky/RECOMMENDATIONS.md P1.1), move this to
 # ghcr.io/aursu/rockylinux together with jdk-25.

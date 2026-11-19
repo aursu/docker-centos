@@ -1,10 +1,10 @@
-ARG rocky=10.2.20260525.0
+ARG rocky=10.3.20261112.0
 ARG image=web
 FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 
 LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
 
-ARG NGINX_VERSION="1.31.1"
+ARG NGINX_VERSION="1.31.9"
 
 COPY system/etc/yum.repos.d/nginx.repo /etc/yum.repos.d/nginx.repo
 

@@ -1,8 +1,8 @@
-ARG rocky=10.2.20260525.0
+ARG rocky=10.3.20261112.0
 FROM ghcr.io/aursu/rockylinux:${rocky}-web
 
 ARG NODE_VERSION="22.x"
-ARG NODEJS_VERSION="22.23.4"
+ARG NODEJS_VERSION="22.23.5"
 
 LABEL org.opencontainers.image.source=https://github.com/aursu/docker-centos
 

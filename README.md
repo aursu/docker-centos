@@ -17,9 +17,9 @@ bump point, pinned per variant in `<variant>/.env`. See
 | Variant | `.env` pin (current) | Registry / repo |
 |---------|----------------------|-----------------|
 | `8-rocky/` | `RL8TAG=8.10.20240528` | mixed: `ghcr.io/aursu/rockylinux` + `aursu/rockylinux` (Docker Hub) |
-| `9-rocky/` | `RL9TAG=9.8.20260525.0` | mixed: `ghcr.io/aursu/rockylinux` + `aursu/rockylinux` (Docker Hub) |
+| `9-rocky/` | `RL9TAG=9.9.20261112.0` | mixed: `ghcr.io/aursu/rockylinux` + `aursu/rockylinux` (Docker Hub) |
 | `9-stream/` | `OS9TAG=stream9-20260706.0` | `aursu/centos` (Docker Hub) |
-| `10-rocky/` | `RL10TAG=10.2.20260525.0` | `ghcr.io/aursu/rockylinux` (all GHCR) ✅ |
+| `10-rocky/` | `RL10TAG=10.3.20261112.0` | `ghcr.io/aursu/rockylinux` (all GHCR) ✅ |
 | `10-stream/` | `OS10TAG=stream10-20260707.1` | `aursu/centos` (Docker Hub) |
 
 > ⚠️ **Registry drift.** The stated target is `ghcr.io/aursu/*`, and `10-rocky`
@@ -32,36 +32,36 @@ Legend: 🐳 = published to Docker Hub (`aursu/…`), not GHCR.
 
 ---
 
-## 9-rocky — Rocky Linux 9 (`RL9TAG=9.8.20260525.0`)
+## 9-rocky — Rocky Linux 9 (`RL9TAG=9.9.20261112.0`)
 
 Full per-image detail in [9-rocky/README.md](9-rocky/README.md).
 
 ### base / scm / infra
-- `ghcr.io/aursu/rockylinux:9.8.20260525.0-base`
-- `ghcr.io/aursu/rockylinux:9.8.20260525.0-scm`
-- `ghcr.io/aursu/rockylinux:9.8.20260525.0-systemd`
-- `aursu/rockylinux:9.8.20260525.0-docker-cli` 🐳
+- `ghcr.io/aursu/rockylinux:9.9.20261112.0-base`
+- `ghcr.io/aursu/rockylinux:9.9.20261112.0-scm`
+- `ghcr.io/aursu/rockylinux:9.9.20261112.0-systemd`
+- `aursu/rockylinux:9.9.20261112.0-docker-cli` 🐳
 
 ### web
-- `ghcr.io/aursu/rockylinux:9.8.20260525.0-web`
-- `ghcr.io/aursu/rockylinux:9.8.20260525.0-webdev`
-- `aursu/rockylinux:9.8.20260525.0-httpd` 🐳
-- `aursu/rockylinux:9.8.20260525.0-nginx` 🐳
-- `aursu/rockylinux:9.8.20260525.0-resty` 🐳
-- `ghcr.io/aursu/rockylinux:9.8.20260525.0-node22`
-- `ghcr.io/aursu/rockylinux:9.8.20260525.0-node24`
-- `ghcr.io/aursu/rockylinux:9.8.20260525.0-node22dev`
-- `ghcr.io/aursu/rockylinux:9.8.20260525.0-node24dev`
+- `ghcr.io/aursu/rockylinux:9.9.20261112.0-web`
+- `ghcr.io/aursu/rockylinux:9.9.20261112.0-webdev`
+- `aursu/rockylinux:9.9.20261112.0-httpd` 🐳
+- `aursu/rockylinux:9.9.20261112.0-nginx` 🐳
+- `aursu/rockylinux:9.9.20261112.0-resty` 🐳
+- `ghcr.io/aursu/rockylinux:9.9.20261112.0-node22`
+- `ghcr.io/aursu/rockylinux:9.9.20261112.0-node24`
+- `ghcr.io/aursu/rockylinux:9.9.20261112.0-node22dev`
+- `ghcr.io/aursu/rockylinux:9.9.20261112.0-node24dev`
 
 ### language runtimes
-- `aursu/rockylinux:9.8.20260525.0-jdk-21` 🐳
-- `aursu/rockylinux:9.8.20260525.0-jdk-25` 🐳
-- `aursu/rockylinux:9.8.20260525.0-ruby31` 🐳
-- `aursu/rockylinux:9.8.20260525.0-ruby33` 🐳
-- `aursu/rockylinux:9.8.20260525.0-pdk` 🐳 *(no CI job — built only via `docker-compose.dev.yml`)*
-- `ghcr.io/aursu/rockylinux:9.8.20260525.0-python3.12`
-- `ghcr.io/aursu/rockylinux:9.8.20260525.0-python3.12-dev` *(pytest + PyJWT[crypto]/cryptography venv)*
-- `ghcr.io/aursu/rockylinux:9.8.20260525.0-ansible`
+- `aursu/rockylinux:9.9.20261112.0-jdk-21` 🐳
+- `aursu/rockylinux:9.9.20261112.0-jdk-25` 🐳
+- `aursu/rockylinux:9.9.20261112.0-ruby31` 🐳
+- `aursu/rockylinux:9.9.20261112.0-ruby33` 🐳
+- `aursu/rockylinux:9.9.20261112.0-pdk` 🐳 *(no CI job — built only via `docker-compose.dev.yml`)*
+- `ghcr.io/aursu/rockylinux:9.9.20261112.0-python3.12`
+- `ghcr.io/aursu/rockylinux:9.9.20261112.0-python3.12-dev` *(pytest + PyJWT[crypto]/cryptography venv)*
+- `ghcr.io/aursu/rockylinux:9.9.20261112.0-ansible`
 
 > `tomcat/Dockerfile` is present but **orphaned** — no compose service, no CI
 > job, and it builds `FROM …-jdk-22` which 9-rocky does not produce (only
@@ -69,28 +69,28 @@ Full per-image detail in [9-rocky/README.md](9-rocky/README.md).
 
 ---
 
-## 10-rocky — Rocky Linux 10 (`RL10TAG=10.2.20260525.0`) — all GHCR ✅
+## 10-rocky — Rocky Linux 10 (`RL10TAG=10.3.20261112.0`) — all GHCR ✅
 
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-base`
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-scm`
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-systemd`
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-docker-cli`
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-gh` *(GitHub CLI, version pinned from the latest-only gh-cli repo)*
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-web`
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-webdev`
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-httpd`
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-nginx`
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-resty`
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-ruby33`
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-ruby33-puppet`
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-python3.12`
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-python3.12-dev` *(pytest + PyJWT[crypto]/cryptography venv)*
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-python3.12-cdev` *(+ C toolchain: gcc/make/binutils, libcmocka-devel, gcov)*
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-ansible`
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-node22`
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-node24`
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-node22dev`
-- `ghcr.io/aursu/rockylinux:10.2.20260525.0-node24dev`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-base`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-scm`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-systemd`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-docker-cli`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-gh` *(GitHub CLI, version pinned from the latest-only gh-cli repo)*
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-web`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-webdev`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-httpd`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-nginx`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-resty`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-ruby33`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-ruby33-puppet`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-python3.12`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-python3.12-dev` *(pytest + PyJWT[crypto]/cryptography venv)*
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-python3.12-cdev` *(+ C toolchain: gcc/make/binutils, libcmocka-devel, gcov)*
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-ansible`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-node22`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-node24`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-node22dev`
+- `ghcr.io/aursu/rockylinux:10.3.20261112.0-node24dev`
 
 ---
 
@@ -126,8 +126,8 @@ Full per-image detail in [9-rocky/README.md](9-rocky/README.md).
 - `aursu/centos:stream9-20260706.0-httpd`
 - `aursu/centos:stream9-20260706.0-systemd`
 - `aursu/centos:stream9-20260706.0-jdk-22`
-- `aursu/centos:stream9-20260706.0-node18`
-- `aursu/centos:stream9-20260706.0-node18dev`
+- `aursu/centos:stream9-20260706.0-node22`
+- `aursu/centos:stream9-20260706.0-node22dev`
 - `aursu/centos:stream9-20260706.0-node20`
 - `aursu/centos:stream9-20260706.0-node20dev`
 - `aursu/centos:stream9-20260706.0-puppet7`
@@ -170,5 +170,5 @@ Run command:
 
 ```
 docker run -ti --rm --privileged --cgroup-parent=docker.slice --cgroupns private \
-  --tmpfs /tmp --tmpfs /run ghcr.io/aursu/rockylinux:9.8.20260525.0-systemd
+  --tmpfs /tmp --tmpfs /run ghcr.io/aursu/rockylinux:9.9.20261112.0-systemd
 ```

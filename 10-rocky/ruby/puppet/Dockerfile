@@ -1,9 +1,9 @@
-ARG rocky=10.2.20260525.0
+ARG rocky=10.3.20261112.0
 ARG image=ruby33
 FROM ghcr.io/aursu/rockylinux:${rocky}-${image}
 
 ARG platform=openvox8
-ARG AGENT_VERSION="8.29.0"
+ARG AGENT_VERSION="8.34.0"
 ARG BOLT_VERSION="5.6.0"
 ARG PDK_VERSION="3.4.0.1"
 
