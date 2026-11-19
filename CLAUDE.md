@@ -36,7 +36,7 @@ Each variant directory has the same shape (modulo what's needed):
 
 ```
 <variant>/
-├── .env                        Pins upstream OS version, e.g. RL9TAG="9.8.20260525.0"
+├── .env                        Pins upstream OS version, e.g. RL9TAG="9.9.20261112.0"
 ├── docker-compose.yml          Main build services (production-tagged images)
 ├── docker-compose.web.yml      Web-role overlay services
 ├── docker-compose.webtest.yml  Test overlay (where applicable)
@@ -60,14 +60,14 @@ Each variant directory has the same shape (modulo what's needed):
 
 ## Image tag convention
 
-`<repo>:<distro-version>-<role>` — the **distro version is the source-of-truth bump point**. Example tags from `9-rocky` (current pinned `RL9TAG=9.8.20260525.0`):
+`<repo>:<distro-version>-<role>` — the **distro version is the source-of-truth bump point**. Example tags from `9-rocky` (current pinned `RL9TAG=9.9.20261112.0`):
 
 ```
-ghcr.io/aursu/rockylinux:9.8.20260525.0-base
-ghcr.io/aursu/rockylinux:9.8.20260525.0-scm
-ghcr.io/aursu/rockylinux:9.8.20260525.0-node22
-ghcr.io/aursu/rockylinux:9.8.20260525.0-jdk-21
-ghcr.io/aursu/rockylinux:9.8.20260525.0-python3.12-dev
+ghcr.io/aursu/rockylinux:9.9.20261112.0-base
+ghcr.io/aursu/rockylinux:9.9.20261112.0-scm
+ghcr.io/aursu/rockylinux:9.9.20261112.0-node22
+ghcr.io/aursu/rockylinux:9.9.20261112.0-jdk-21
+ghcr.io/aursu/rockylinux:9.9.20261112.0-python3.12-dev
 ```
 
 The `aursu/centos:stream9-…` and `aursu/centos:stream10-…` lines use `stream<N>-<date>-<role>`. See `README.md` for the full tag inventory.
